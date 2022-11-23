@@ -1,0 +1,61 @@
+@use "../../../constants/Colors.scss";
+
+$small: 850px;
+
+.cardContainer {
+  background-color: Colors.$primaryRed;
+  width: 405px;
+  height: 450px;
+  border-radius: 2.5px;
+  margin: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: Colors.$primaryWhite;
+
+  .cardPicture {
+    border-radius: 2.5px;
+    max-width: 100%;
+  }
+
+  .cardDescription {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .cardPrice {
+    font-weight: 400;
+    margin: 0;
+    align-self: flex-start;
+  }
+  
+  .cardTitle {
+    font-weight: 400;
+    margin: 0;
+  }
+
+  @media screen and (max-width: $small) {
+    width: 180px;
+    height: 200px;
+    padding: 5px;
+
+    .cardDescription {
+        gap: 0;
+        align-items: flex-start;
+        flex-direction: column-reverse;
+    }
+
+    .cardPrice {
+        font-size: 16px;
+    }
+    .cardTitle {
+        font-size: 18px;
+        margin: 0;
+    }
+  }
+}
