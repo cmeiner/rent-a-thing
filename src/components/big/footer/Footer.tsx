@@ -1,6 +1,6 @@
 import styles from "./Footer.module.scss";
 
-function Footer() {
+export const Footer = () => {
   return (
     <div className={styles.footer}>
       <a>Om oss</a>
@@ -8,6 +8,4 @@ function Footer() {
       <a>Vanliga frågor</a>
     </div>
   );
-}
-
-export { Footer };
+};
