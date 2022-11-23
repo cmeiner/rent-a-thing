@@ -1,0 +1,14 @@
+@use "../../../constants/Colors.scss";
+
+.footer {
+  background-color: Colors.$secondaryBlack;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.footer a {
+  color: Colors.$primaryWhite;
+  font-size: 16px;
+}
