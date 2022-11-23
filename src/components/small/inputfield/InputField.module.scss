@@ -1,0 +1,15 @@
+@use '../../../constants/Colors.scss';
+
+.inputField {
+  background-color: Colors.$primaryWhite;
+  border-radius: 8px;
+  border: 1px solid Colors.$inputBorderGray;
+  width: 40vw;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 16px;
+
+  .inputField::placeholder {
+    color: Colors.$primaryPlaceholderText;
+  }
+}

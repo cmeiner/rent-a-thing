@@ -1,4 +1,4 @@
-@use "../../../constants/Colors.scss";
+@use '../../../constants/Colors.scss';
 
 .textField {
   .textFieldContent {
@@ -9,5 +9,6 @@
     height: 160px;
     resize: none;
     width: 40vw;
+    padding: 0 10px;
   }
 }
