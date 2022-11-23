@@ -1,0 +1,14 @@
+@use '../../../constants/Colors.scss';
+
+.textField {
+  .textFieldContent {
+    background-color: Colors.$primaryWhite;
+    border: 1px solid Colors.$inputBorderGray;
+    border-radius: 8px;
+    font-size: 16px;
+    height: 160px;
+    resize: none;
+    width: 40vw;
+    padding: 0 10px;
+  }
+}
