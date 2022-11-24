@@ -1,6 +1,5 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import { ProductCard } from "../src/components/small/productcard/ProductCard";
 
 const Home: NextPage = () => {
   return (
