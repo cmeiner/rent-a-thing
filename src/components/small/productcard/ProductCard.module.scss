@@ -17,7 +17,8 @@ $small: 850px;
 
   .cardPicture {
     border-radius: 2.5px;
-    max-width: 100%;
+    height: 100%;
+    width: 100%;
   }
 
   .cardDescription {
@@ -33,7 +34,7 @@ $small: 850px;
     margin: 0;
     align-self: flex-start;
   }
-  
+
   .cardTitle {
     font-weight: 400;
     margin: 0;
@@ -45,17 +46,18 @@ $small: 850px;
     padding: 5px;
 
     .cardDescription {
-        gap: 0;
-        align-items: flex-start;
-        flex-direction: column-reverse;
+      gap: 0;
+      align-items: flex-start;
+      flex-direction: column-reverse;
     }
 
     .cardPrice {
-        font-size: 16px;
+      font-size: 16px;
     }
+
     .cardTitle {
-        font-size: 18px;
-        margin: 0;
+      font-size: 18px;
+      margin: 0;
     }
   }
 }
