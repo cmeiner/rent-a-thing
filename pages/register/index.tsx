@@ -15,7 +15,7 @@ const Register: NextPage = () => {
     <div>
       <Header />
       <div className={styles.container}>
-        <h2 className={styles.title}>Skapa konto</h2>
+        <h1 className={styles.title}>Skapa konto</h1>
         <form onSubmit={handleSubmit} className={styles.formStyle}>
           <InputField placeholder={"Name"} type={"text"} />
           <InputField placeholder={"Email"} type={"text"} />
