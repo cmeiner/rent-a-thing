@@ -1,6 +1,5 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import { Header } from '../src/components/big/header/Header';
 
 const Home: NextPage = () => {
   return (
