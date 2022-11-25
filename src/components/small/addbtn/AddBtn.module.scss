@@ -1,0 +1,8 @@
+@use "../../../constants/Colors.scss";
+.Addbtn {
+    color: Colors.$primaryRed;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+   
+}
