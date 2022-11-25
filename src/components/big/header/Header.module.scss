@@ -1,11 +1,10 @@
-@use '../../../constants/Colors.scss';
+@use "../../../constants/Colors.scss";
 
 .container {
-  width: 100vw;
   display: grid;
   grid-template-columns: auto max-content max-content auto;
   align-items: center;
-  padding: 0 1rem;
+  margin: 0 2rem;
 
   .logoContainer,
   .headerTextContainer,
