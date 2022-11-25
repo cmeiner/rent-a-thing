@@ -1,7 +1,9 @@
+import { NextPage } from "next";
+import Head from "next/head";
 import Head from 'next/head';
 import { Header } from '../src/components/big/header/Header';
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <div>
       <Head>
@@ -11,4 +13,6 @@ export default function Home() {
       </Head>
     </div>
   );
-}
+};
+
+export default Home;
