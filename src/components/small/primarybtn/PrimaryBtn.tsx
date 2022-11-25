@@ -2,9 +2,10 @@ import styles from "./PrimaryBtn.module.scss";
 
 interface ButtonProps {
     text: string;
-    onClick: () => void;
+    submit: boolean;
+    onClick?: () => void;
 }
 
-export const PrimaryButton = ({text, onClick}: ButtonProps) => (
-  <button onClick={onClick} className={styles.primbtn}>{text}</button>
+export const PrimaryButton = ({text, onClick, submit= false}: ButtonProps) => (
+  <button onClick={onClick} type={`${submit ? "submit": "button"}`} className={styles.primbtn}>{text}</button>
 );
