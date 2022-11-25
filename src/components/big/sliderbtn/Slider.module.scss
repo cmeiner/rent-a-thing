@@ -1,0 +1,78 @@
+@use "../../../constants/Colors.scss";
+
+.sliderButton {
+  align-items: center;
+  background-color: Colors.$primaryWhite;
+  border: 1px solid Colors.$primaryRed;
+  border-radius: 100px;
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  position: relative;
+  width: 335px;
+
+  .button {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 100px;
+    color: rgba(164, 59, 59, 0.4);
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .active {
+    animation: fadeIn 0.2s ease-in-out forwards;
+    cursor: default;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      color: rgba(164, 59, 59, 0.4);
+    }
+    100% {
+      color: Colors.$primaryWhite;
+    }
+  }
+
+  .background {
+    background: Colors.$primaryRed;
+    border-radius: 100px;
+    color: Colors.$primaryWhite;
+    cursor: default;
+    height: 100%;
+    position: absolute;
+    width: 55%;
+    z-index: 1;
+  }
+
+  .backgroundLeft {
+    animation: slideLeft 0.3s ease-in-out forwards;
+  }
+
+  .backgroundRight {
+    animation: slideRight 0.3s ease-in-out forwards;
+  }
+
+  @keyframes slideRight {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 50%;
+    }
+  }
+
+  @keyframes slideLeft {
+    0% {
+      left: 50%;
+    }
+    100% {
+      left: 0;
+    }
+  }
+}
