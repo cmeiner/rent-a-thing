@@ -22,6 +22,7 @@ const Register: NextPage = () => {
           <InputField placeholder={"Password"} type={"text"} />
           <div className={styles.button}>
             <PrimaryButton
+              submit={false}
               text="Skapa konto"
               onClick={() => console.log("TODO")}
             />

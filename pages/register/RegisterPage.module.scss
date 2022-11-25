@@ -1,3 +1,4 @@
+@use "src/constants/Fonts.scss";
 @use "src/constants/Colors.scss";
 
 .container {
@@ -8,6 +9,7 @@
   margin-top: 5rem;
 
   .title {
+    font-size: Fonts.$h1;
     color: Colors.$primaryWhite;
   }
 
@@ -26,5 +28,6 @@
   .link {
     color: Colors.$primaryRed;
     margin-top: 2rem;
+    font-size: Fonts.$p;
   }
 }
