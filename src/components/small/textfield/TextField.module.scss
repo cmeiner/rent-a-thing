@@ -11,4 +11,8 @@
     width: 40vw;
     padding: 0 10px;
   }
+    .textFieldContent::placeholder {
+    color: Colors.$primaryPlaceholderText;
+    padding: 10px 0;
+  }
 }
