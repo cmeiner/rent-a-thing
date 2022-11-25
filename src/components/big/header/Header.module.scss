@@ -1,0 +1,57 @@
+@use '../../../constants/Colors.scss';
+
+.container {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto max-content max-content auto;
+  align-items: center;
+  padding: 0 1rem;
+
+  .logoContainer,
+  .headerTextContainer,
+  .iconContainer {
+    display: flex;
+  }
+
+  .logoContainer {
+    justify-content: flex-start;
+    grid-column: 1;
+  }
+
+  .headerTextContainer {
+    justify-content: center;
+    grid-column: 2/3;
+  }
+
+  .iconContainer {
+    justify-content: flex-end;
+    grid-column: 4;
+  }
+
+  .logo {
+    justify-content: left;
+  }
+
+  .headerText {
+    color: Colors.$primaryRed;
+    font-size: 30px;
+  }
+
+  .icon {
+    font-size: 40px;
+    color: Colors.$primaryRed;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    .logoContainer {
+      grid-column: 2;
+      margin-right: 1rem;
+    }
+
+    .headerTextContainer {
+      grid-column: 3;
+    }
+  }
+}

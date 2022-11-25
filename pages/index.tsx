@@ -1,5 +1,8 @@
-import Head from 'next/head'
-export default function Home() {
+import { NextPage } from "next";
+import Head from "next/head";
+import { Header } from '../src/components/big/header/Header';
+
+const Home: NextPage = () => {
   return (
     <div>
       <Head>
@@ -8,5 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
     </div>
-  )
-}
+  );
+};
+
+export default Home;
