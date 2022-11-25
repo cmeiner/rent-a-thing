@@ -1,0 +1,94 @@
+@use "../../../constants/Colors.scss";
+
+$small: 450px;
+
+.requestContainer {
+  background-color: Colors.$primaryRed;
+  width: 405px;
+  height: 450px;
+  border-radius: 2.5px;
+  margin: 8px;
+  box-shadow: 0px 4px 4px Colors.$primaryBlack;
+  padding: 10px 35px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: Colors.$primaryWhite;
+
+  .requestPicture {
+    border-radius: 2.5px;
+    width: 100%;
+  }
+
+  .requestPrice {
+    font-weight: 400;
+    margin: 0;
+    font-size: 28px;
+    align-self: flex-start;
+  }
+
+  .requestTitle {
+    font-weight: 400;
+    font-size: 28px;
+    margin: 0;
+  }
+  
+  .requestAction {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+  .cancelIcon {
+    color: Colors.$primaryBlack;
+    font-size: 70px;
+    cursor: pointer;
+  }
+  .checkIcon {
+      font-size: 70px;
+      cursor: pointer;
+  }
+
+  @media screen and (max-width: $small) {
+    width: 330px;
+    height: 65px;
+    font-size: 16px;
+    padding: 0;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+
+    .requestPrice {
+      font-weight: 400;
+      margin: 0;
+      font-size: 24px;
+      align-self: flex-start;
+    }
+
+    .requestTitle {
+      font-weight: 400;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .requestPicture {
+      display: none;
+    }
+
+    .requestAction {
+      gap: 0;
+      width: fit-content;
+    }
+
+    .checkIcon {
+      font-size: 40px;
+    }
+
+    .cancelIcon {
+      font-size: 40px;
+      color: Colors.$primaryBlack;
+    }
+  }
+}
