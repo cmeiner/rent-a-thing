@@ -1,0 +1,21 @@
+@use "src/constants/Colors.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+
+  .title {
+    color: Colors.$primaryWhite;
+  }
+
+  .formStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}

@@ -1,15 +1,21 @@
-@use '../../../constants/Colors.scss';
+@use "../../../constants/Colors.scss";
 
 .inputField {
   background-color: Colors.$primaryWhite;
   border-radius: 8px;
   border: 1px solid Colors.$inputBorderGray;
-  width: 40vw;
+  width: 90vw;
   height: 50px;
   padding: 0 10px;
   font-size: 16px;
 
   .inputField::placeholder {
     color: Colors.$primaryPlaceholderText;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .inputField {
+    width: 40vw;
   }
 }
