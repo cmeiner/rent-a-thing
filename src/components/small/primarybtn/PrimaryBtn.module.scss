@@ -1,6 +1,5 @@
 @use "../../../constants/Colors.scss";
 .primbtn {
-  padding: 20px 110px;
   color: Colors.$primaryWhite;
   font-weight: 400;
   font-size: 16px;
@@ -8,12 +7,15 @@
   background-color: Colors.$primaryRed;
   border: none;
   box-shadow: 1px 1px 3px Colors.$primaryBlack;
-  cursor: pointer;
+  width: 340px;
+  max-width: 70vw;
+  height: 50px;
   transition: .5s;
   &:hover {
     background-color: 1px 1px 3px Colors.$primaryBlack;
     box-shadow: none; 
     opacity: .8;
+  cursor: pointer;
 
   }
 }
