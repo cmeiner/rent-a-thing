@@ -1,0 +1,86 @@
+@use "src/constants/Colors.scss";
+@use "src/constants/Fonts.scss";
+
+
+.wallpaper{
+    width: 100%;
+    height: 100px;
+    background-color: Colors.$primaryRed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+        .title {
+        font-size: Fonts.$h1;
+        color: Colors.$primaryWhite;
+        margin: 0;
+    }
+    
+}
+
+
+.profileInfo{
+
+background: linear-gradient(to bottom, #a43b3b 0%,#a43b3b 50%,#333333 50%,#333333 50%,#333333 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    
+    .title {
+        font-size: Fonts.$h1;
+        color: Colors.$primaryWhite;
+        margin: 0;
+        margin-top: 1rem;
+    }
+    
+    .imgContainer{
+        display:flex;
+        justify-content: center;
+        
+        .img{
+            position: static;
+            border-radius: 100%;
+            border: white solid 5px;
+        }
+    }
+
+
+}
+
+.navContainer{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    
+    .link{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1rem;
+        width: 335px;
+        margin-bottom: 0.5rem;
+        
+        .text{
+            color: Colors.$primaryWhite;
+            font-size: Fonts.$h3;
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+
+.productContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 2000px) {
+    .productContainer{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
