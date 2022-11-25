@@ -14,8 +14,20 @@
   }
 }
 
+@media screen and (min-width: 700px) {
+  .inputField {
+    width: 80vw;
+  }
+}
+
 @media screen and (min-width: 900px) {
   .inputField {
-    width: 40vw;
+    width: 55vw;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .inputField {
+    width: 35vw;
   }
 }
