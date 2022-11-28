@@ -1,0 +1,8 @@
+@use '../../../constants/Colors.scss';
+
+.title {
+  color: Colors.$primaryWhite;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
