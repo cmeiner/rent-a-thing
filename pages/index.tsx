@@ -23,13 +23,13 @@ const Home: NextPage = () => {
       <FilterAndText />
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response?.slice(0, 10).map((posts: PostProps, key: any) => {
+          {response?.slice(0, 10).map((post: PostProps, key: number) => {
             return (
               <ProductCard
                 key={key}
-                title={posts.title}
-                price={posts.price}
-                image={posts.img}
+                title={post.title}
+                price={post.price}
+                image={post.img}
               />
             );
           })}
