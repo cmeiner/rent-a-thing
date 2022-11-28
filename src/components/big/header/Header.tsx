@@ -4,6 +4,7 @@ import Link from "next/link";
 import logo from "../../../assets/Logo.svg";
 import styles from "./Header.module.scss";
 
+
 export const Header = () => {
   return (
     <div className={styles.container}>
@@ -11,7 +12,7 @@ export const Header = () => {
         <Image src={logo} alt="logo" />
       </div>
       <div className={styles.headerTextContainer}>
-        <Link href={"/"}>
+        <Link href={'/'}>
           <h1 className={styles.headerText}>Rent-a-thing</h1>
         </Link>
       </div>
