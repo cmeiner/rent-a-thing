@@ -1,0 +1,9 @@
+@use '../../../constants/Colors.scss';
+@use '../../../constants/Fonts.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  color: Colors.$primaryWhite;
+  font-size: Fonts.$p;
+}
