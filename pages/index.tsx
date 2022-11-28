@@ -35,7 +35,7 @@ const Home: NextPage = () => {
       <FilterAndText />
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response?.slice(0, 9).map((posts: PostProps, key) => {
+          {response?.slice(0, 10).map((posts: PostProps, key) => {
             return (
               <ProductCard
                 key={key}
