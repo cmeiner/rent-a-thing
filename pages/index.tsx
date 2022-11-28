@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from 'next/router';
 import { Footer } from "../src/components/big/footer/Footer";
 import { Header } from "../src/components/big/header/Header";
 import { BannerText } from "../src/components/small/bannerText/BannerText";
@@ -23,6 +24,8 @@ const Home: NextPage = () => {
     usePost("posts", dummyData);
   };
 
+  const router = useRouter()
+
   return (
     <div>
       <Head>
@@ -37,12 +40,14 @@ const Home: NextPage = () => {
         <div className={styles.productGrid}>
           {response?.slice(0, 10).map((posts: PostProps, key) => {
             return (
-              <ProductCard
-                key={key}
-                title={posts.title}
-                price={posts.price}
-                image={"https://picsum.photos/200"}
-              />
+              <div onClick={() => router.push(`/detail/${key}`)}>
+                <ProductCard
+                  key={key}
+                  title={posts.title}
+                  price={posts.price}
+                  image="https://picsum.photos/200"
+                />
+              </div>
             );
           })}
         </div>
