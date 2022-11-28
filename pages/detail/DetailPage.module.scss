@@ -1,34 +1,88 @@
 @use "../../src/constants/Colors.scss";
 
 .productPage {
-  background-color: Colors.$primaryRed;
-  width: 95vw;
+  width: 100vw;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
   color: Colors.$primaryWhite;
-  border-radius: 3.5px;
-  box-shadow: 0px 4px 4px Colors.$primaryBlack;
+  gap: 1rem;
 
-  .imageSection {
+  .productCard {
+    width: 95%;
     display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    padding-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: Colors.$primaryRed;
+    box-shadow: 0px 4px 4px Colors.$primaryBlack;
+    border-radius: 3.5px;
 
-    .productImage {
-      width: 70vw;
-      height: 25vh;
+    .imageSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      .productImage {
+        width: 100%;
+        aspect-ratio: 3/2;
+      }
+    }
+    .textSection {
+      width: 90%;
+      .productDesc {
+        font-size: 16px;
+      }
+      .descHeader {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        h2 {
+          font-size: 16px;
+        }
+      }
     }
   }
 
-  .textSection {
-    width: 70vw;
+  @media screen and (min-width: 800px) {
+    gap: 3rem;
+    .productCard {
+      .textSection {
+        .productDesc {
+          font-size: 20px;
+        }
+        .descHeader {
+          h2 {
+            font-size: 24px;
+          }
+        }
+      }
+    }
   }
-  .buttonSection {
-    display: flex;
+  @media screen and (min-width: 1200px) {
     justify-content: center;
-    margin-top: 5rem;
+    .productCard {
+      flex-direction: row;
+      gap: 10vw;
+      background: none;
+      width: 85%;
+      transition: .3s;
+      .imageSection {
+        .productTitle {
+          align-self: flex-start;
+        }
+        .productImage {
+          border-radius: 5px;
+        }
+      }
+    }
+    .buttonSection {
+      width: 50%;
+      display: flex;
+     justify-content: center;
+      align-self: flex-end;
+    }
   }
 }
