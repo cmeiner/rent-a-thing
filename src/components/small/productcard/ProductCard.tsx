@@ -1,16 +1,25 @@
+import Image from 'next/image';
 import styles from "./ProductCard.module.scss";
 
 export interface CardProps {
-  image?: string;
+  image: string;
   price?: string;
   title?: string;
   id?: string;
-  onClick?: () => void
+  onClick?: () => void;
 }
 
-export const ProductCard = ({ image, price, title, id, onClick }: CardProps) => (
+export const ProductCard = ({
+  image,
+  price,
+  title,
+  id,
+  onClick,
+}: CardProps) => (
   <div className={styles.cardContainer} onClick={onClick}>
-    <img src={image} alt="image" className={styles.cardPicture} />
+    <div className={styles.cardPicture}>
+      <Image src={image} alt="image" layout="fill" objectFit="cover" />
+    </div>
     <div className={styles.cardDescription}>
       <h2 className={styles.cardPrice}>{price}</h2>
       <h1 className={styles.cardTitle}>{title}</h1>
