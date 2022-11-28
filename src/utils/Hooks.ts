@@ -6,10 +6,10 @@ const postsRef = collection(db, 'posts');
 const usersRef = collection(db, 'users');
 
 export interface PostProps {
-  title?: string;
-  desc?: string;
-  img?: string;
-  price?: string;
+  title: string;
+  desc: string;
+  img: string;
+  price: string;
   id?: string;
 }
 
