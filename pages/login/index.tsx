@@ -27,6 +27,7 @@ const Login: NextPage = () => {
           <PrimaryButton
             text="Logga in"
             onClick={() => console.log("knappt")}
+            submit
           />
           <p className={styles.toRegister}>
             <Link href="/register"> Skapa konto </Link>
