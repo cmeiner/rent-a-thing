@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Image from 'next/image';
 import { useRouter } from "next/router";
 import { Header } from "../../src/components/big/header/Header";
 import { PrimaryButton } from "../../src/components/small/primarybtn/PrimaryBtn";
@@ -18,7 +19,9 @@ const Details: NextPage = () => {
         <div className={styles.productCard}>
           <div className={styles.imageSection}>
             <h1 className={styles.productTitle}>{post.title}</h1>
-            <img src={post.img} alt="image" className={styles.productImage} />
+            <div className={styles.productImage}>
+            <Image src={post.img as string} alt="image" layout="fill" objectFit="cover" />
+            </div>
           </div>
           <div className={styles.textSection}>
             <h2 className={styles.productDesc}>{post.desc}</h2>
