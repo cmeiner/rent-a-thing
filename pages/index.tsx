@@ -8,7 +8,7 @@ import { BannerText } from "../src/components/small/bannerText/BannerText";
 import { FilterAndText } from "../src/components/small/filterAndText/FilterAndText";
 import { PrimaryButton } from "../src/components/small/primarybtn/PrimaryBtn";
 import { ProductCard } from "../src/components/small/productcard/ProductCard";
-import { PostProps, useFetch, usePost } from "../src/utils/Hooks";
+import { PostProps, useFetch } from "../src/utils/Hooks";
 import styles from "./index.module.scss";
 
 const Home: NextPage = () => {
@@ -17,17 +17,6 @@ const Home: NextPage = () => {
 
   const handleClick = () => {
     setIsShown(!isShown);
-  };
-
-  const dummyData = {
-    title: "hammare",
-    desc: "very nice hammer",
-    picture: "",
-    price: "3000",
-  };
-
-  const test = () => {
-    usePost("posts", dummyData);
   };
 
   return (
@@ -45,19 +34,18 @@ const Home: NextPage = () => {
 
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response?.slice(0, 10).map((posts: PostProps, key) => {
+          {response?.slice(0, 10).map((post: PostProps, key: number) => {
             return (
               <ProductCard
                 key={key}
-                title={posts.title}
-                price={posts.price}
-                image={"https://picsum.photos/200"}
+                title={post.title}
+                price={post.price}
+                image={post.img}
               />
             );
           })}
         </div>
       </div>
-      <PrimaryButton onClick={test} submit={false} text="add" />
       <Footer />
     </div>
   );
