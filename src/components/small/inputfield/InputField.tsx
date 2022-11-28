@@ -11,6 +11,6 @@ export const InputField = ({ placeholder, type }: InputProps) => {
       placeholder={placeholder}
       type={type}
       className={styles.inputField}
-    ></input>
+      />
   );
 };
