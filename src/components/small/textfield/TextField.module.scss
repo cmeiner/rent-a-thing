@@ -8,11 +8,11 @@
     font-size: 16px;
     height: 160px;
     resize: none;
-    width: 40vw;
-    padding: 0 10px;
+    width: 580px;
+    max-width: 90vw;
+    padding: 10px 10px;
   }
-    .textFieldContent::placeholder {
+  .textFieldContent::placeholder {
     color: Colors.$primaryPlaceholderText;
-    padding: 10px 0;
   }
 }
