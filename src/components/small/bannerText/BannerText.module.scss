@@ -1,8 +1,10 @@
-@use '../../../constants/Colors.scss';
+@use "../../../constants/Colors.scss";
 
 .title {
   color: Colors.$primaryWhite;
   display: flex;
   justify-content: center;
   text-align: center;
+  background-color: Colors.$secondaryBlack;
+  padding: 2rem;
 }
