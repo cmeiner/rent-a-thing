@@ -1,6 +1,5 @@
-@use "../../src/constants/Colors.scss";
-@use "../../../constants/Fonts.scss";
-
+@use '../../src/constants/Colors.scss';
+@use '../../src/constants/Fonts.scss';
 
 .productPage {
   width: 100vw;
@@ -70,7 +69,7 @@
       gap: 10vw;
       background: none;
       width: 85%;
-      transition: .3s;
+      transition: 0.3s;
       .imageSection {
         .productTitle {
           align-self: flex-start;
@@ -83,7 +82,7 @@
     .buttonSection {
       width: 50%;
       display: flex;
-     justify-content: center;
+      justify-content: center;
       align-self: flex-end;
     }
   }
