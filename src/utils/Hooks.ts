@@ -8,7 +8,7 @@ const usersRef = collection(db, 'users');
 export interface PostProps {
   title?: string;
   desc?: string;
-  picture?: string;
+  img?: string;
   price?: string;
   id?: string;
 }
