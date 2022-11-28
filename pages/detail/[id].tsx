@@ -18,7 +18,7 @@ const Details: NextPage = () => {
         <div className={styles.productCard}>
           <div className={styles.imageSection}>
             <h1 className={styles.productTitle}>{post.title}</h1>
-            <img src={post.img} className={styles.productImage} />
+            <img src={post.img} alt="image" className={styles.productImage} />
           </div>
           <div className={styles.textSection}>
             <h2 className={styles.productDesc}>{post.desc}</h2>
