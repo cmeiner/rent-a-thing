@@ -1,9 +1,13 @@
-import TuneIcon from '@mui/icons-material/Tune';
-import styles from './FilterAndText.module.scss';
+import TuneIcon from "@mui/icons-material/Tune";
+import styles from "./FilterAndText.module.scss";
 
-export const FilterAndText = () => {
+interface FilterProps {
+  onClick: () => void;
+}
+
+export const FilterAndText = ({ onClick }: FilterProps) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onClick}>
       <TuneIcon /> <p>Filtrera</p>
     </div>
   );

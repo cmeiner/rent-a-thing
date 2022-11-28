@@ -23,13 +23,13 @@ $small: 450px;
   .requestPrice {
     font-weight: 400;
     margin: 0;
-    font-size: 28px;
+    font-size: Fonts.$h1;
     align-self: flex-start;
   }
 
   .requestTitle {
     font-weight: 400;
-    font-size: 28px;
+    font-size: Fonts.$h1;
     margin: 0;
   }
   
@@ -54,7 +54,7 @@ $small: 450px;
   @media screen and (max-width: $small) {
     width: 330px;
     height: 65px;
-    font-size: 16px;
+    font-size: Fonts.$p;
     padding: 0;
     align-items: center;
     justify-content: space-around;
@@ -63,13 +63,13 @@ $small: 450px;
     .requestPrice {
       font-weight: 400;
       margin: 0;
-      font-size: 24px;
+      font-size: Fonts.$h2;
       align-self: flex-start;
     }
 
     .requestTitle {
       font-weight: 400;
-      font-size: 24px;
+      font-size: Fonts.$h2;
       margin: 0;
     }
 

@@ -1,18 +1,19 @@
 @use '../../../constants/Colors.scss';
+@use '../../../constants/Fonts.scss';
 
 .textField {
   .textFieldContent {
     background-color: Colors.$primaryWhite;
     border: 1px solid Colors.$inputBorderGray;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: Fonts.$p;
     height: 160px;
     resize: none;
-    width: 40vw;
-    padding: 0 10px;
+    width: 580px;
+    max-width: 90vw;
+    padding: 10px 10px;
   }
-    .textFieldContent::placeholder {
+  .textFieldContent::placeholder {
     color: Colors.$primaryPlaceholderText;
-    padding: 10px 0;
   }
 }
