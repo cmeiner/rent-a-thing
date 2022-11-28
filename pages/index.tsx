@@ -1,15 +1,23 @@
-import { NextPage } from 'next';
-import Head from 'next/head';
-import { Footer } from '../src/components/big/footer/Footer';
-import { Header } from '../src/components/big/header/Header';
-import { BannerText } from '../src/components/small/bannerText/BannerText';
-import { FilterAndText } from '../src/components/small/filterAndText/FilterAndText';
-import { ProductCard } from '../src/components/small/productcard/ProductCard';
-import { PostProps, useFetch } from '../src/utils/Hooks';
-import styles from './index.module.scss';
+import { NextPage } from "next";
+import Head from "next/head";
+import { useState } from "react";
+import { Footer } from "../src/components/big/footer/Footer";
+import { Header } from "../src/components/big/header/Header";
+import { FilterCategory } from "../src/components/filterCategory/FilterCategory";
+import { BannerText } from "../src/components/small/bannerText/BannerText";
+import { FilterAndText } from "../src/components/small/filterAndText/FilterAndText";
+import { PrimaryButton } from "../src/components/small/primarybtn/PrimaryBtn";
+import { ProductCard } from "../src/components/small/productcard/ProductCard";
+import { PostProps, useFetch } from "../src/utils/Hooks";
+import styles from "./index.module.scss";
 
 const Home: NextPage = () => {
-  const { response } = useFetch('posts');
+  const { response } = useFetch("posts");
+  const [isShown, setIsShown] = useState(false);
+
+  const handleClick = () => {
+    setIsShown(!isShown);
+  };
 
   return (
     <div>
@@ -20,7 +28,10 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <BannerText />
-      <FilterAndText />
+
+      <FilterAndText onClick={handleClick} />
+      {isShown ? <FilterCategory /> : null}
+
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
           {response?.slice(0, 10).map((post: PostProps, key: number) => {
