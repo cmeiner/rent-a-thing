@@ -1,4 +1,6 @@
 @use "../../src/constants/Colors.scss";
+@use "../../../constants/Fonts.scss";
+
 
 .productPage {
   width: 100vw;
@@ -33,14 +35,14 @@
     .textSection {
       width: 90%;
       .productDesc {
-        font-size: 16px;
+        font-size: Fonts.$p;
       }
       .descHeader {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         h2 {
-          font-size: 16px;
+          font-size: Fonts.$p;
         }
       }
     }
@@ -51,11 +53,11 @@
     .productCard {
       .textSection {
         .productDesc {
-          font-size: 20px;
+          font-size: Fonts.$h2;
         }
         .descHeader {
           h2 {
-            font-size: 24px;
+            font-size: Fonts.$h2;
           }
         }
       }

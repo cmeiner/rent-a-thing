@@ -5,6 +5,8 @@
   grid-template-columns: auto max-content max-content auto;
   align-items: center;
   margin: 0 2rem;
+  user-select: none;
+
 
   .logoContainer,
   .headerTextContainer,
@@ -15,6 +17,7 @@
   .logoContainer {
     justify-content: flex-start;
     grid-column: 1;
+    cursor: pointer;
   }
 
   .headerTextContainer {
@@ -25,6 +28,7 @@
   .iconContainer {
     justify-content: flex-end;
     grid-column: 4;
+
   }
 
   .logo {
@@ -40,6 +44,7 @@
   .icon {
     font-size: 40px;
     color: Colors.$primaryRed;
+    cursor: pointer;
   }
 }
 

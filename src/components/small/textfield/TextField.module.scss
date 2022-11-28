@@ -1,11 +1,12 @@
 @use '../../../constants/Colors.scss';
+@use '../../../constants/Fonts.scss';
 
 .textField {
   .textFieldContent {
     background-color: Colors.$primaryWhite;
     border: 1px solid Colors.$inputBorderGray;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: Fonts.$p;
     height: 160px;
     resize: none;
     width: 580px;

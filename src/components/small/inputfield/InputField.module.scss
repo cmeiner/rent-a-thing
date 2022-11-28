@@ -1,4 +1,5 @@
 @use '../../../constants/Colors.scss';
+@use '../../../constants/Fonts.scss';
 $small: 850px;
 
 .inputField {
@@ -9,7 +10,7 @@ $small: 850px;
   max-width: 90vw;
   height: 50px;
   padding: 0 10px;
-  font-size: 16px;
+  font-size: Fonts.$p;
 }
 
 .inputField::placeholder {

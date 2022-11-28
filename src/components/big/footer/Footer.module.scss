@@ -1,4 +1,5 @@
 @use "../../../constants/Colors.scss";
+@use "../../../constants/Fonts.scss";
 
 .footer {
   background-color: Colors.$secondaryBlack;
@@ -10,5 +11,5 @@
 
 .footer a {
   color: Colors.$primaryWhite;
-  font-size: 16px;
+  font-size: Fonts.$p;
 }

@@ -1,8 +1,11 @@
 @use "../../../constants/Colors.scss";
+@use "../../../constants/Fonts.scss";
+
+
 .primbtn {
   color: Colors.$primaryWhite;
   font-weight: 400;
-  font-size: 16px;
+  font-size: Fonts.$p;
   border-radius: 10rem;
   background-color: Colors.$primaryRed;
   border: none;

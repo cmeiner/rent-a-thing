@@ -1,4 +1,5 @@
 @use "../../src/constants/Colors.scss";
+@use "../../src/constants/Fonts.scss";
 $small: 850px;
 .loginPage {
   display: flex;
@@ -26,7 +27,7 @@ $small: 850px;
         position: absolute;
         left: 0;
         color: Colors.$primaryWhite;
-        font-size: 30px;
+        font-size: Fonts.$h1;
         cursor: pointer;
       }
       .loginTitle {

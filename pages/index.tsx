@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useState } from "react";
 import { Footer } from "../src/components/big/footer/Footer";
 import { Header } from "../src/components/big/header/Header";
 import { FilterCategory } from "../src/components/filterCategory/FilterCategory";
 import { BannerText } from "../src/components/small/bannerText/BannerText";
 import { FilterAndText } from "../src/components/small/filterAndText/FilterAndText";
-import { PrimaryButton } from "../src/components/small/primarybtn/PrimaryBtn";
 import { ProductCard } from "../src/components/small/productcard/ProductCard";
 import { PostProps, useFetch } from "../src/utils/Hooks";
 import styles from "./index.module.scss";
@@ -34,14 +34,15 @@ const Home: NextPage = () => {
 
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response?.slice(0, 10).map((post: PostProps, key: number) => {
+          {response?.slice(0, 10).map((post: PostProps, key) => {
             return (
-              <ProductCard
-                key={key}
-                title={post.title}
-                price={post.price}
-                image={post.img}
-              />
+              <Link href={"/detail/" + post.id} key={key}>
+                <ProductCard
+                  title={post.title}
+                  price={post.price}
+                  image={post.img}
+                />
+              </Link>
             );
           })}
         </div>

@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, setDoc, getDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from '../firebase/Firebase';
 
@@ -21,7 +21,7 @@ export const usePost = async (api: string, data: {}) => {
 };
 
 export const useFetch = (api: string, id?: string) => {
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState<[]>([]);
 
   useEffect(() => {
     if (!id) {
@@ -35,11 +35,11 @@ export const useFetch = (api: string, id?: string) => {
     } else {
       const postById = doc(db, api, id);
       getDoc(postById).then((doc) => {
-        const singlePost = [{ ...doc.data()?.data, id: doc.id }] as any;
+        const singlePost = { ...doc.data()?.data, id: doc.id } as any;
         setResponse(singlePost);
       });
     }
-  }, []);
+  }, [id]);
 
   return { response };
 };
