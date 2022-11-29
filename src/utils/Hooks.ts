@@ -1,10 +1,11 @@
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase/Firebase";
+
 export interface PostProps {
   title?: string;
   desc?: string;
-  img?: string;
+  img: string;
   price?: string;
   id?: string;
 }
