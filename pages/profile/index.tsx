@@ -1,17 +1,38 @@
-import { NextPage } from 'next';
-import styles from './ProfilePage.module.scss';
-import Image from 'next/image';
-import { Slider } from '../../src/components/big/sliderbtn/Slider';
-import { useState } from 'react';
-import Link from 'next/link';
-import { AddButton } from '../../src/components/small/addbtn/AddBtn';
-import { ProductCard } from '../../src/components/small/productcard/ProductCard';
-import { Header } from '../../src/components/big/header/Header';
+import { NextPage } from "next";
+import styles from "./ProfilePage.module.scss";
+import Image from "next/image";
+import { Slider } from "../../src/components/big/sliderbtn/Slider";
+import { useContext, useState } from "react";
+import Link from "next/link";
+import { AddButton } from "../../src/components/small/addbtn/AddBtn";
+import { ProductCard } from "../../src/components/small/productcard/ProductCard";
+import { Header } from "../../src/components/big/header/Header";
+import { PrimaryButton } from "../../src/components/small/primarybtn/PrimaryBtn";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { AuthContext } from "../../src/auth/AuthContext";
+import { UserProps } from "../../src/utils/Hooks";
+
 
 const ProfilePage: NextPage = () => {
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const user = { ...(currentUser as UserProps) };
+
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
     'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
+
+  // only for dev
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        console.log("utloggad");
+        setCurrentUser({});
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div>
@@ -19,7 +40,6 @@ const ProfilePage: NextPage = () => {
       <div className={styles.wallpaper}>
         <h1 className={styles.title}>Profil</h1>
       </div>
-
       <div className={styles.profileInfo}>
         <div className={styles.imgContainer}>
           <Image
@@ -31,7 +51,7 @@ const ProfilePage: NextPage = () => {
           />
         </div>
 
-        <h1 className={styles.title}>William Saar</h1>
+        <h1 className={styles.title}>{user.email}</h1>
       </div>
 
       <div className={styles.navContainer}>
@@ -51,6 +71,12 @@ const ProfilePage: NextPage = () => {
           />
         </div>
       </div>
+
+      <PrimaryButton
+        submit={false}
+        text="logga ut *enbart dev*"
+        onClick={handleSignOut}
+      />
 
       {contentSwitch ? (
         <div>förfrågningar</div>
