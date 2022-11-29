@@ -5,10 +5,11 @@ import { useState } from 'react';
 import { Footer } from '../src/components/big/footer/Footer';
 import { Header } from '../src/components/big/header/Header';
 import { FilterCategory } from '../src/components/filterCategory/FilterCategory';
+import { AddButton } from '../src/components/small/addbtn/AddBtn';
 import { BannerText } from '../src/components/small/bannerText/BannerText';
 import { FilterAndText } from '../src/components/small/filterAndText/FilterAndText';
 import { ProductCard } from '../src/components/small/productcard/ProductCard';
-import { PostProps, useFetch } from '../src/utils/Hooks';
+import { GetUser, PostProps, useFetch } from '../src/utils/Hooks';
 import styles from './index.module.scss';
 
 const Home: NextPage = () => {
@@ -19,6 +20,8 @@ const Home: NextPage = () => {
     setIsShown(!isShown);
   };
 
+  const { user } = GetUser();
+
   return (
     <div>
       <Head>
@@ -28,6 +31,15 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <BannerText />
+      {user.id ? (
+        <div className={styles.navigationLink}>
+          <Link href="/products">
+            <div>
+              <AddButton large />
+            </div>
+          </Link>
+        </div>
+      ) : null}
 
       <FilterAndText onClick={handleClick} />
       {isShown ? <FilterCategory /> : null}
