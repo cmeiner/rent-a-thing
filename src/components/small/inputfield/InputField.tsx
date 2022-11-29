@@ -1,4 +1,4 @@
-import styles from "./InputField.module.scss";
+import styles from './InputField.module.scss';
 
 interface InputProps {
   placeholder: string;

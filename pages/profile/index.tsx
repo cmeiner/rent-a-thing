@@ -1,17 +1,16 @@
-import { NextPage } from "next";
-import styles from "./ProfilePage.module.scss";
-import Image from "next/image";
-import { Slider } from "../../src/components/big/sliderbtn/Slider";
-import { useContext, useState } from "react";
-import Link from "next/link";
-import { AddButton } from "../../src/components/small/addbtn/AddBtn";
-import { ProductCard } from "../../src/components/small/productcard/ProductCard";
-import { Header } from "../../src/components/big/header/Header";
-import { PrimaryButton } from "../../src/components/small/primarybtn/PrimaryBtn";
-import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-import { AuthContext } from "../../src/auth/AuthContext";
-import { UserProps } from "../../src/utils/Hooks";
-
+import { NextPage } from 'next';
+import styles from './ProfilePage.module.scss';
+import Image from 'next/image';
+import { Slider } from '../../src/components/big/sliderbtn/Slider';
+import { useContext, useState } from 'react';
+import Link from 'next/link';
+import { AddButton } from '../../src/components/small/addbtn/AddBtn';
+import { ProductCard } from '../../src/components/small/productcard/ProductCard';
+import { Header } from '../../src/components/big/header/Header';
+import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
+import { AuthContext } from '../../src/auth/AuthContext';
+import { UserProps } from '../../src/utils/Hooks';
 
 const ProfilePage: NextPage = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -26,7 +25,7 @@ const ProfilePage: NextPage = () => {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        console.log("utloggad");
+        console.log('utloggad');
         setCurrentUser({});
       })
       .catch((error) => {

@@ -1,19 +1,18 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { NextPage } from "next";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { Header } from "../../src/components/big/header/Header";
-import { InputField } from "../../src/components/small/inputfield/InputField";
-import { PrimaryButton } from "../../src/components/small/primarybtn/PrimaryBtn";
-import { auth } from "../../src/firebase/Firebase";
-import styles from "./RegisterPage.module.scss";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { NextPage } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { Header } from '../../src/components/big/header/Header';
+import { InputField } from '../../src/components/small/inputfield/InputField';
+import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { auth } from '../../src/firebase/Firebase';
+import styles from './RegisterPage.module.scss';
 
 const Register: NextPage = () => {
   const router = useRouter();
-  const [data, setData] = useState({ username: "", email: "", password: "" });
-  const [error, setError] = useState("");
-
+  const [data, setData] = useState({ username: '', email: '', password: '' });
+  const [error, setError] = useState('');
 
   const handleCreateUser = (e: any) => {
     e.preventDefault();
@@ -21,19 +20,18 @@ const Register: NextPage = () => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("användare skapad", user);
-        router.push("/login");
+        console.log('användare skapad', user);
+        router.push('/login');
         setData({
-          username: "",
-          email: "",
-          password: "",
+          username: '',
+          email: '',
+          password: '',
         });
       })
       .catch((error) => {
         setError(error.message);
       });
   };
-
 
   return (
     <div>
@@ -63,7 +61,7 @@ const Register: NextPage = () => {
           <div className={styles.button}>
             <PrimaryButton submit={true} text="Skapa konto" />
           </div>
-          <div style={{ color: "white" }}>{error}</div>
+          <div style={{ color: 'white' }}>{error}</div>
         </form>
         <Link href="/login" className={styles.link}>
           Logga in

@@ -1,9 +1,9 @@
-import { onAuthStateChanged } from "firebase/auth";
-import type { AppProps } from "next/app";
-import { useEffect, useState } from "react";
-import { AuthContext } from "../src/auth/AuthContext";
-import { auth } from "../src/firebase/Firebase";
-import "../styles/globals.css";
+import { onAuthStateChanged } from 'firebase/auth';
+import type { AppProps } from 'next/app';
+import { useEffect, useState } from 'react';
+import { AuthContext } from '../src/auth/AuthContext';
+import { auth } from '../src/firebase/Firebase';
+import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [currentUser, setCurrentUser] = useState({});
@@ -20,10 +20,10 @@ export default function App({ Component, pageProps }: AppProps) {
           photo: user.photoURL,
           name: user.displayName,
         }); // ...
-        console.log("inloggad", user);
+        console.log('inloggad', user);
       } else {
         setCurrentUser({});
-        console.log("ej inloggad", user);
+        console.log('ej inloggad', user);
       }
     });
   }, []);

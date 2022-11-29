@@ -1,23 +1,23 @@
-import { NextPage } from "next";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../src/auth/AuthContext";
-import { Header } from "../../src/components/big/header/Header";
-import { InputField } from "../../src/components/small/inputfield/InputField";
-import { PrimaryButton } from "../../src/components/small/primarybtn/PrimaryBtn";
-import { TextField } from "../../src/components/small/textfield/TextField";
-import { usePost, UserProps } from "../../src/utils/Hooks";
-import styles from "./NewProductPage.module.scss";
+import { NextPage } from 'next';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../src/auth/AuthContext';
+import { Header } from '../../src/components/big/header/Header';
+import { InputField } from '../../src/components/small/inputfield/InputField';
+import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { TextField } from '../../src/components/small/textfield/TextField';
+import { usePost, UserProps } from '../../src/utils/Hooks';
+import styles from './NewProductPage.module.scss';
 
 const NewProduct: NextPage = () => {
-  const [data, setData] = useState({ title: "", desc: "", price: "", img: "" });
+  const [data, setData] = useState({ title: '', desc: '', price: '', img: '' });
   const { currentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
 
   const HandleSubmit = (e: any) => {
     e.preventDefault();
     setData(data);
-    usePost("posts", data, user);
-    setData({ title: "", desc: "", price: "", img: "" });
+    usePost('posts', data, user);
+    setData({ title: '', desc: '', price: '', img: '' });
   };
 
   return (
