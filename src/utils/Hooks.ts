@@ -1,5 +1,6 @@
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../auth/AuthContext";
 import { db } from "../firebase/Firebase";
 
 export interface PostProps {
@@ -47,4 +48,12 @@ export const useFetch = (api: string, id?: string) => {
   }, [id]);
 
   return { response };
+};
+
+// spreads user-state (use user.id to check if user is logged in)
+export const getUser = () => {
+  const { currentUser } = useContext(AuthContext);
+  const user = { ...(currentUser as UserProps) };
+
+  return { user };
 };
