@@ -24,3 +24,6 @@ jobs:
           # This part is also where you can pass other options, for example:
           prettier_options: --write **/*.{tsx,md}
           only_changed: True
+
+      - name: Eslint code
+        uses: sibiraj-s/action-eslint@v2.1.2

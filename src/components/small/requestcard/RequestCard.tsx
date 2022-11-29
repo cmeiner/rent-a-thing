@@ -1,7 +1,7 @@
-import CancelIcon from "@mui/icons-material/Cancel";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import Image from "next/image";
-import styles from "./RequestCard.module.scss";
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import Image from 'next/image';
+import styles from './RequestCard.module.scss';
 
 export interface RequestCard {
   image: string;

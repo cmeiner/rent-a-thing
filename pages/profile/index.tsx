@@ -1,17 +1,17 @@
-import { NextPage } from "next";
-import styles from "./ProfilePage.module.scss";
-import Image from "next/image";
-import { Slider } from "../../src/components/big/sliderbtn/Slider";
-import { useState } from "react";
-import Link from "next/link";
-import { AddButton } from "../../src/components/small/addbtn/AddBtn";
-import { ProductCard } from "../../src/components/small/productcard/ProductCard";
-import { Header } from "../../src/components/big/header/Header";
+import { NextPage } from 'next';
+import styles from './ProfilePage.module.scss';
+import Image from 'next/image';
+import { Slider } from '../../src/components/big/sliderbtn/Slider';
+import { useState } from 'react';
+import Link from 'next/link';
+import { AddButton } from '../../src/components/small/addbtn/AddBtn';
+import { ProductCard } from '../../src/components/small/productcard/ProductCard';
+import { Header } from '../../src/components/big/header/Header';
 
 const ProfilePage: NextPage = () => {
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
-    "https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328";
+    'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
 
   return (
     <div>

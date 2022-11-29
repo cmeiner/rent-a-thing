@@ -1,5 +1,5 @@
-@use "../../src/constants/Colors.scss";
-@use "../../src/constants/Fonts.scss";
+@use '../../src/constants/Colors.scss';
+@use '../../src/constants/Fonts.scss';
 $small: 850px;
 .loginPage {
   display: flex;
@@ -18,33 +18,32 @@ $small: 850px;
     max-width: 90vw;
 
     .formHeader {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        position: relative;
-      }
-      .goBack {
-        position: absolute;
-        left: 0;
-        color: Colors.$primaryWhite;
-        font-size: Fonts.$h1;
-        cursor: pointer;
-      }
-      .loginTitle {
-        color: Colors.$primaryWhite;
-        margin: 0;
-        font-weight: 300;
-      }
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+    }
+    .goBack {
+      position: absolute;
+      left: 0;
+      color: Colors.$primaryWhite;
+      font-size: Fonts.$h1;
+      cursor: pointer;
+    }
+    .loginTitle {
+      color: Colors.$primaryWhite;
+      margin: 0;
+      font-weight: 300;
+    }
   }
   .toRegister {
     color: Colors.$primaryRed;
     margin-top: 80px;
-    transition: .5s;
-
+    transition: 0.5s;
   }
   @media screen and (max-width: $small) {
     .toRegister {
-        margin-top: 0;
+      margin-top: 0;
     }
   }
 }

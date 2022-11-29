@@ -1,9 +1,8 @@
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Image from "next/image";
-import Link from "next/link";
-import logo from "../../../assets/Logo.svg";
-import styles from "./Header.module.scss";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Image from 'next/image';
+import Link from 'next/link';
+import logo from '../../../assets/Logo.svg';
+import styles from './Header.module.scss';
 
 export const Header = () => {
   return (

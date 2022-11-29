@@ -1,6 +1,5 @@
-@use "../../../constants/Colors.scss";
-@use "../../../constants/Fonts.scss";
-
+@use '../../../constants/Colors.scss';
+@use '../../../constants/Fonts.scss';
 
 .primbtn {
   color: Colors.$primaryWhite;
@@ -13,12 +12,11 @@
   width: 340px;
   max-width: 70vw;
   height: 50px;
-  transition: .5s;
+  transition: 0.5s;
   &:hover {
     background-color: 1px 1px 3px Colors.$primaryBlack;
-    box-shadow: none; 
-    opacity: .8;
-  cursor: pointer;
-
+    box-shadow: none;
+    opacity: 0.8;
+    cursor: pointer;
   }
 }
