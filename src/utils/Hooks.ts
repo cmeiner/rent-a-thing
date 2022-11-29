@@ -8,6 +8,7 @@ export interface PostProps {
   desc: string;
   img: string;
   price: string;
+  category: string;
   id?: string;
 }
 

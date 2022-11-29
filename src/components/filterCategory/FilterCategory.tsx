@@ -1,16 +1,53 @@
-import TuneIcon from '@mui/icons-material/Tune';
 import styles from './FilterCategory.module.scss';
 
-export const FilterCategory = () => {
+interface FilterProps {
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  small?: boolean;
+}
+
+export const FilterCategory = ({ onChange, small = false }: FilterProps) => {
+  const categories = [
+    {
+      label: 'Välj kategori',
+      value: 'Övrigt',
+    },
+    {
+      label: 'Fordon',
+      value: 'Fordon',
+    },
+    {
+      label: 'Outdoor',
+      value: 'Outdoor',
+    },
+    {
+      label: 'Verktyg',
+      value: 'Verktyg',
+    },
+    {
+      label: 'Träning',
+      value: 'Träning',
+    },
+    {
+      label: 'Elektronik',
+      value: 'Elektronik',
+    },
+    {
+      label: 'Övrigt',
+      value: 'Övrigt',
+    },
+  ];
+
   return (
     <div className={styles.container}>
-      <select name="Filter" id="Filter" className={styles.filter}>
-        <option value="Fordon">Fordon</option>
-        <option value="Outdoor">Outdoor</option>
-        <option value="Verktyg">Verktyg</option>
-        <option value="Träning">Träning</option>
-        <option value="Elektronik">Elektronik</option>
-        <option value="Övrigt">Övrigt</option>
+      <select
+        className={small ? styles.small : styles.large}
+        onChange={onChange}
+      >
+        {categories.map((cat, index) => (
+          <option key={index} value={cat.value}>
+            {cat.label}
+          </option>
+        ))}
       </select>
     </div>
   );

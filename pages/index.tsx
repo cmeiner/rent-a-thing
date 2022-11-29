@@ -42,7 +42,7 @@ const Home: NextPage = () => {
       ) : null}
 
       <FilterAndText onClick={handleClick} />
-      {isShown ? <FilterCategory /> : null}
+      {isShown ? <FilterCategory small /> : null}
 
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>

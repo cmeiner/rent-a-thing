@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
+import { FilterCategory } from '../../src/components/filterCategory/FilterCategory';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { TextField } from '../../src/components/small/textfield/TextField';
@@ -9,7 +10,13 @@ import { usePost, UserProps } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
 
 const NewProduct: NextPage = () => {
-  const [data, setData] = useState({ title: '', desc: '', price: '', img: '' });
+  const [data, setData] = useState({
+    title: '',
+    desc: '',
+    price: '',
+    img: '',
+    category: '',
+  });
   const { currentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
 
@@ -17,7 +24,13 @@ const NewProduct: NextPage = () => {
     e.preventDefault();
     setData(data);
     usePost('posts', data, user);
-    setData({ title: '', desc: '', price: '', img: '' });
+    setData({
+      title: '',
+      desc: '',
+      price: '',
+      img: '',
+      category: '',
+    });
   };
 
   return (
@@ -49,10 +62,9 @@ const NewProduct: NextPage = () => {
             placeholder="Pris"
             type="text"
           />
-          {/* <InputField
-            placeholder="Kategori *ska vara dropdown senare*"
-            type="text"
-          /> */}
+          <FilterCategory
+            onChange={(e) => setData({ ...data, category: e.target.value })}
+          />
           <PrimaryButton submit={true} text="Lägg till" />
         </form>
       </div>
