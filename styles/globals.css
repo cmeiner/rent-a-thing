@@ -1,13 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600&display=swap');
 
 * {
-  font-family: "Lexend", sans-serif;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+  font-family: 'Lexend', sans-serif;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 *::-webkit-scrollbar {
-  display: none;  /* Safari and Chrome */
-
+  display: none; /* Safari and Chrome */
 }
 html,
 body {

@@ -1,15 +1,15 @@
-import { NextPage } from "next";
+import { NextPage } from 'next';
 import Image from 'next/image';
-import { useRouter } from "next/router";
-import { Header } from "../../src/components/big/header/Header";
-import { PrimaryButton } from "../../src/components/small/primarybtn/PrimaryBtn";
-import { PostProps, useFetch } from "../../src/utils/Hooks";
-import styles from "./DetailPage.module.scss";
+import { useRouter } from 'next/router';
+import { Header } from '../../src/components/big/header/Header';
+import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { PostProps, useFetch } from '../../src/utils/Hooks';
+import styles from './DetailPage.module.scss';
 
 const Details: NextPage = () => {
   const router = useRouter();
   const id = router.query.id as string;
-  const { response } = useFetch("posts", id);
+  const { response } = useFetch('posts', id);
   const post = { ...(response as PostProps) };
 
   return (
@@ -20,7 +20,12 @@ const Details: NextPage = () => {
           <div className={styles.imageSection}>
             <h1 className={styles.productTitle}>{post.title}</h1>
             <div className={styles.productImage}>
-            <Image src={post.img as string} alt="image" layout="fill" objectFit="cover" />
+              <Image
+                src={post.img as string}
+                alt="image"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
           </div>
           <div className={styles.textSection}>
@@ -33,7 +38,7 @@ const Details: NextPage = () => {
         </div>
         <div className={styles.buttonSection}>
           <PrimaryButton
-            onClick={() => console.log("asd")}
+            onClick={() => console.log('asd')}
             text="Rent-this-thing"
             submit
           />

@@ -1,5 +1,5 @@
-import TuneIcon from "@mui/icons-material/Tune";
-import styles from "./FilterCategory.module.scss";
+import TuneIcon from '@mui/icons-material/Tune';
+import styles from './FilterCategory.module.scss';
 
 export const FilterCategory = () => {
   return (

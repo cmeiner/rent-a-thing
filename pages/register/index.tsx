@@ -14,6 +14,7 @@ const Register: NextPage = () => {
   const [data, setData] = useState({ username: "", email: "", password: "" });
   const [error, setError] = useState("");
 
+
   const handleCreateUser = (e: any) => {
     e.preventDefault();
 
@@ -33,12 +34,6 @@ const Register: NextPage = () => {
       });
   };
 
-  // const HandleSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   setData(data);
-  //   usePost("users", data);
-  //   setData({ username: "", email: "", password: "" });
-  // };
 
   return (
     <div>
@@ -50,20 +45,20 @@ const Register: NextPage = () => {
             disabled={true}
             value={data.username}
             onChange={(e) => setData({ ...data, username: e.target.value })}
-            placeholder={"Name"}
-            type={"text"}
+            placeholder={'Name'}
+            type={'text'}
           />
           <InputField
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
-            placeholder={"Email"}
-            type={"text"}
+            placeholder={'Email'}
+            type={'text'}
           />
           <InputField
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
-            placeholder={"Password"}
-            type={"text"}
+            placeholder={'Password'}
+            type={'text'}
           />
           <div className={styles.button}>
             <PrimaryButton submit={true} text="Skapa konto" />

@@ -1,4 +1,4 @@
-import styles from "./Slider.module.scss";
+import styles from './Slider.module.scss';
 
 /**
  * @param {string} primary - sets title for left button.
@@ -18,14 +18,14 @@ export const Slider = ({ onClick, primary, secondary, state }: sliderProps) => {
     <div className={styles.sliderButton}>
       <button
         onClick={onClick}
-        className={`${styles.button} ${!state ? styles.active : ""}`}
+        className={`${styles.button} ${!state ? styles.active : ''}`}
         disabled={!state}
       >
         {primary}
       </button>
       <button
         onClick={onClick}
-        className={`${styles.button} ${state ? styles.active : ""}`}
+        className={`${styles.button} ${state ? styles.active : ''}`}
         disabled={state}
       >
         {secondary}

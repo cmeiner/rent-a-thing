@@ -1,5 +1,5 @@
-import TuneIcon from "@mui/icons-material/Tune";
-import styles from "./FilterAndText.module.scss";
+import TuneIcon from '@mui/icons-material/Tune';
+import styles from './FilterAndText.module.scss';
 
 interface FilterProps {
   onClick: () => void;

@@ -12,13 +12,14 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { AuthContext } from "../../src/auth/AuthContext";
 import { UserProps } from "../../src/utils/Hooks";
 
+
 const ProfilePage: NextPage = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
 
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
-    "https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328";
+    'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
 
   // only for dev
   const handleSignOut = () => {
