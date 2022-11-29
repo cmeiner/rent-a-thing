@@ -40,7 +40,7 @@ const Home: NextPage = () => {
                 <ProductCard
                   title={post.title}
                   price={post.price}
-                  image={post.img as string}
+                  image={post.img}
                 />
               </Link>
             );
