@@ -4,6 +4,12 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['picsum.photos', 'static.wikia.nocookie.net'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**"
+      }
+    ]
   },
 };
 
