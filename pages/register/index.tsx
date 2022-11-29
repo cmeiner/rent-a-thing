@@ -7,7 +7,8 @@ import { Header } from '../../src/components/big/header/Header';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { auth } from '../../src/firebase/Firebase';
-import styles from './RegisterPage.module.scss';
+import styles from "./RegisterPage.module.scss";
+
 
 const Register: NextPage = () => {
   const router = useRouter();
