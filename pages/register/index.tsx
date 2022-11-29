@@ -63,9 +63,9 @@ const Register: NextPage = () => {
           </div>
           <div style={{ color: 'white' }}>{error}</div>
         </form>
-        <Link href="/login" className={styles.link}>
-          Logga in
-        </Link>
+        <p className={styles.link}>
+          <Link href="/login">Logga in</Link>
+        </p>
       </div>
     </div>
   );
