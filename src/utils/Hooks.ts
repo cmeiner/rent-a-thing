@@ -1,7 +1,7 @@
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../auth/AuthContext";
-import { db } from "../firebase/Firebase";
+import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../auth/AuthContext';
+import { db } from '../firebase/Firebase';
 
 export interface PostProps {
   title?: string;
@@ -23,7 +23,7 @@ export const usePost = async (api: string, data: {}, postedBy?: {}) => {
     data,
     postedBy,
   });
-  console.log(data, "added to the database");
+  console.log(data, 'added to the database');
 };
 
 export const useFetch = (api: string, id?: string) => {
