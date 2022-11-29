@@ -10,7 +10,7 @@ const Details: NextPage = () => {
   const router = useRouter();
   const id = router.query.id as string;
   const { response } = useFetch('posts', id);
-  const post = { ...(response as PostProps) };
+  const post = { ...(response as unknown as PostProps) };
 
   return (
     <>

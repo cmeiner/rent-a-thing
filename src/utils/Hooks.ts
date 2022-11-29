@@ -4,10 +4,10 @@ import { AuthContext } from '../auth/AuthContext';
 import { db } from '../firebase/Firebase';
 
 export interface PostProps {
-  title?: string;
-  desc?: string;
+  title: string;
+  desc: string;
   img: string;
-  price?: string;
+  price: string;
   id?: string;
 }
 
@@ -45,13 +45,13 @@ export const useFetch = (api: string, id?: string) => {
         setResponse(singlePost);
       });
     }
-  }, [id]);
+  }, [api, id]);
 
   return { response };
 };
 
 // spreads user-state (use user.id to check if user is logged in)
-export const getUser = () => {
+export const GetUser = () => {
   const { currentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
 

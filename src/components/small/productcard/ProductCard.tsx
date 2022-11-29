@@ -3,8 +3,8 @@ import styles from './ProductCard.module.scss';
 
 export interface CardProps {
   image: string;
-  price?: string;
-  title?: string;
+  price: string;
+  title: string;
   id?: string;
   onClick?: () => void;
 }

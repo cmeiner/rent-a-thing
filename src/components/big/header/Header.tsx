@@ -2,11 +2,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../../assets/Logo.svg';
-import { getUser } from '../../../utils/Hooks';
+import { GetUser } from '../../../utils/Hooks';
 import styles from './Header.module.scss';
 
 export const Header = () => {
-  const { user } = getUser();
+  const { user } = GetUser();
 
   return (
     <div className={styles.container}>
