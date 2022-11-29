@@ -5,11 +5,12 @@ import logo from "../../../assets/Logo.svg";
 import styles from "./Header.module.scss";
 
 
+
 export const Header = () => {
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
-        <Image src={logo} alt="logo" />
+        <Image src={logo} alt="logotype" />
       </div>
       <div className={styles.headerTextContainer}>
         <Link href={'/'}>
