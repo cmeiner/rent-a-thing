@@ -6,11 +6,11 @@ const nextConfig = {
     domains: ['picsum.photos', 'static.wikia.nocookie.net'],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "**"
+        protocol: 'https',
+        hostname: '**'
       }
     ]
-  },
+  }
 };
 
 module.exports = nextConfig;
