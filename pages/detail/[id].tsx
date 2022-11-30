@@ -1,9 +1,12 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
+import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
-import { PostProps, useFetch } from '../../src/utils/Hooks';
+import { PostProps, useFetch, usePost, UserProps } from '../../src/utils/Hooks';
 import styles from './DetailPage.module.scss';
 
 const Details: NextPage = () => {
@@ -11,6 +14,26 @@ const Details: NextPage = () => {
   const id = router.query.id as string;
   const { response } = useFetch('posts', id);
   const post = { ...(response as unknown as PostProps) };
+
+  const [days, setDays] = useState<undefined | number>();
+
+  const { currentUser } = useContext(AuthContext);
+  const user = { ...(currentUser as UserProps) };
+
+  const HandleSubmit = (e: any) => {
+    e.preventDefault();
+
+    usePost('requests', {
+      post,
+      days: days,
+      postedBy: user,
+    });
+  };
+
+  const HandleOption = (e: any) => {
+    const value = parseInt(e.target.value, 10);
+    setDays(value !== NaN && value >= 1 && value <= 7 ? value : undefined);
+  };
 
   return (
     <>
@@ -37,11 +60,14 @@ const Details: NextPage = () => {
           </div>
         </div>
         <div className={styles.buttonSection}>
-          <PrimaryButton
-            onClick={() => console.log('asd')}
-            text="Rent-this-thing"
-            submit
-          />
+          <form onSubmit={HandleSubmit}>
+            <FilterDay onChange={HandleOption} />
+            <PrimaryButton
+              onClick={() => console.log('asd')}
+              text="Rent-this-thing"
+              submit
+            />
+          </form>
         </div>
       </div>
     </>
