@@ -9,7 +9,7 @@ export const FilterCategory = ({ onChange, small = false }: FilterProps) => {
   const categories = [
     {
       label: 'Välj kategori',
-      value: 'Övrigt',
+      value: 'All',
     },
     {
       label: 'Fordon',
