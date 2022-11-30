@@ -40,6 +40,7 @@ export const FilterCategory = ({ onChange, small = false }: FilterProps) => {
   return (
     <div className={styles.container}>
       <select
+        required
         className={small ? styles.small : styles.large}
         onChange={onChange}
       >

@@ -15,7 +15,7 @@ const NewProduct: NextPage = () => {
     desc: '',
     price: '',
     img: '',
-    category: '',
+    category: 'Övrigt',
   });
   const { currentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
@@ -29,7 +29,7 @@ const NewProduct: NextPage = () => {
       desc: '',
       price: '',
       img: '',
-      category: '',
+      category: 'Övrigt',
     });
   };
 
