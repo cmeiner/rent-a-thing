@@ -27,6 +27,14 @@
   .iconContainer {
     justify-content: flex-end;
     grid-column: 4;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+  .title {
+    position: absolute;
+    right: 3rem;
+    color: Colors.$primaryRed
   }
 
   .logo {
@@ -43,6 +51,12 @@
     font-size: 40px;
     color: Colors.$primaryRed;
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .title {
+    display: none;
   }
 }
 

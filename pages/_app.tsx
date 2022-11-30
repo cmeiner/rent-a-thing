@@ -7,18 +7,20 @@ import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [currentUser, setCurrentUser] = useState({});
+  const [profile, setProfile] = useState({
+  });
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
+      if (user?.displayName) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         setCurrentUser({
           email: user.email,
           id: uid,
-          photo: user.photoURL,
-          name: user.displayName,
+          photoURL: user.photoURL,
+          displayName: user.displayName,
         }); // ...
         console.log('inloggad', user);
       } else {
@@ -26,9 +28,9 @@ export default function App({ Component, pageProps }: AppProps) {
         console.log('ej inloggad', user);
       }
     });
-  }, []);
+  }, [profile]);
   return (
-    <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+    <AuthContext.Provider value={{ currentUser, setCurrentUser, profile, setProfile }}>
       <Component {...pageProps} />
     </AuthContext.Provider>
   );

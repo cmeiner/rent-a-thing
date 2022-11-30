@@ -20,8 +20,7 @@ const Register: NextPage = () => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log('användare skapad', user);
-        router.push('/login');
+        router.push('/verifyuser');
         setData({
           username: '',
           email: '',
@@ -40,23 +39,16 @@ const Register: NextPage = () => {
         <h1 className={styles.title}>Skapa konto</h1>
         <form onSubmit={handleCreateUser} className={styles.formStyle}>
           <InputField
-            disabled={true}
-            value={data.username}
-            onChange={(e) => setData({ ...data, username: e.target.value })}
-            placeholder={'Name'}
-            type={'text'}
-          />
-          <InputField
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
-            placeholder={'Email'}
-            type={'text'}
+            placeholder='Email'
+            type='text'
           />
           <InputField
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
-            placeholder={'Password'}
-            type={'text'}
+            placeholder='Password'
+            type='text'
           />
           <div className={styles.button}>
             <PrimaryButton submit={true} text="Skapa konto" />
