@@ -1,5 +1,7 @@
 import { NextPage } from 'next';
 import { useContext, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterCategory } from '../../src/components/filterCategory/FilterCategory';
@@ -30,6 +32,9 @@ const NewProduct: NextPage = () => {
       price: '',
       img: '',
       category: 'Övrigt',
+    });
+    toast.success('Annons tillagd', {
+      position: 'bottom-center',
     });
   };
 
@@ -66,6 +71,7 @@ const NewProduct: NextPage = () => {
             onChange={(e) => setData({ ...data, category: e.target.value })}
           />
           <PrimaryButton submit={true} text="Lägg till" />
+          <ToastContainer />
         </form>
       </div>
     </div>
