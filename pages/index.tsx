@@ -15,10 +15,18 @@ import styles from './index.module.scss';
 const Home: NextPage = () => {
   const { response } = useFetch('posts');
   const [isShown, setIsShown] = useState(false);
+  const [category, setCategory] = useState<string | undefined>();
 
   const handleClick = () => {
-    setIsShown((prevState) => !prevState)
+    setIsShown((prevState) => !prevState);
   };
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value === 'All' ? undefined : e.target.value);
+  };
+
+  const categoryFilter = (post: PostProps) =>
+    category === undefined || post.category === category;
 
   const { user } = GetUser();
 
@@ -42,21 +50,24 @@ const Home: NextPage = () => {
       ) : null}
 
       <FilterAndText onClick={handleClick} />
-      {isShown ? <FilterCategory small /> : null}
+      {isShown ? <FilterCategory small onChange={handleFilterChange} /> : null}
 
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response?.slice(0, 10).map((post: PostProps, key) => {
-            return (
-              <Link href={'/detail/' + post.id} key={key}>
-                <ProductCard
-                  title={post.title}
-                  price={post.price}
-                  image={post.img}
-                />
-              </Link>
-            );
-          })}
+          {response
+            // ?.slice(0, 10)
+            .filter(categoryFilter)
+            .map((post: PostProps, key) => {
+              return (
+                <Link href={'/detail/' + post.id} key={key}>
+                  <ProductCard
+                    title={post.title}
+                    price={post.price}
+                    image={post.img}
+                  />
+                </Link>
+              );
+            })}
         </div>
       </div>
       <Footer />
