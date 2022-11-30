@@ -23,6 +23,7 @@ export const InputField = ({
       placeholder={placeholder}
       type={type}
       className={styles.inputField}
+      required
     />
   );
 };
