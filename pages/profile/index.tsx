@@ -17,6 +17,7 @@ import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const user = { ...(currentUser as UserProps) };
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
