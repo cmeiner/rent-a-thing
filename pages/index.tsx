@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   const [isShown, setIsShown] = useState(false);
 
   const handleClick = () => {
-    setIsShown(!isShown);
+    setIsShown((prevState) => !prevState)
   };
 
   const { user } = GetUser();
