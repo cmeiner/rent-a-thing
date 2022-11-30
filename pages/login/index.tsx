@@ -9,11 +9,13 @@ import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { auth } from '../../src/firebase/Firebase';
 import styles from './LoginPage.module.scss';
+import useTranslation from 'next-translate/useTranslation';
 
 const Login: NextPage = () => {
   const router = useRouter();
   const [data, setData] = useState({ username: '', email: '', password: '' });
   const [error, setError] = useState('');
+  const { t, lang } = useTranslation('common');
 
   const handleLogin = (e: any) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ const Login: NextPage = () => {
         });
       })
       .catch((error) => {
-        setError(error.message);
+        setError(t(`${error.code}`));
       });
   };
 
@@ -48,14 +50,14 @@ const Login: NextPage = () => {
           <InputField
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
-            placeholder='Email'
-            type='text'
+            placeholder="Email"
+            type="text"
           />
           <InputField
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
-            placeholder='Password'
-            type='text'
+            placeholder="Password"
+            type="text"
           />
           <PrimaryButton text="Logga in" submit={true} />
           <div style={{ color: 'white' }}>{error}</div>
