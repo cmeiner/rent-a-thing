@@ -16,20 +16,24 @@ const NewProduct: NextPage = () => {
     price: '',
     img: '',
     category: 'Övrigt',
+    postedBy: {},
   });
   const { currentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
 
+  console.log(user);
+
   const HandleSubmit = (e: any) => {
     e.preventDefault();
     setData(data);
-    usePost('posts', data, user);
+    usePost('posts', data);
     setData({
       title: '',
       desc: '',
       price: '',
       img: '',
       category: 'Övrigt',
+      postedBy: currentUser,
     });
   };
 

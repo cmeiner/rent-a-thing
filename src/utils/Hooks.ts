@@ -9,21 +9,22 @@ export interface PostProps {
   img: string;
   price: string;
   category: string;
+  postedBy: UserProps;
   id?: string;
 }
 
 export interface UserProps {
-  email?: string;
-  id?: string;
-  photoURL?: string;
-  displayName?: string;
+  email: string;
+  id: string;
+  displayName: string;
+  photoUrl: string;
 }
 
-export const usePost = async (api: string, data: {}, postedBy?: {}) => {
+export const usePost = async (api: string, data: {}) => {
   await setDoc(doc(collection(db, api)), {
     data,
-    postedBy,
   });
+  console.log(data, 'added to the database');
 };
 
 export const useFetch = (api: string, id?: string) => {
@@ -42,6 +43,7 @@ export const useFetch = (api: string, id?: string) => {
       const postById = doc(db, api, id);
       getDoc(postById).then((doc) => {
         const singlePost = { ...doc.data()?.data, id: doc.id } as any;
+
         setResponse(singlePost);
       });
     }
