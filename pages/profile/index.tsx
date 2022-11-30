@@ -1,21 +1,20 @@
+import { getAuth, signOut } from 'firebase/auth';
 import { NextPage } from 'next';
-import styles from './ProfilePage.module.scss';
 import Image from 'next/image';
-import { Slider } from '../../src/components/big/sliderbtn/Slider';
-import { useContext, useState } from 'react';
 import Link from 'next/link';
-import { AddButton } from '../../src/components/small/addbtn/AddBtn';
-import { ProductCard } from '../../src/components/small/productcard/ProductCard';
-import { Header } from '../../src/components/big/header/Header';
-import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
-import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
+import { Header } from '../../src/components/big/header/Header';
+import { Slider } from '../../src/components/big/sliderbtn/Slider';
+import { AddButton } from '../../src/components/small/addbtn/AddBtn';
+import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { UserProps } from '../../src/utils/Hooks';
+import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
-
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
     'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
@@ -25,11 +24,10 @@ const ProfilePage: NextPage = () => {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        console.log('utloggad');
         setCurrentUser({});
       })
       .catch((error) => {
-        console.log(error.message);
+        console.error(error.message);
       });
   };
 
@@ -50,7 +48,7 @@ const ProfilePage: NextPage = () => {
           />
         </div>
 
-        <h1 className={styles.title}>{user.email}</h1>
+        <h1 className={styles.title}>{user.displayName ? user.displayName : user.email}</h1>
       </div>
 
       <div className={styles.navContainer}>

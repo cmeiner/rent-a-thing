@@ -14,8 +14,8 @@ export interface PostProps {
 export interface UserProps {
   email?: string;
   id?: string;
-  photo?: string;
-  name?: string;
+  photoURL?: string;
+  displayName?: string;
 }
 
 export const usePost = async (api: string, data: {}, postedBy?: {}) => {
@@ -23,7 +23,6 @@ export const usePost = async (api: string, data: {}, postedBy?: {}) => {
     data,
     postedBy,
   });
-  console.log(data, 'added to the database');
 };
 
 export const useFetch = (api: string, id?: string) => {

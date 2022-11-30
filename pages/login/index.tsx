@@ -1,7 +1,6 @@
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { NextPage } from 'next';
-import { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -10,7 +9,6 @@ import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { auth } from '../../src/firebase/Firebase';
 import styles from './LoginPage.module.scss';
-import { AuthContext } from '../../src/auth/AuthContext';
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -23,7 +21,6 @@ const Login: NextPage = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log('inloggad', user);
         router.push('/profile');
         setData({
           username: '',
@@ -51,14 +48,14 @@ const Login: NextPage = () => {
           <InputField
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
-            placeholder={'Email'}
-            type={'text'}
+            placeholder='Email'
+            type='text'
           />
           <InputField
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
-            placeholder={'Password'}
-            type={'text'}
+            placeholder='Password'
+            type='text'
           />
           <PrimaryButton text="Logga in" submit={true} />
           <div style={{ color: 'white' }}>{error}</div>
