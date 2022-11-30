@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   const [isShown, setIsShown] = useState(false);
 
   const handleClick = () => {
-    setIsShown(!isShown);
+    setIsShown((prevState) => !prevState)
   };
 
   const { user } = GetUser();
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
       ) : null}
 
       <FilterAndText onClick={handleClick} />
-      {isShown ? <FilterCategory /> : null}
+      {isShown ? <FilterCategory small /> : null}
 
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
