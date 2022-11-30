@@ -14,6 +14,7 @@ import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const [modal, setModal] = useState(false);
   const user = { ...(currentUser as UserProps) };
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
@@ -38,7 +39,8 @@ const ProfilePage: NextPage = () => {
         <h1 className={styles.title}>Profil</h1>
       </div>
       <div className={styles.profileInfo}>
-        <div className={styles.imgContainer}>
+        <div className={styles.imgContainer} onClick={() => setModal(prevState => !prevState)}>
+          <div className={modal ? styles.hiddenUpdate : styles.updateImage }>asd</div>
           <Image
             className={styles.img}
             alt="profile-picture"
@@ -47,8 +49,9 @@ const ProfilePage: NextPage = () => {
             height={160}
           />
         </div>
-
-        <h1 className={styles.title}>{user.displayName ? user.displayName : user.email}</h1>
+        <h1 className={styles.title}>
+          {user.displayName ? user.displayName : user.email}
+        </h1>
       </div>
 
       <div className={styles.navContainer}>
@@ -68,7 +71,6 @@ const ProfilePage: NextPage = () => {
           />
         </div>
       </div>
-
       <PrimaryButton
         submit={false}
         text="logga ut *enbart dev*"

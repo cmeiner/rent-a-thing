@@ -41,11 +41,28 @@
   .imgContainer {
     display: flex;
     justify-content: center;
+    
+    .updateImage {
+      display: none;
+    }
+
+    .hiddenUpdate {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 300px;
+      width: 300px;
+      background-color: white;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+    }
 
     .img {
       position: static;
       border-radius: 100%;
       border: white solid 5px;
+      cursor: pointer;
     }
   }
 }
