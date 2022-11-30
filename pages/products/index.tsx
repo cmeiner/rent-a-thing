@@ -10,18 +10,16 @@ import { usePost, UserProps } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
 
 const NewProduct: NextPage = () => {
+  const { currentUser } = useContext(AuthContext);
+
   const [data, setData] = useState({
     title: '',
     desc: '',
     price: '',
     img: '',
     category: 'Övrigt',
-    postedBy: {},
+    postedBy: currentUser,
   });
-  const { currentUser } = useContext(AuthContext);
-  const user = { ...(currentUser as UserProps) };
-
-  console.log(user);
 
   const HandleSubmit = (e: any) => {
     e.preventDefault();

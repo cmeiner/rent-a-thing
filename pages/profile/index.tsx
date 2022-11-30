@@ -9,7 +9,7 @@ import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
-import { UserProps } from '../../src/utils/Hooks';
+import { PostProps, useFetch, UserProps } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
@@ -18,6 +18,8 @@ const ProfilePage: NextPage = () => {
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
     'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
+
+  const { response } = useFetch('posts', undefined, user.id);
 
   // only for dev
   const handleSignOut = () => {
@@ -48,7 +50,9 @@ const ProfilePage: NextPage = () => {
           />
         </div>
 
-        <h1 className={styles.title}>{user.displayName ? user.displayName : user.email}</h1>
+        <h1 className={styles.title}>
+          {user.displayName ? user.displayName : user.email}
+        </h1>
       </div>
 
       <div className={styles.navContainer}>
@@ -80,10 +84,17 @@ const ProfilePage: NextPage = () => {
       ) : (
         <div className={styles.productContainer}>
           <div className={styles.productGrid}>
-            <ProductCard image={squid} price="10" title="bläckward" />
-            <ProductCard image={squid} price="10" title="bläckward" />
-            <ProductCard image={squid} price="10" title="bläckward" />
-            <ProductCard image={squid} price="10" title="bläckward" />
+            {response.map((post: PostProps, key) => {
+              return (
+                <Link href={'/detail/' + post.id} key={key}>
+                  <ProductCard
+                    title={post.title}
+                    price={post.price}
+                    image={post.img}
+                  />
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}
