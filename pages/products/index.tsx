@@ -12,26 +12,28 @@ import { usePost, UserProps } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
 
 const NewProduct: NextPage = () => {
+  const { currentUser } = useContext(AuthContext);
+
   const [data, setData] = useState({
     title: '',
     desc: '',
     price: '',
     img: '',
     category: 'Övrigt',
+    postedBy: currentUser,
   });
-  const { currentUser } = useContext(AuthContext);
-  const user = { ...(currentUser as UserProps) };
 
   const HandleSubmit = (e: any) => {
     e.preventDefault();
     setData(data);
-    usePost('posts', data, user);
+    usePost('posts', data);
     setData({
       title: '',
       desc: '',
       price: '',
       img: '',
       category: 'Övrigt',
+      postedBy: currentUser,
     });
     toast.success('Annons tillagd', {
       position: 'bottom-center',
