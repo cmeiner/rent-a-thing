@@ -32,7 +32,9 @@ const Details: NextPage = () => {
 
   const HandleOption = (e: any) => {
     const value = parseInt(e.target.value, 10);
-    setDays(value !== NaN && value >= 1 && value <= 7 ? value : undefined);
+    setDays(
+      isNaN(value) !== true && value >= 1 && value <= 7 ? value : undefined
+    );
   };
 
   return (
