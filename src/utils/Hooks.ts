@@ -70,7 +70,7 @@ export const useFetch = (api: string, id?: string, userId?: string) => {
         );
       });
     }
-  }, [api, id]);
+  }, [api, id, userId]);
 
   return { response };
 };

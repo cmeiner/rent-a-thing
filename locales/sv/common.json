@@ -1,0 +1,8 @@
+{
+  "auth/invalid-email": "Vänligen ange en giltig e-post",
+  "auth/user-not-found": "Ingen användare är kopplad till angiven e-post",
+  "auth/wrong-password": "Fel lösenord",
+  "auth/too-many-requests": "För många felaktiga försök, försök igen senare",
+  "auth/email-already-in-use": "E-postadress redan registrerad, försök igen med en annan",
+  "auth/weak-password": "Lösenord är svagt, använd minst 6 tecken"
+}
