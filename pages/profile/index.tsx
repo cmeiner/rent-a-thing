@@ -12,13 +12,13 @@ import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn'
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
 import { db } from '../../src/firebase/Firebase';
-import { PostProps, useFetch, UserProps } from '../../src/utils/Hooks';
+import { GetUser, PostProps, useFetch } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const user = { ...(currentUser as UserProps) };
+  const { setCurrentUser } = useContext(AuthContext);
+  const { user } = GetUser();
+
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
     'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
@@ -65,7 +65,7 @@ const ProfilePage: NextPage = () => {
           <Image
             className={styles.img}
             alt="profile-picture"
-            src={squid}
+            src={user.photoURL}
             width={160}
             height={160}
           />
