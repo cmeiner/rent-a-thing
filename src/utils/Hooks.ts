@@ -25,7 +25,7 @@ export interface UserProps {
   email: string;
   id: string;
   displayName: string;
-  photoUrl: string;
+  photoURL: string;
 }
 
 export const usePost = async (api: string, data: {}) => {
@@ -70,7 +70,7 @@ export const useFetch = (api: string, id?: string, userId?: string) => {
         );
       });
     }
-  }, [api, id]);
+  }, [api, id, userId]);
 
   return { response };
 };

@@ -1,4 +1,4 @@
-import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
+import { Modal, ModalOverlay } from '@chakra-ui/react';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import styles from './ProfilePage.module.scss';
@@ -11,28 +11,32 @@ interface ModalProps {
 export const ProfileModal = ({ visible, closeModal }: ModalProps) => {
   return (
     <>
-      <Modal isOpen={visible} onClose={closeModal} isCentered>
-        <ModalOverlay
-          onClick={closeModal}
-          backdropFilter="blur(20px)"
-          zIndex={4}
-          className={styles.overlay}
-        >
+      <Modal onClose={() => closeModal()} isOpen={visible}>
+        <ModalOverlay />
           <form
             className={styles.form}
             onSubmit={(e) => {
               e.preventDefault();
-              console.log('asd');
+              closeModal();
             }}
           >
-            <ModalContent className={styles.content} zIndex={3}>
-              <h1>Uppdatera profilbild</h1>
-              <InputField placeholder="Bild URL" type="text" />
-              <PrimaryButton text="Uppdatera" submit />
-            </ModalContent>
+            <h1>Uppdatera profilbild</h1>
+            <InputField placeholder="Bild URL" type="text" />
+            <PrimaryButton text="Uppdatera" submit />
           </form>
-        </ModalOverlay>
       </Modal>
     </>
   );
+
+  // <h1>Uppdatera profilbild</h1>
+  // <form
+  //   className={styles.form}
+  //   onSubmit={(e) => {
+  //     e.preventDefault();
+  //     closeModal();
+  //   }}
+  // >
+  //     <InputField placeholder="Bild URL" type="text" />
+  //     <PrimaryButton text="Uppdatera" submit />
+  // </form>
 };

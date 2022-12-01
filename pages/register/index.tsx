@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { NextPage } from 'next';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -13,6 +14,7 @@ const Register: NextPage = () => {
   const router = useRouter();
   const [data, setData] = useState({ username: '', email: '', password: '' });
   const [error, setError] = useState('');
+  const { t, lang } = useTranslation('common');
 
   const handleCreateUser = (e: any) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ const Register: NextPage = () => {
         });
       })
       .catch((error) => {
-        setError(error.message);
+        setError(t(`${error.code}`));
       });
   };
 
@@ -41,14 +43,14 @@ const Register: NextPage = () => {
           <InputField
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
-            placeholder='Email'
-            type='text'
+            placeholder="Email"
+            type="text"
           />
           <InputField
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
-            placeholder='Password'
-            type='text'
+            placeholder="Password"
+            type="text"
           />
           <div className={styles.button}>
             <PrimaryButton submit={true} text="Skapa konto" />

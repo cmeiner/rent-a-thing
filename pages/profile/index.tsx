@@ -1,9 +1,9 @@
-import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth, signOut, updateProfile } from 'firebase/auth';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { Slider } from '../../src/components/big/sliderbtn/Slider';
@@ -11,78 +11,101 @@ import { AddButton } from '../../src/components/small/addbtn/AddBtn';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
-import { PostProps, useFetch, UserProps } from '../../src/utils/Hooks';
+import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
+import { db } from '../../src/firebase/Firebase';
+import { GetUser, PostProps, useFetch } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
-  const user = { ...(currentUser as UserProps) };
+  const { user } = GetUser();
+  const { response } = useFetch('posts', undefined, user.id);
+  const [photoURL, setPhotoURL] = useState('');
+  const { setPhoto, setCurrentUser } = useContext(AuthContext);
   const [contentSwitch, setContentSwitch] = useState(false);
-  const squid =
-    'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
+  const [requests, setRequests] = useState<any[]>([]);
 
-  // const { response } = useFetch('posts', undefined, user.id);
-
-  // // only for dev
-  // const handleSignOut = () => {
-  //   const auth = getAuth();
-  //   signOut(auth)
-  //     .then(() => {
-  //       setCurrentUser({});
-  //     })
-  //     .catch((error) => {
-  //       console.error(error.message);
-  //     });
-  // };
-
-  const closeModal = () => {
-    setVisible(false);
+  // only for dev
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        setCurrentUser({});
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
+
+  const handleUpdateProfilePic = (e: any) => {
+    e.preventDefault();
+    e.target.reset();
+
+    const auth = getAuth();
+
+    updateProfile(auth.currentUser!, { photoURL: photoURL })
+      .then(() => {
+        setPhoto(photoURL);
+        setPhotoURL('');
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (user.id === undefined) {
+      return;
+    }
+
+    const q = query(
+      collection(db, 'requests'),
+      where('data.post.postedBy.id', '==', user.id)
+    );
+
+    getDocs(q).then((res) => {
+      const requests = res.docs.map((doc) => doc.data().data);
+      setRequests(requests);
+    });
+  }, [user.id]);
 
   return (
     <>
       <Header />
+
       <div className={styles.wallpaper}>
         <h1 className={styles.title}>Profil</h1>
       </div>
       <div className={styles.profileInfo}>
-        <Modal isOpen={visible} onClose={closeModal} isCentered>
-          <ModalOverlay
-            onClick={closeModal}
-            backdropFilter="blur(20px)"
-            zIndex={3}
-            className={styles.test}
-          >
-            <ModalContent className={styles.form}>
-              <form
-                className={styles.form}
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  console.log('asd');
-                }}
-              >
-                <h1>Uppdatera profilbild</h1>
-                <InputField placeholder="Bild URL" type="text" />
-                <PrimaryButton text="Uppdatera" submit />
-              </form>
-            </ModalContent>
-          </ModalOverlay>
-        </Modal>
         <div className={styles.imgContainer}>
           <Image
             className={styles.img}
             alt="profile-picture"
-            src={squid}
+            src={user.photoURL}
             width={160}
             height={160}
-            onClick={() => setVisible(true)}
+            onClick={() => {
+              setVisible((prevState) => !prevState);
+            }}
           />
         </div>
         <h1 className={styles.title}>
           {user.displayName ? user.displayName : user.email}
         </h1>
       </div>
+      <form
+        className={visible ? styles.form : styles.hidden}
+        onSubmit={(e) => handleUpdateProfilePic(e)}
+      >
+        <h1>Uppdatera profilbild</h1>
+        <InputField
+          placeholder="Bild URL"
+          type="text"
+          onChange={(e) => setPhotoURL(e.target.value)}
+        />
+        <PrimaryButton text="Uppdatera" submit />
+      </form>
 
       <div className={styles.navContainer}>
         <Link href="/products">
@@ -101,18 +124,30 @@ const ProfilePage: NextPage = () => {
           />
         </div>
       </div>
-      {/* <PrimaryButton
+      <PrimaryButton
         submit={false}
         text="logga ut *enbart dev*"
         onClick={handleSignOut}
-      /> */}
-
+      />
       {contentSwitch ? (
-        <div>förfrågningar</div>
+        <div className={styles.productContainer}>
+          <div className={styles.productGrid}>
+            {requests.map((request: any, key) => (
+              <RequestCard
+                item={request.post.title}
+                renter={request.postedBy.displayName}
+                image={request.post.img}
+                key={key}
+                accept={() => console.log('accept')}
+                decline={() => console.log('decline')}
+              />
+            ))}
+          </div>
+        </div>
       ) : (
         <div className={styles.productContainer}>
           <div className={styles.productGrid}>
-            {/* {response.map((post: PostProps, key) => {
+            {response.map((post: PostProps, key) => {
               return (
                 <Link href={'/detail/' + post.id} key={key}>
                   <ProductCard
@@ -122,7 +157,7 @@ const ProfilePage: NextPage = () => {
                   />
                 </Link>
               );
-            })} */}
+            })}
           </div>
         </div>
       )}

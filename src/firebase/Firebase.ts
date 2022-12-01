@@ -11,12 +11,12 @@ import { getFirestore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDkzuD17ZVReO8GqskdK5Uw35ktHlQofL0',
-  authDomain: 'rent-a-thing-91c42.firebaseapp.com',
-  projectId: 'rent-a-thing-91c42',
-  storageBucket: 'rent-a-thing-91c42.appspot.com',
-  messagingSenderId: '117537224066',
-  appId: '1:117537224066:web:79962770fc1ac5c6e74b9b',
+  apiKey: 'AIzaSyAjAeh3P8fV2nZ1h56rYZdEWHibRhh1Qzc',
+  authDomain: 'rent-a-thing-2.firebaseapp.com',
+  projectId: 'rent-a-thing-2',
+  storageBucket: 'rent-a-thing-2.appspot.com',
+  messagingSenderId: '756905740631',
+  appId: '1:756905740631:web:3b98414b356abeb6a31612',
 };
 
 // Initialize Firebase
