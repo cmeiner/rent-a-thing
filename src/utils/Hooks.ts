@@ -1,4 +1,12 @@
-import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from 'firebase/firestore';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../auth/AuthContext';
 import { db } from '../firebase/Firebase';
@@ -9,40 +17,57 @@ export interface PostProps {
   img: string;
   price: string;
   category: string;
+  postedBy: UserProps;
   id?: string;
 }
 
 export interface UserProps {
-  email?: string;
-  id?: string;
-  photoURL?: string;
-  displayName?: string;
+  email: string;
+  id: string;
+  displayName: string;
+  photoUrl: string;
 }
 
-export const usePost = async (api: string, data: {}, postedBy?: {}) => {
+export const usePost = async (api: string, data: {}) => {
   await setDoc(doc(collection(db, api)), {
     data,
-    postedBy,
   });
+  console.log(data, 'added to the database');
 };
 
-export const useFetch = (api: string, id?: string) => {
+export const useFetch = (api: string, id?: string, userId?: string) => {
   const [response, setResponse] = useState<[]>([]);
 
   useEffect(() => {
-    if (!id) {
-      getDocs(collection(db, api)).then((res) => {
+    if (!userId) {
+      if (!id) {
+        getDocs(collection(db, api)).then((res) => {
+          setResponse(
+            res.docs.map((item) => {
+              return { ...item.data().data, id: item.id };
+            }) as any
+          );
+        });
+      } else {
+        const postById = doc(db, api, id);
+        getDoc(postById).then((doc) => {
+          const singlePost = { ...doc.data()?.data, id: doc.id } as any;
+
+          setResponse(singlePost);
+        });
+      }
+    } else {
+      const q = query(
+        collection(db, 'posts'),
+        where('data.postedBy.id', '==', userId)
+      );
+
+      getDocs(q).then((res) => {
         setResponse(
           res.docs.map((item) => {
             return { ...item.data().data, id: item.id };
           }) as any
         );
-      });
-    } else {
-      const postById = doc(db, api, id);
-      getDoc(postById).then((doc) => {
-        const singlePost = { ...doc.data()?.data, id: doc.id } as any;
-        setResponse(singlePost);
       });
     }
   }, [api, id]);

@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay } from '@chakra-ui/react';
+import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
 import { getAuth, signOut } from 'firebase/auth';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -11,7 +11,7 @@ import { AddButton } from '../../src/components/small/addbtn/AddBtn';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
-import { UserProps } from '../../src/utils/Hooks';
+import { PostProps, useFetch, UserProps } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
@@ -21,17 +21,19 @@ const ProfilePage: NextPage = () => {
   const squid =
     'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
 
-  // only for dev
-  const handleSignOut = () => {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        setCurrentUser({});
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-  };
+  // const { response } = useFetch('posts', undefined, user.id);
+
+  // // only for dev
+  // const handleSignOut = () => {
+  //   const auth = getAuth();
+  //   signOut(auth)
+  //     .then(() => {
+  //       setCurrentUser({});
+  //     })
+  //     .catch((error) => {
+  //       console.error(error.message);
+  //     });
+  // };
 
   const closeModal = () => {
     setVisible(false);
@@ -49,10 +51,10 @@ const ProfilePage: NextPage = () => {
           <ModalOverlay
             onClick={closeModal}
             backdropFilter="blur(20px)"
-            zIndex={4}
+            zIndex={3}
             className={styles.test}
           >
-            <div>
+            <ModalContent className={styles.form}>
               <form
                 className={styles.form}
                 onSubmit={(e) => {
@@ -64,7 +66,7 @@ const ProfilePage: NextPage = () => {
                 <InputField placeholder="Bild URL" type="text" />
                 <PrimaryButton text="Uppdatera" submit />
               </form>
-            </div>
+            </ModalContent>
           </ModalOverlay>
         </Modal>
         <div className={styles.imgContainer}>
@@ -99,21 +101,28 @@ const ProfilePage: NextPage = () => {
           />
         </div>
       </div>
-      <PrimaryButton
+      {/* <PrimaryButton
         submit={false}
         text="logga ut *enbart dev*"
         onClick={handleSignOut}
-      />
+      /> */}
 
       {contentSwitch ? (
         <div>förfrågningar</div>
       ) : (
         <div className={styles.productContainer}>
           <div className={styles.productGrid}>
-            <ProductCard image={squid} price="10" title="bläckward" />
-            <ProductCard image={squid} price="10" title="bläckward" />
-            <ProductCard image={squid} price="10" title="bläckward" />
-            <ProductCard image={squid} price="10" title="bläckward" />
+            {/* {response.map((post: PostProps, key) => {
+              return (
+                <Link href={'/detail/' + post.id} key={key}>
+                  <ProductCard
+                    title={post.title}
+                    price={post.price}
+                    image={post.img}
+                  />
+                </Link>
+              );
+            })} */}
           </div>
         </div>
       )}

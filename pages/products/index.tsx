@@ -1,5 +1,7 @@
 import { NextPage } from 'next';
 import { useContext, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterCategory } from '../../src/components/filterCategory/FilterCategory';
@@ -10,26 +12,31 @@ import { usePost, UserProps } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
 
 const NewProduct: NextPage = () => {
+  const { currentUser } = useContext(AuthContext);
+
   const [data, setData] = useState({
     title: '',
     desc: '',
     price: '',
     img: '',
     category: 'Övrigt',
+    postedBy: currentUser,
   });
-  const { currentUser } = useContext(AuthContext);
-  const user = { ...(currentUser as UserProps) };
 
   const HandleSubmit = (e: any) => {
     e.preventDefault();
     setData(data);
-    usePost('posts', data, user);
+    usePost('posts', data);
     setData({
       title: '',
       desc: '',
       price: '',
       img: '',
       category: 'Övrigt',
+      postedBy: currentUser,
+    });
+    toast.success('Annons tillagd', {
+      position: 'bottom-center',
     });
   };
 
@@ -66,6 +73,7 @@ const NewProduct: NextPage = () => {
             onChange={(e) => setData({ ...data, category: e.target.value })}
           />
           <PrimaryButton submit={true} text="Lägg till" />
+          <ToastContainer />
         </form>
       </div>
     </div>

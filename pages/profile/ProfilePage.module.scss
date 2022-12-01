@@ -93,7 +93,9 @@
 }
 
 .test {
-  z-index: 4;
+  height: 100%;
+  width: 100vw;
+  // z-index: 4;
   .form {
     z-index: 5;
     width: fit-content;
