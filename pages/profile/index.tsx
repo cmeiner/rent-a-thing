@@ -52,7 +52,7 @@ const ProfilePage: NextPage = () => {
       const requests = res.docs.map((doc) => doc.data().data);
       setRequests(requests);
     });
-  }, [user]);
+  }, [user.id]);
 
   return (
     <div>
