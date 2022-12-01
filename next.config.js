@@ -9,4 +9,4 @@ const nextConfig = {
   },
 };
 
-export default nextTranslate(nextConfig);
+module.exports = nextTranslate(nextConfig);
