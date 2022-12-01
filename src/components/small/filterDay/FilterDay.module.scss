@@ -1,0 +1,20 @@
+@use 'src/constants/Colors.scss';
+@use 'src/constants/Fonts.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.filter {
+  background-color: Colors.$primaryWhite;
+  border-radius: 8px;
+  border: 1px solid Colors.$inputBorderGray;
+  width: 100%;
+  max-width: 90vw;
+  height: 40px;
+  padding: 0 10px;
+  font-size: Fonts.$p;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 2.5rem;
+}
