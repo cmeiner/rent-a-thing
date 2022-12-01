@@ -25,7 +25,7 @@ export interface UserProps {
   email: string;
   id: string;
   displayName: string;
-  photoUrl: string;
+  photoURL: string;
 }
 
 export const usePost = async (api: string, data: {}) => {
