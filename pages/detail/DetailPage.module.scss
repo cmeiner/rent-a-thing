@@ -61,6 +61,17 @@
     margin-bottom: 2.5rem;
   }
 
+  .loginUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .link {
+    color: Colors.$primaryRed;
+    cursor: pointer;
+  }
+
   @media screen and (min-width: 800px) {
     gap: 3rem;
     .productCard {

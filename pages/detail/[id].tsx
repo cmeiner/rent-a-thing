@@ -7,7 +7,10 @@ import { Header } from '../../src/components/big/header/Header';
 import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { PostProps, useFetch, usePost, UserProps } from '../../src/utils/Hooks';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './DetailPage.module.scss';
+import Link from 'next/link';
 
 const Details: NextPage = () => {
   const router = useRouter();
@@ -22,11 +25,13 @@ const Details: NextPage = () => {
 
   const HandleSubmit = (e: any) => {
     e.preventDefault();
-
     usePost('requests', {
       post,
       days: days,
       postedBy: user,
+    });
+    toast.success('Förfrågan skickad', {
+      position: 'bottom-center',
     });
   };
 
@@ -62,14 +67,24 @@ const Details: NextPage = () => {
           </div>
         </div>
         <div className={styles.buttonSection}>
-          <form onSubmit={HandleSubmit}>
-            <FilterDay onChange={HandleOption} />
-            <PrimaryButton
-              onClick={() => console.log('asd')}
-              text="Rent-this-thing"
-              submit
-            />
-          </form>
+          {user.id ? (
+            <form onSubmit={HandleSubmit}>
+              <FilterDay onChange={HandleOption} />
+              <PrimaryButton
+                onClick={() => console.log('asd')}
+                text="Rent-this-thing"
+                submit
+              />
+              <ToastContainer />
+            </form>
+          ) : (
+            <div className={styles.loginUser}>
+              <p>Vänligen logga in för att hyra denna produkt</p>
+              <Link href={'/login'}>
+                <p className={styles.link}>Logga in</p>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </>
