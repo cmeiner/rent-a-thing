@@ -25,5 +25,5 @@ jobs:
           prettier_options: --write **/*.{tsx,md}
           only_changed: True
 
-      - name: Eslint code
-        uses: sibiraj-s/action-eslint@v2.1.2
+      # - name: Eslint code
+      #   uses: sibiraj-s/action-eslint@v2.1.2
