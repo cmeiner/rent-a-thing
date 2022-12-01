@@ -1,4 +1,4 @@
-import { getAuth, signOut, updateProfile } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -8,12 +8,12 @@ import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
-import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
 import { db } from '../../src/firebase/Firebase';
 import { GetUser, PostProps, useFetch } from '../../src/utils/Hooks';
+import { ImageModal } from './ImageModal';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
@@ -23,6 +23,7 @@ const ProfilePage: NextPage = () => {
   const { setPhoto, setCurrentUser } = useContext(AuthContext);
   const [contentSwitch, setContentSwitch] = useState(false);
   const [requests, setRequests] = useState<any[]>([]);
+  const [visible, setVisible] = useState(false);
 
   // only for dev
   const handleSignOut = () => {
@@ -35,24 +36,6 @@ const ProfilePage: NextPage = () => {
         console.error(error.message);
       });
   };
-
-  const handleUpdateProfilePic = (e: any) => {
-    e.preventDefault();
-    e.target.reset();
-
-    const auth = getAuth();
-
-    updateProfile(auth.currentUser!, { photoURL: photoURL })
-      .then(() => {
-        setPhoto(photoURL);
-        setPhotoURL('');
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-  };
-
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (user.id === undefined) {
@@ -70,9 +53,14 @@ const ProfilePage: NextPage = () => {
     });
   }, [user.id]);
 
+  const closeModal = () => {
+    setVisible(false)
+  }
+
   return (
     <>
       <Header />
+      <ImageModal close={closeModal} visible={visible} />
 
       <div className={styles.wallpaper}>
         <h1 className={styles.title}>Profil</h1>
@@ -94,19 +82,6 @@ const ProfilePage: NextPage = () => {
           {user.displayName ? user.displayName : user.email}
         </h1>
       </div>
-      <form
-        className={visible ? styles.form : styles.hidden}
-        onSubmit={(e) => handleUpdateProfilePic(e)}
-      >
-        <h1>Uppdatera profilbild</h1>
-        <InputField
-          placeholder="Bild URL"
-          type="text"
-          onChange={(e) => setPhotoURL(e.target.value)}
-        />
-        <PrimaryButton text="Uppdatera" submit />
-      </form>
-
       <div className={styles.navContainer}>
         <Link href="/products">
           <a className={styles.link}>

@@ -1,3 +1,4 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import { onAuthStateChanged } from 'firebase/auth';
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
@@ -9,6 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [currentUser, setCurrentUser] = useState({});
   const [profile, setProfile] = useState({
   });
+  const [, setPhoto] = useState({})
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -30,8 +32,10 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, [profile]);
   return (
-    <AuthContext.Provider value={{ currentUser, setCurrentUser, profile, setProfile }}>
+    <AuthContext.Provider value={{ currentUser, setCurrentUser, profile, setProfile, setPhoto }}>
+      <ChakraProvider resetCSS={false}>
       <Component {...pageProps} />
+      </ChakraProvider>
     </AuthContext.Provider>
   );
 }
