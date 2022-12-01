@@ -41,22 +41,6 @@
   .imgContainer {
     display: flex;
     justify-content: center;
-    
-    .updateImage {
-      display: none;
-    }
-
-    .hiddenUpdate {
-      display: block;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      height: 300px;
-      width: 300px;
-      background-color: white;
-      transform: translate(-50%, -50%);
-      z-index: 1000;
-    }
 
     .img {
       position: static;
@@ -104,6 +88,30 @@
   @media (min-width: 1500px) {
     .productGrid {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+.test {
+  z-index: 4;
+  .form {
+    z-index: 5;
+    width: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: fit-content;
+    color: Colors.$primaryWhite;
+    background-color: Colors.$primaryBlack;
+    border-radius: 2.5px;
+    padding: 2rem;
+    h1 {
+      margin: 0;
     }
   }
 }

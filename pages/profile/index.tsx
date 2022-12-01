@@ -1,3 +1,4 @@
+import { Modal, ModalOverlay } from '@chakra-ui/react';
 import { getAuth, signOut } from 'firebase/auth';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -7,6 +8,7 @@ import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
+import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { UserProps } from '../../src/utils/Hooks';
@@ -14,7 +16,6 @@ import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
-  const [modal, setModal] = useState(false);
   const user = { ...(currentUser as UserProps) };
   const [contentSwitch, setContentSwitch] = useState(false);
   const squid =
@@ -32,21 +33,48 @@ const ProfilePage: NextPage = () => {
       });
   };
 
+  const closeModal = () => {
+    setVisible(false);
+  };
+  const [visible, setVisible] = useState(false);
+
   return (
-    <div>
+    <>
       <Header />
       <div className={styles.wallpaper}>
         <h1 className={styles.title}>Profil</h1>
       </div>
       <div className={styles.profileInfo}>
-        <div className={styles.imgContainer} onClick={() => setModal(prevState => !prevState)}>
-          <div className={modal ? styles.hiddenUpdate : styles.updateImage }>asd</div>
+        <Modal isOpen={visible} onClose={closeModal} isCentered>
+          <ModalOverlay
+            onClick={closeModal}
+            backdropFilter="blur(20px)"
+            zIndex={4}
+            className={styles.test}
+          >
+            <div>
+              <form
+                className={styles.form}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log('asd');
+                }}
+              >
+                <h1>Uppdatera profilbild</h1>
+                <InputField placeholder="Bild URL" type="text" />
+                <PrimaryButton text="Uppdatera" submit />
+              </form>
+            </div>
+          </ModalOverlay>
+        </Modal>
+        <div className={styles.imgContainer}>
           <Image
             className={styles.img}
             alt="profile-picture"
             src={squid}
             width={160}
             height={160}
+            onClick={() => setVisible(true)}
           />
         </div>
         <h1 className={styles.title}>
@@ -89,7 +117,7 @@ const ProfilePage: NextPage = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
