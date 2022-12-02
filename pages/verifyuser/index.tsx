@@ -1,37 +1,56 @@
 import { getAuth, updateProfile } from 'firebase/auth';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
+import { FilesInput } from '../../src/components/small/filesInput/FilesInput';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { storage } from '../../src/firebase/Firebase';
 import styles from './LoginPage.module.scss';
-
+import { v4 } from 'uuid';
 
 const VerifyUser: NextPage = () => {
   const router = useRouter();
+  const [imageUpload, setImageUpload] = useState();
   const [data, setData] = useState({ displayName: '', photoURL: '' });
   const [error, setError] = useState('');
 
-  const { setProfile } = useContext(AuthContext)
-  
+  const { setProfile } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `${v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setData({ ...data, photoURL: url });
+      });
+    });
+    console.log(data);
+  }, [imageUpload]);
+
   const handleVerify = (e: any) => {
     e.preventDefault();
     const auth = getAuth();
 
-    updateProfile(auth.currentUser!, 
-      {displayName: data.displayName, photoURL: data.photoURL})
+    updateProfile(auth.currentUser!, {
+      displayName: data.displayName,
+      photoURL: data.photoURL,
+    })
       .then((currentUser) => {
         const user = currentUser;
-        setProfile(data)
-        router.push('/profile')
+        setProfile(data);
+        router.push('/profile');
         setData({
-          displayName: '', photoURL: ''
-        })
+          displayName: '',
+          photoURL: '',
+        });
       })
       .catch((error) => {
-        setError(error.message);})
+        setError(error.message);
+      });
   };
 
   return (
@@ -50,11 +69,9 @@ const VerifyUser: NextPage = () => {
             placeholder="Användarnamn"
             type="text"
           />
-          <InputField
-            value={data.photoURL}
-            onChange={(e) => setData({ ...data, photoURL: e.target.value })}
-            placeholder="URL till profilbild"
-            type="text"
+          <FilesInput
+            onChange={(e) => setImageUpload(e.currentTarget.files[0])}
+            type="file"
           />
           <PrimaryButton text="Slutför" submit={true} />
           <div style={{ color: 'white' }}>{error}</div>
