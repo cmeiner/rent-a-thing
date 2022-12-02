@@ -45,7 +45,7 @@ const Login: NextPage = () => {
               className={styles.goBack}
               onClick={() => router.back()}
             />
-            <h2 className={styles.loginTitle}>Logga in</h2>
+            <h1 className={styles.loginTitle}>Logga in</h1>
           </div>
           <InputField
             value={data.email}

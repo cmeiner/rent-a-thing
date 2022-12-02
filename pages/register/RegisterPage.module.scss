@@ -3,10 +3,11 @@
 
 .container {
   display: flex;
+  height: f;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 5rem;
+  justify-content: center;
+  height: 90vh;
 
   .title {
     font-size: Fonts.$h1;
@@ -22,12 +23,27 @@
   }
 
   .button {
-    margin-top: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .link {
-    color: Colors.$primaryRed;
-    margin-top: 3rem;
+    color: Colors.$primaryWhite;
     font-size: Fonts.$p;
+  }
+
+  .formHeader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    align-items: center;
+  }
+
+  .goBack {
+    position: absolute;
+    left: 0;
+    color: Colors.$primaryWhite;
+    font-size: Fonts.$h1;
+    cursor: pointer;
   }
 }

@@ -22,6 +22,7 @@ $small: 850px;
       justify-content: center;
       width: 100%;
       position: relative;
+      align-items: center;
     }
     .goBack {
       position: absolute;
@@ -32,14 +33,15 @@ $small: 850px;
     }
     .loginTitle {
       color: Colors.$primaryWhite;
-      margin: 0;
+      // margin: 0;
       font-weight: 300;
     }
   }
   .toRegister {
-    color: Colors.$primaryRed;
-    margin-top: 80px;
+    // color: Colors.$primaryRed;
+    margin-top: 2rem;
     transition: 0.5s;
+    color: Colors.$primaryWhite;
   }
   @media screen and (max-width: $small) {
     .toRegister {
