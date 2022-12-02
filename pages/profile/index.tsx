@@ -19,8 +19,7 @@ import styles from './ProfilePage.module.scss';
 const ProfilePage: NextPage = () => {
   const { user } = GetUser();
   const { response } = useFetch('posts', undefined, user.id);
-  const [photoURL, setPhotoURL] = useState('');
-  const { setPhoto, setCurrentUser } = useContext(AuthContext);
+  const { setCurrentUser } = useContext(AuthContext);
   const [contentSwitch, setContentSwitch] = useState(false);
   const [requests, setRequests] = useState<any[]>([]);
   const [visible, setVisible] = useState(false);
