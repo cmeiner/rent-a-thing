@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { useContext, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../src/auth/AuthContext';
@@ -8,7 +8,7 @@ import { FilterCategory } from '../../src/components/filterCategory/FilterCatego
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { TextField } from '../../src/components/small/textfield/TextField';
-import { usePost, UserProps } from '../../src/utils/Hooks';
+import { usePost } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
 
 const NewProduct: NextPage = () => {
@@ -23,7 +23,7 @@ const NewProduct: NextPage = () => {
     postedBy: currentUser,
   });
 
-  const HandleSubmit = (e: any) => {
+  const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setData(data);
     usePost('posts', data);

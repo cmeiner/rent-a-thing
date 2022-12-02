@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
@@ -23,7 +23,7 @@ const Details: NextPage = () => {
   const { currentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
 
-  const HandleSubmit = (e: any) => {
+  const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     usePost('requests', {
       post,
@@ -35,7 +35,7 @@ const Details: NextPage = () => {
     });
   };
 
-  const HandleOption = (e: any) => {
+  const HandleOption = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value, 10);
     setDays(
       isNaN(value) !== true && value >= 1 && value <= 7 ? value : undefined

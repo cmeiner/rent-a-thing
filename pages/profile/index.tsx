@@ -1,11 +1,12 @@
 import { getAuth, signOut } from 'firebase/auth';
-import { query, collection, where, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
+import { ImageModal } from '../../src/components/big/imagemodal/ImageModal';
 import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
@@ -16,15 +17,12 @@ import { GetUser, PostProps, useFetch } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
-  const { setCurrentUser } = useContext(AuthContext);
   const { user } = GetUser();
-
-  const [contentSwitch, setContentSwitch] = useState(false);
-  const squid =
-    'https://static.wikia.nocookie.net/spongebob/images/9/96/The_Two_Faces_of_Squidward_174.png/revision/latest?cb=20200923005328';
-
   const { response } = useFetch('posts', undefined, user.id);
+  const { setCurrentUser } = useContext(AuthContext);
+  const [contentSwitch, setContentSwitch] = useState(false);
   const [requests, setRequests] = useState<any[]>([]);
+  const [visible, setVisible] = useState(false);
 
   // only for dev
   const handleSignOut = () => {
@@ -54,9 +52,15 @@ const ProfilePage: NextPage = () => {
     });
   }, [user.id]);
 
+  const closeModal = () => {
+    setVisible(false)
+  }
+
   return (
-    <div>
+    <>
       <Header />
+      <ImageModal close={closeModal} visible={visible} />
+
       <div className={styles.wallpaper}>
         <h1 className={styles.title}>Profil</h1>
       </div>
@@ -68,14 +72,15 @@ const ProfilePage: NextPage = () => {
             src={user.photoURL}
             width={160}
             height={160}
+            onClick={() => {
+              setVisible((prevState) => !prevState);
+            }}
           />
         </div>
-
         <h1 className={styles.title}>
           {user.displayName ? user.displayName : user.email}
         </h1>
       </div>
-
       <div className={styles.navContainer}>
         <Link href="/products">
           <a className={styles.link}>
@@ -93,13 +98,11 @@ const ProfilePage: NextPage = () => {
           />
         </div>
       </div>
-
       <PrimaryButton
         submit={false}
         text="logga ut *enbart dev*"
         onClick={handleSignOut}
       />
-
       {contentSwitch ? (
         <div className={styles.productContainer}>
           <div className={styles.productGrid}>
@@ -132,7 +135,7 @@ const ProfilePage: NextPage = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

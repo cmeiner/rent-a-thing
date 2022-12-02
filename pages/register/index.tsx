@@ -1,14 +1,14 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { NextPage } from 'next';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Header } from '../../src/components/big/header/Header';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { auth } from '../../src/firebase/Firebase';
 import styles from './RegisterPage.module.scss';
-import useTranslation from 'next-translate/useTranslation';
 
 const Register: NextPage = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const Register: NextPage = () => {
   const [error, setError] = useState('');
   const { t, lang } = useTranslation('common');
 
-  const handleCreateUser = (e: any) => {
+  const handleCreateUser = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     createUserWithEmailAndPassword(auth, data.email, data.password)
