@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
+import { ImageModal } from '../../src/components/big/imagemodal/ImageModal';
 import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
@@ -13,7 +14,6 @@ import { ProductCard } from '../../src/components/small/productcard/ProductCard'
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
 import { db } from '../../src/firebase/Firebase';
 import { GetUser, PostProps, useFetch } from '../../src/utils/Hooks';
-import { ImageModal } from './ImageModal';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {

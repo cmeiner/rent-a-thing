@@ -1,10 +1,10 @@
 import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { FC, FormEvent, useContext, useState } from 'react';
-import { AuthContext } from '../../src/auth/AuthContext';
-import { InputField } from '../../src/components/small/inputfield/InputField';
-import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
-import styles from './ProfilePage.module.scss';
+import { AuthContext } from '../../../auth/AuthContext';
+import { InputField } from '../../small/inputfield/InputField';
+import { PrimaryButton } from '../../small/primarybtn/PrimaryBtn';
+import styles from './ImageModal.module.scss';
 
 interface Props {
   visible: boolean;
