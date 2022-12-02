@@ -1,23 +1,23 @@
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { NextPage } from 'next';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Header } from '../../src/components/big/header/Header';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { auth } from '../../src/firebase/Firebase';
 import styles from './LoginPage.module.scss';
-import useTranslation from 'next-translate/useTranslation';
 
 const Login: NextPage = () => {
   const router = useRouter();
   const [data, setData] = useState({ username: '', email: '', password: '' });
   const [error, setError] = useState('');
-  const { t, lang } = useTranslation('common');
+  const { t } = useTranslation('common');
 
-  const handleLogin = (e: any) => {
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -45,7 +45,7 @@ const Login: NextPage = () => {
               className={styles.goBack}
               onClick={() => router.back()}
             />
-            <h2 className={styles.loginTitle}>Logga in</h2>
+            <h1 className={styles.loginTitle}>Logga in</h1>
           </div>
           <InputField
             value={data.email}

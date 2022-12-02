@@ -8,9 +8,11 @@ import { Header } from '../../src/components/big/header/Header';
 import { FilesInput } from '../../src/components/small/filesInput/FilesInput';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import styles from './VerifyPage.module.scss';
 import { storage } from '../../src/firebase/Firebase';
 import styles from './LoginPage.module.scss';
 import { v4 } from 'uuid';
+
 
 const VerifyUser: NextPage = () => {
   const router = useRouter();

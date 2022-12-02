@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
@@ -23,7 +23,7 @@ const Details: NextPage = () => {
   const { currentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };
 
-  const HandleSubmit = (e: any) => {
+  const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     usePost('requests', {
       post,
@@ -35,7 +35,7 @@ const Details: NextPage = () => {
     });
   };
 
-  const HandleOption = (e: any) => {
+  const HandleOption = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value, 10);
     setDays(
       isNaN(value) !== true && value >= 1 && value <= 7 ? value : undefined
@@ -61,8 +61,10 @@ const Details: NextPage = () => {
           <div className={styles.textSection}>
             <h2 className={styles.productDesc}>{post.desc}</h2>
             <div className={styles.descHeader}>
-              <h2 className={styles.productPrice}>{post.price}</h2>
-              {/* <h2>{response.category}</h2> */}
+              <h2 className={styles.productPrice}>
+                Pris per dygn {post.price}:-
+              </h2>
+              <h2>Kategori: {post.category}</h2>
             </div>
           </div>
         </div>
@@ -79,7 +81,9 @@ const Details: NextPage = () => {
             </form>
           ) : (
             <div className={styles.loginUser}>
-              <p>Vänligen logga in för att hyra denna produkt</p>
+              <p className={styles.infoText}>
+                Vänligen logga in för att hyra denna produkt
+              </p>
               <Link href={'/login'}>
                 <p className={styles.link}>Logga in</p>
               </Link>
