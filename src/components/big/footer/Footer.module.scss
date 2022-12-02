@@ -4,12 +4,46 @@
 .footer {
   background-color: Colors.$secondaryBlack;
   display: flex;
-  flex-direction: column;
+  padding: 1.5rem;
   justify-content: center;
-  padding: 1rem;
+  align-items: center;
 }
 
 .footer a {
   color: Colors.$primaryWhite;
   font-size: Fonts.$p;
+  font-weight: 300;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.logo {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.links {
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 550px) {
+  .footer {
+    flex-direction: column;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .footer a {
+    margin-top: unset;
+    margin-bottom: 1rem;
+  }
 }
