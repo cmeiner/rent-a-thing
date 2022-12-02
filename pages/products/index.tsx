@@ -28,7 +28,6 @@ const NewProduct: NextPage = () => {
     postedBy: currentUser,
   });
 
-
   useEffect(() => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `${v4()}`);
@@ -40,9 +39,7 @@ const NewProduct: NextPage = () => {
     console.log(data);
   }, [imageUpload]);
 
-
   const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
     setData(data);
     usePost('posts', data);
@@ -89,7 +86,7 @@ const NewProduct: NextPage = () => {
           <FilterCategory
             onChange={(e) => setData({ ...data, category: e.target.value })}
           />
-          <PrimaryButton submit={true} text="Lägg till" />
+          <PrimaryButton submit={true} text="Lägg till" disabled={!data.img} />
           <ToastContainer />
         </form>
       </div>

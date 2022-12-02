@@ -74,7 +74,11 @@ const VerifyUser: NextPage = () => {
             onChange={(e) => setImageUpload(e.currentTarget.files[0])}
             type="file"
           />
-          <PrimaryButton text="Slutför" submit={true} />
+          <PrimaryButton
+            text="Slutför"
+            submit={true}
+            disabled={!data.photoURL}
+          />
           <div style={{ color: 'white' }}>{error}</div>
         </form>
       </div>

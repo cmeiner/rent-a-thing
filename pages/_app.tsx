@@ -8,9 +8,7 @@ import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [currentUser, setCurrentUser] = useState({});
-  const [profile, setProfile] = useState({
-  });
-  const [, setPhoto] = useState({})
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -32,9 +30,11 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, [profile]);
   return (
-    <AuthContext.Provider value={{ currentUser, setCurrentUser, profile, setProfile, setPhoto }}>
+    <AuthContext.Provider
+      value={{ currentUser, setCurrentUser, profile, setProfile }}
+    >
       <ChakraProvider resetCSS={false}>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       </ChakraProvider>
     </AuthContext.Provider>
   );

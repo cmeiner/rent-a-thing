@@ -53,8 +53,8 @@ const ProfilePage: NextPage = () => {
   }, [user.id]);
 
   const closeModal = () => {
-    setVisible(false)
-  }
+    setVisible(false);
+  };
 
   return (
     <>
@@ -66,16 +66,18 @@ const ProfilePage: NextPage = () => {
       </div>
       <div className={styles.profileInfo}>
         <div className={styles.imgContainer}>
-          <Image
-            className={styles.img}
-            alt="profile-picture"
-            src={user.photoURL}
-            width={160}
-            height={160}
-            onClick={() => {
-              setVisible((prevState) => !prevState);
-            }}
-          />
+          {user.photoURL ? (
+            <Image
+              className={styles.img}
+              alt="profile-picture"
+              src={user.photoURL}
+              width={160}
+              height={160}
+              onClick={() => {
+                setVisible((prevState) => !prevState);
+              }}
+            />
+          ) : null}
         </div>
         <h1 className={styles.title}>
           {user.displayName ? user.displayName : user.email}
