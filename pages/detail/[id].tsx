@@ -61,8 +61,10 @@ const Details: NextPage = () => {
           <div className={styles.textSection}>
             <h2 className={styles.productDesc}>{post.desc}</h2>
             <div className={styles.descHeader}>
-              <h2 className={styles.productPrice}>{post.price}</h2>
-              {/* <h2>{response.category}</h2> */}
+              <h2 className={styles.productPrice}>
+                Pris per dygn {post.price}:-
+              </h2>
+              <h2>Kategori: {post.category}</h2>
             </div>
           </div>
         </div>
@@ -79,7 +81,9 @@ const Details: NextPage = () => {
             </form>
           ) : (
             <div className={styles.loginUser}>
-              <p>Vänligen logga in för att hyra denna produkt</p>
+              <p className={styles.infoText}>
+                Vänligen logga in för att hyra denna produkt
+              </p>
               <Link href={'/login'}>
                 <p className={styles.link}>Logga in</p>
               </Link>
