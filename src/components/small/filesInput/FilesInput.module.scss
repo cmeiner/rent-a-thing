@@ -1,0 +1,40 @@
+@use '../../../constants/Colors.scss';
+@use '../../../constants/Fonts.scss';
+
+.filesInputContainer {
+  align-items: center;
+  background-color: Colors.$primaryWhite;
+  border: 1px solid Colors.$inputBorderGray;
+  border-radius: 8px;
+  color: Colors.$primaryPlaceholderText;
+  cursor: pointer;
+  display: flex;
+  height: 50px;
+  max-width: 90vw;
+  padding: 0 10px;
+  width: 580px;
+
+  .label {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: Fonts.$p;
+    height: 100%;
+    width: 100%;
+
+    .filesInput {
+      color: #333;
+      cursor: pointer;
+      font-size: Fonts.$p;
+      overflow: hidden;
+      padding-left: 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 50%;
+    }
+  }
+}
+
+.filesInput::-webkit-file-upload-button {
+  display: none;
+}

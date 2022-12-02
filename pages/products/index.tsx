@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { FormEvent, useContext, useState } from 'react';
+import { FormEvent, useContext, useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../src/auth/AuthContext';
@@ -10,9 +10,14 @@ import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn'
 import { TextField } from '../../src/components/small/textfield/TextField';
 import { usePost } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
+import { storage } from '../../src/firebase/Firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { v4 } from 'uuid';
+import { FilesInput } from '../../src/components/small/filesInput/FilesInput';
 
 const NewProduct: NextPage = () => {
   const { currentUser } = useContext(AuthContext);
+  const [imageUpload, setImageUpload] = useState();
 
   const [data, setData] = useState({
     title: '',
@@ -23,7 +28,21 @@ const NewProduct: NextPage = () => {
     postedBy: currentUser,
   });
 
+
+  useEffect(() => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `${v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setData({ ...data, img: url });
+      });
+    });
+    console.log(data);
+  }, [imageUpload]);
+
+
   const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
     setData(data);
     usePost('posts', data);
@@ -46,11 +65,9 @@ const NewProduct: NextPage = () => {
       <div className={styles.container}>
         <h1 className={styles.title}>Ny Annons</h1>
         <form onSubmit={HandleSubmit} className={styles.formStyle}>
-          <InputField
-            value={data.img}
-            onChange={(e) => setData({ ...data, img: e.target.value })}
-            placeholder="Bild URL"
-            type="text"
+          <FilesInput
+            onChange={(e) => setImageUpload(e.currentTarget.files[0])}
+            type="file"
           />
           <InputField
             value={data.title}
