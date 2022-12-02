@@ -24,6 +24,10 @@
     grid-column: 2/3;
   }
 
+  .headerText {
+    font-weight: 400;
+  }
+
   .iconContainer {
     justify-content: flex-end;
     grid-column: 4;
@@ -34,7 +38,7 @@
   .title {
     position: absolute;
     right: 3rem;
-    color: Colors.$primaryRed
+    color: Colors.$primaryRed;
   }
 
   .logo {
