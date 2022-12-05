@@ -86,7 +86,7 @@ const ProfilePage: NextPage = () => {
         </h1>
       </div>
       <div className={styles.navContainer}>
-        <Link href="/products">
+        <Link href="/new">
           <a className={styles.link}>
             <h3 className={styles.text}>Ny annons</h3>
             <AddButton />

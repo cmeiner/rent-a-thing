@@ -15,11 +15,15 @@ export const Header = () => {
       </div>
       <div className={styles.headerTextContainer}>
         <Link href={'/'}>
-          <h1 className={styles.headerText}>Rent-a-thing</h1>
+          <h1 id="testID" className={styles.headerText}>
+            Rent-a-thing
+          </h1>
         </Link>
       </div>
       <div className={styles.iconContainer}>
-        <h1 className={styles.title}>{user.displayName ? user.displayName : ''}</h1>
+        <h1 className={styles.title}>
+          {user.displayName ? user.displayName : ''}
+        </h1>
         <Link href={user.id ? '/profile' : '/login'}>
           <AccountCircleIcon className={styles.icon} />
         </Link>

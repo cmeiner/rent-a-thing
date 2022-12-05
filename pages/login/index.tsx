@@ -39,7 +39,11 @@ const Login: NextPage = () => {
     <>
       <Header />
       <div className={styles.loginPage}>
-        <form onSubmit={handleLogin} className={styles.loginForm}>
+        <form
+          onSubmit={handleLogin}
+          className={styles.loginForm}
+          id="loginform"
+        >
           <div className={styles.formHeader}>
             <KeyboardBackspaceIcon
               className={styles.goBack}
@@ -51,17 +55,19 @@ const Login: NextPage = () => {
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
             placeholder="Email"
-            type="text"
+            type="email"
+            id="email"
           />
           <InputField
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
             placeholder="Password"
-            type="text"
+            type="password"
+            id="password"
           />
           <PrimaryButton text="Logga in" submit={true} />
           <div style={{ color: 'white' }}>{error}</div>
-          <p className={styles.toRegister}>
+          <p className={styles.toRegister} id="toRegister">
             <Link href="/register"> Skapa konto </Link>
           </p>
         </form>
