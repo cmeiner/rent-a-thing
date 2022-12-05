@@ -9,7 +9,7 @@ import { AddButton } from '../src/components/small/addbtn/AddBtn';
 import { BannerText } from '../src/components/small/bannerText/BannerText';
 import { FilterAndText } from '../src/components/small/filterAndText/FilterAndText';
 import { ProductCard } from '../src/components/small/productcard/ProductCard';
-import { GetUser, PostProps, useFetch } from '../src/utils/Hooks';
+import { GetUser, ProductProps, useFetch } from '../src/utils/Hooks';
 import styles from './index.module.scss';
 
 const Home: NextPage = () => {
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
     setCategory(e.target.value === 'All' ? undefined : e.target.value);
   };
 
-  const categoryFilter = (post: PostProps) =>
+  const categoryFilter = (post: ProductProps) =>
     category === undefined || post.category === category;
 
   const { user } = GetUser();
@@ -54,16 +54,15 @@ const Home: NextPage = () => {
 
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response
-            // ?.slice(0, 10)
+          {response.product
             .filter(categoryFilter)
-            .map((post: PostProps, key) => {
+            .map((data: ProductProps, key) => {
               return (
-                <Link href={'/detail/' + post.id} key={key}>
+                <Link href={'/detail/' + data.id} key={key}>
                   <ProductCard
-                    title={post.title}
-                    price={post.price}
-                    image={post.img}
+                    title={data.title}
+                    price={data.price}
+                    image={data.img}
                   />
                 </Link>
               );

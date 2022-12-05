@@ -14,7 +14,7 @@ import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn'
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
 import { db } from '../../src/firebase/Firebase';
-import { GetUser, PostProps, useFetch } from '../../src/utils/Hooks';
+import { GetUser, ProductProps, useFetch } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
@@ -45,14 +45,14 @@ const ProfilePage: NextPage = () => {
 
     const q = query(
       collection(db, 'requests'),
-      where('data.post.postedBy.id', '==', user.id)
+      where('data.connectedOwnersId', '==', user.id)
     );
 
     getDocs(q).then((res) => {
       const requests = res.docs.map((doc) => doc.data().data);
       setRequests(requests);
     });
-  }, [user.id]);
+  }, [contentSwitch]);
 
   const closeModal = () => {
     setVisible(false);
@@ -112,9 +112,9 @@ const ProfilePage: NextPage = () => {
           <div className={styles.productGrid}>
             {requests.map((request: any, key) => (
               <RequestCard
-                item={request.post.title}
+                item={request.product.title}
                 renter={request.postedBy.displayName}
-                image={request.post.img}
+                image={request.product.img}
                 key={key}
                 accept={() => console.log('accept')}
                 decline={() => console.log('decline')}
@@ -125,7 +125,7 @@ const ProfilePage: NextPage = () => {
       ) : (
         <div className={styles.productContainer}>
           <div className={styles.productGrid}>
-            {response.map((post: PostProps, key) => {
+            {response.product.map((post: ProductProps, key) => {
               return (
                 <Link href={'/detail/' + post.id} key={key}>
                   <ProductCard

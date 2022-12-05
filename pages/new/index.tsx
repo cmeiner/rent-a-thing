@@ -1,57 +1,61 @@
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { NextPage } from 'next';
-import { FormEvent, useContext, useState, useEffect } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AuthContext } from '../../src/auth/AuthContext';
+import { v4 } from 'uuid';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterCategory } from '../../src/components/filterCategory/FilterCategory';
+import { FilesInput } from '../../src/components/small/filesInput/FilesInput';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { TextField } from '../../src/components/small/textfield/TextField';
-import { usePost } from '../../src/utils/Hooks';
-import styles from './NewProductPage.module.scss';
 import { storage } from '../../src/firebase/Firebase';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { v4 } from 'uuid';
-import { FilesInput } from '../../src/components/small/filesInput/FilesInput';
+import { GetUser, usePost } from '../../src/utils/Hooks';
+import styles from './NewProductPage.module.scss';
 import Router from 'next/router';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const NewProduct: NextPage = () => {
-  const { currentUser } = useContext(AuthContext);
   const [imageUpload, setImageUpload] = useState();
+  const { user } = GetUser();
 
-  const [data, setData] = useState({
+  const postedBy = {
+    displayName: user.displayName,
+    email: user.email,
+    id: user.id,
+    photoURL: user.photoURL,
+  };
+
+  const [product, setProduct] = useState({
     title: '',
     desc: '',
     price: '',
     img: '',
     category: 'Övrigt',
-    postedBy: currentUser,
   });
+
+  const data = { product, postedBy };
 
   useEffect(() => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `${v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setData({ ...data, img: url });
+        setProduct({ ...product, img: url });
       });
     });
-    console.log(data);
   }, [imageUpload]);
 
   const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setData(data);
     usePost('posts', data);
-    setData({
+    setProduct({
       title: '',
       desc: '',
       price: '',
       img: '',
       category: 'Övrigt',
-      postedBy: currentUser,
     });
     toast.success('Annons tillagd', {
       position: 'bottom-center',
@@ -79,26 +83,32 @@ const NewProduct: NextPage = () => {
             type="file"
           />
           <InputField
-            value={data.title}
-            onChange={(e) => setData({ ...data, title: e.target.value })}
+            value={product.title}
+            onChange={(e) => setProduct({ ...product, title: e.target.value })}
             placeholder="Titel"
             type="text"
           />
           <TextField
-            value={data.desc}
-            onChange={(e) => setData({ ...data, desc: e.target.value })}
+            value={product.desc}
+            onChange={(e) => setProduct({ ...product, desc: e.target.value })}
             placeholder="Beskrivning"
           />
           <InputField
-            value={data.price}
-            onChange={(e) => setData({ ...data, price: e.target.value })}
+            value={product.price}
+            onChange={(e) => setProduct({ ...product, price: e.target.value })}
             placeholder="Pris"
             type="text"
           />
           <FilterCategory
-            onChange={(e) => setData({ ...data, category: e.target.value })}
+            onChange={(e) =>
+              setProduct({ ...product, category: e.target.value })
+            }
           />
-          <PrimaryButton submit={true} text="Lägg till" disabled={!data.img} />
+          <PrimaryButton
+            submit={true}
+            text="Lägg till"
+            disabled={!product.img}
+          />
           <ToastContainer />
         </form>
       </div>

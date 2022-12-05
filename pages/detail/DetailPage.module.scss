@@ -50,6 +50,8 @@
       width: 90%;
       .productDesc {
         font-size: Fonts.$p;
+        display: flex;
+        justify-content: space-between;
       }
       .descHeader {
         display: flex;
@@ -118,7 +120,7 @@
           align-self: flex-start;
           justify-content: flex-start;
           .goBack {
-          position: relative;
+            position: relative;
           }
         }
         .productImage {

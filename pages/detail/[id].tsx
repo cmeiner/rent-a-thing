@@ -3,35 +3,42 @@ import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
-import { PostProps, useFetch, usePost, UserProps } from '../../src/utils/Hooks';
+import {
+  PostedByProps,
+  ProductProps,
+  useFetch,
+  usePost,
+} from '../../src/utils/Hooks';
 import styles from './DetailPage.module.scss';
-
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Details: NextPage = () => {
   const router = useRouter();
   const id = router.query.id as string;
   const { response } = useFetch('posts', id);
-  const post = { ...(response as unknown as PostProps) };
+
+  const product = { ...(response.product as unknown as ProductProps) };
+  const postedBy = { ...(response.postedBy as unknown as PostedByProps) };
 
   const [days, setDays] = useState<undefined | number>();
 
   const { currentUser } = useContext(AuthContext);
-  const user = { ...(currentUser as UserProps) };
+  const user = { ...(currentUser as PostedByProps) };
 
   const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     usePost('requests', {
-      post,
+      product,
       days: days,
       postedBy: user,
+      connectedOwnersId: postedBy.id,
     });
     toast.success('Förfrågan skickad', {
       position: 'bottom-center',
@@ -51,14 +58,17 @@ const Details: NextPage = () => {
       <div className={styles.productPage}>
         <div className={styles.productCard}>
           <div className={styles.imageSection}>
-            
-            <h1 className={styles.productTitle}> <KeyboardBackspaceIcon
-              className={styles.goBack}
-              onClick={() => router.back()}
-            /> {post.title}</h1>
+            <h1 className={styles.productTitle}>
+              {' '}
+              <KeyboardBackspaceIcon
+                className={styles.goBack}
+                onClick={() => router.back()}
+              />{' '}
+              {product.title}
+            </h1>
             <div className={styles.productImage}>
               <Image
-                src={post.img as string}
+                src={product.img as string}
                 alt="image"
                 layout="fill"
                 objectFit="cover"
@@ -66,15 +76,24 @@ const Details: NextPage = () => {
             </div>
           </div>
           <div className={styles.textSection}>
-            <h2 className={styles.productDesc}>{post.desc}</h2>
+            <div className={styles.productDesc}>
+              <h3>{product.desc}</h3>
+              <Link href={`/userprofile/${postedBy?.id}`}>
+                <h3 style={{ cursor: 'pointer' }}>
+                  Hyrs ut av: {postedBy?.displayName}{' '}
+                  <AccountCircleIcon className={styles.icon} />{' '}
+                </h3>
+              </Link>
+            </div>
             <div className={styles.descHeader}>
               <h2 className={styles.productPrice}>
-                Pris per dygn {post.price}:-
+                Pris per dygn {product.price}:-
               </h2>
-              <h2>Kategori: {post.category}</h2>
+              <h2>Kategori: {product.category}</h2>
             </div>
           </div>
         </div>
+
         <div className={styles.buttonSection}>
           {user.id ? (
             <form onSubmit={HandleSubmit}>
