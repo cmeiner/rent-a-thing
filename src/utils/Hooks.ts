@@ -11,17 +11,16 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../auth/AuthContext';
 import { db } from '../firebase/Firebase';
 
-export interface PostProps {
+export interface ProductProps {
   title: string;
   desc: string;
   img: string;
   price: string;
   category: string;
-  postedBy: UserProps;
   id?: string;
 }
 
-export interface UserProps {
+export interface PostedByProps {
   email: string;
   id: string;
   displayName: string;
@@ -36,24 +35,30 @@ export const usePost = async (api: string, data: {}) => {
 };
 
 export const useFetch = (api: string, id?: string, userId?: string) => {
-  const [response, setResponse] = useState<[]>([]);
+  const [product, setProduct] = useState<[]>([]);
+  const [postedBy, setPostedBy] = useState<[]>([]);
+  const response = { product, postedBy };
 
   useEffect(() => {
     if (!userId) {
       if (!id) {
         getDocs(collection(db, api)).then((res) => {
-          setResponse(
+          setProduct(
             res.docs.map((item) => {
-              return { ...item.data().data, id: item.id };
+              return { ...item.data().data.product, id: item.id };
+            }) as any
+          );
+          setPostedBy(
+            res.docs.map((item) => {
+              return { ...item.data().data.postedBy };
             }) as any
           );
         });
       } else {
         const postById = doc(db, api, id);
-        getDoc(postById).then((doc) => {
-          const singlePost = { ...doc.data()?.data, id: doc.id } as any;
-
-          setResponse(singlePost);
+        getDoc(postById).then((item) => {
+          setProduct({ ...item.data()?.data.product, id: item.id } as any);
+          setPostedBy({ ...item.data()?.data.postedBy } as any);
         });
       }
     } else {
@@ -63,9 +68,14 @@ export const useFetch = (api: string, id?: string, userId?: string) => {
       );
 
       getDocs(q).then((res) => {
-        setResponse(
+        setProduct(
           res.docs.map((item) => {
-            return { ...item.data().data, id: item.id };
+            return { ...item.data().data.product, id: item.id };
+          }) as any
+        );
+        setPostedBy(
+          res.docs.map((item) => {
+            return { ...item.data().data.postedBy };
           }) as any
         );
       });
@@ -78,7 +88,7 @@ export const useFetch = (api: string, id?: string, userId?: string) => {
 // spreads user-state (use user.id to check if user is logged in)
 export const GetUser = () => {
   const { currentUser } = useContext(AuthContext);
-  const user = { ...(currentUser as UserProps) };
+  const user = { ...(currentUser as PostedByProps) };
 
   return { user };
 };
