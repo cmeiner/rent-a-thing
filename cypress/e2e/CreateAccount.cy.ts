@@ -14,3 +14,5 @@ describe('Create account', () => {
       .submit();
   });
 });
+
+export {};

@@ -11,3 +11,5 @@ describe('Logintest', () => {
       .submit();
   });
 });
+
+export {};
