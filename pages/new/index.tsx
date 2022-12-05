@@ -13,6 +13,8 @@ import { TextField } from '../../src/components/small/textfield/TextField';
 import { storage } from '../../src/firebase/Firebase';
 import { GetUser, usePost } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
+import Router from 'next/router';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const NewProduct: NextPage = () => {
   const [imageUpload, setImageUpload] = useState();
@@ -57,14 +59,24 @@ const NewProduct: NextPage = () => {
     });
     toast.success('Annons tillagd', {
       position: 'bottom-center',
+      autoClose: 2000,
     });
+    setTimeout(() => {
+      Router.back();
+    }, 2000);
   };
 
   return (
     <div>
       <Header />
       <div className={styles.container}>
-        <h1 className={styles.title}>Ny Annons</h1>
+        <div className={styles.newItemHeader}>
+          <KeyboardBackspaceIcon
+            className={styles.goBack}
+            onClick={() => Router.back()}
+          />
+          <h1 className={styles.title}>Ny Annons</h1>
+        </div>
         <form onSubmit={HandleSubmit} className={styles.formStyle}>
           <FilesInput
             onChange={(e) => setImageUpload(e.currentTarget.files[0])}

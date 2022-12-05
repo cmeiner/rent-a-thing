@@ -7,9 +7,24 @@
   justify-content: center;
   flex-direction: column;
 
-  .title {
-    font-size: Fonts.$h1;
-    color: Colors.$primaryWhite;
+  .newItemHeader {
+    display: flex;
+    position: relative;
+    width: 90%;
+    max-width: 580px;
+    justify-content: center;
+    align-items: center;
+    .goBack {
+      position: absolute;
+      left: 0;
+      font-size: 50px;
+      cursor: pointer;
+      color: Colors.$primaryWhite;
+    }
+    .title {
+      font-size: Fonts.$h1;
+      color: Colors.$primaryWhite;
+    }
   }
 
   .formStyle {
