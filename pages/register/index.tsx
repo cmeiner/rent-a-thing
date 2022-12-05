@@ -39,7 +39,11 @@ const Register: NextPage = () => {
     <>
       <Header />
       <div className={styles.container}>
-        <form onSubmit={handleCreateUser} className={styles.formStyle}>
+        <form
+          onSubmit={handleCreateUser}
+          className={styles.formStyle}
+          id="registerForm"
+        >
           <div className={styles.formHeader}>
             <KeyboardBackspaceIcon
               className={styles.goBack}
@@ -51,19 +55,21 @@ const Register: NextPage = () => {
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
             placeholder="Email"
-            type="text"
+            type="email"
+            id="email"
           />
           <InputField
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
             placeholder="Password"
-            type="text"
+            type="password"
+            id="password"
           />
           <PrimaryButton submit={true} text="Skapa konto" />
           <div style={{ color: 'white' }}>{error}</div>
-        <p className={styles.link}>
-          <Link href="/login">Logga in</Link>
-        </p>
+          <p className={styles.link}>
+            <Link href="/login">Logga in</Link>
+          </p>
         </form>
       </div>
     </>

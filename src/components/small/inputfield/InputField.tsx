@@ -6,6 +6,7 @@ interface InputProps {
   value?: string;
   disabled?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  id?: string;
 }
 
 export const InputField = ({
@@ -14,6 +15,7 @@ export const InputField = ({
   value,
   onChange,
   disabled,
+  id,
 }: InputProps) => {
   return (
     <input
@@ -24,6 +26,7 @@ export const InputField = ({
       type={type}
       className={styles.inputField}
       required
+      id={id}
     />
   );
 };

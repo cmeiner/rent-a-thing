@@ -41,7 +41,7 @@ const Home: NextPage = () => {
       <BannerText />
       {user.id ? (
         <div className={styles.navigationLink}>
-          <Link href="/products">
+          <Link href="/new">
             <div>
               <AddButton large />
             </div>
