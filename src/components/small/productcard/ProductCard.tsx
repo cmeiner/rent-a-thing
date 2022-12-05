@@ -21,10 +21,7 @@ export const ProductCard = ({
       <Image src={image} alt="image" layout="fill" objectFit="cover" />
     </div>
     <div className={styles.cardDescription}>
-      <h2 className={styles.cardPrice}>
-        Pris {''}
-        {price}:-
-      </h2>
+      <h2 className={styles.cardPrice}>Pris {price}:-</h2>
       <h1 className={styles.cardTitle}>{title}</h1>
     </div>
   </div>

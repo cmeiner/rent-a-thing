@@ -1,16 +1,19 @@
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { NextPage } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { PostProps, useFetch, usePost, UserProps } from '../../src/utils/Hooks';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import styles from './DetailPage.module.scss';
-import Link from 'next/link';
+
+
 
 const Details: NextPage = () => {
   const router = useRouter();
@@ -48,7 +51,11 @@ const Details: NextPage = () => {
       <div className={styles.productPage}>
         <div className={styles.productCard}>
           <div className={styles.imageSection}>
-            <h1 className={styles.productTitle}>{post.title}</h1>
+            
+            <h1 className={styles.productTitle}> <KeyboardBackspaceIcon
+              className={styles.goBack}
+              onClick={() => router.back()}
+            /> {post.title}</h1>
             <div className={styles.productImage}>
               <Image
                 src={post.img as string}

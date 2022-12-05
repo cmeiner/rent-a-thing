@@ -26,6 +26,20 @@
       flex-direction: column;
       align-items: center;
       width: 90%;
+      position: relative;
+      .productTitle {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        position: relative;
+        width: 100%;
+        .goBack {
+          position: absolute;
+          left: 0;
+          font-size: 50px;
+          cursor: pointer;
+        }
+      }
       .productImage {
         width: 100%;
         aspect-ratio: 3/2;
@@ -102,6 +116,10 @@
       .imageSection {
         .productTitle {
           align-self: flex-start;
+          justify-content: flex-start;
+          .goBack {
+          position: relative;
+          }
         }
         .productImage {
           border-radius: 5px;

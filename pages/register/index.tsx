@@ -36,7 +36,7 @@ const Register: NextPage = () => {
   };
 
   return (
-    <div>
+    <>
       <Header />
       <div className={styles.container}>
         <form onSubmit={handleCreateUser} className={styles.formStyle}>
@@ -59,16 +59,14 @@ const Register: NextPage = () => {
             placeholder="Password"
             type="text"
           />
-          <div className={styles.button}>
-            <PrimaryButton submit={true} text="Skapa konto" />
-          </div>
+          <PrimaryButton submit={true} text="Skapa konto" />
           <div style={{ color: 'white' }}>{error}</div>
-        </form>
         <p className={styles.link}>
           <Link href="/login">Logga in</Link>
         </p>
+        </form>
       </div>
-    </div>
+    </>
   );
 };
 

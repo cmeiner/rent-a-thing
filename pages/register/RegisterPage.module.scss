@@ -1,34 +1,26 @@
 @use 'src/constants/Fonts.scss';
 @use 'src/constants/Colors.scss';
+$small: 850px;
 
 .container {
   display: flex;
-  height: f;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 90vh;
 
   .title {
-    font-size: Fonts.$h1;
     color: Colors.$primaryWhite;
+    margin: 1rem;
   }
 
   .formStyle {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 1rem;
-  }
-
-  .button {
-    margin-bottom: 2rem;
-  }
-
-  .link {
-    color: Colors.$primaryWhite;
-    font-size: Fonts.$p;
+    align-items: center;
+    width: 580px;
+    max-width: 90vw;
   }
 
   .formHeader {
@@ -45,5 +37,17 @@
     color: Colors.$primaryWhite;
     font-size: Fonts.$h1;
     cursor: pointer;
+  }
+
+  .link {
+    // color: Colors.$primaryRed;
+    margin-top: 2rem;
+    transition: 0.5s;
+    color: Colors.$primaryWhite;
+  }
+  @media screen and (max-width: $small) {
+    .link {
+      margin-top: 0;
+    }
   }
 }

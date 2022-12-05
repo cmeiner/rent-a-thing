@@ -1,14 +1,12 @@
 @use '../../../constants/Colors.scss';
 @use '../../../constants/Fonts.scss';
 
-$small: 850px;
 
 .cardContainer {
   background-color: Colors.$primaryRed;
-  width: 405px;
+  width: 390px;
   height: 450px;
   border-radius: 2.5px;
-  margin: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 35px;
   display: flex;
@@ -41,9 +39,12 @@ $small: 850px;
     margin: 0;
   }
 
-  @media screen and (max-width: $small) {
-    width: 180px;
-    height: 200px;
+  
+
+
+  @media screen and (max-width: 800px) {
+    width: 250px;
+    height: 300px;
     padding: 5px;
 
     .cardDescription {
@@ -61,4 +62,10 @@ $small: 850px;
       margin: 0;
     }
   }
+  @media screen and (max-width: 600px) {
+    width: 180px;
+    height: 200px;
+    padding: 10px;
+  }
 }
+

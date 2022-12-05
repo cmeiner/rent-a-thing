@@ -3,6 +3,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
@@ -34,6 +35,7 @@ const ProfilePage: NextPage = () => {
       .catch((error) => {
         console.error(error.message);
       });
+    Router.push('/');
   };
 
   useEffect(() => {
