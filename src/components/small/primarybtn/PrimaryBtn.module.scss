@@ -20,3 +20,17 @@
     cursor: pointer;
   }
 }
+
+.primbtnDisabled {
+  color: Colors.$primaryWhite;
+  font-weight: 400;
+  font-size: Fonts.$p;
+  border-radius: 10rem;
+  background-color: gray;
+  border: none;
+  box-shadow: 1px 1px 3px Colors.$primaryBlack;
+  width: 340px;
+  max-width: 70vw;
+  height: 50px;
+  transition: 0.5s;
+}

@@ -5,7 +5,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['picsum.photos', 'static.wikia.nocookie.net'],
+    domains: [
+      'picsum.photos',
+      'static.wikia.nocookie.net',
+      'firebasestorage.googleapis.com',
+    ],
   },
 };
 

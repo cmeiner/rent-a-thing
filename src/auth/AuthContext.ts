@@ -5,5 +5,4 @@ export const AuthContext = createContext({
   setCurrentUser: (currentUser: {}) => {},
   profile: {},
   setProfile: (profile: {}) => {},
-  setPhoto: (photo: {}) => {}
 });
