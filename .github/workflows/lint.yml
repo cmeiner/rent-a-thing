@@ -20,7 +20,3 @@ jobs:
 
       - name: Eslint code
         run: npm run lint
-          with:
-            build: npm run build
-            start: npm start
-
