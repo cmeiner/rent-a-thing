@@ -85,6 +85,9 @@ const ProfilePage: NextPage = () => {
           {user.displayName ? user.displayName : user.email}
         </h1>
       </div>
+      <div className={styles.buttonContainer}>
+        <PrimaryButton submit={false} text="Logga ut" onClick={handleSignOut} />
+      </div>
       <div className={styles.navContainer}>
         <Link href="/new">
           <a className={styles.link}>
@@ -102,11 +105,6 @@ const ProfilePage: NextPage = () => {
           />
         </div>
       </div>
-      <PrimaryButton
-        submit={false}
-        text="logga ut *enbart dev*"
-        onClick={handleSignOut}
-      />
       {contentSwitch ? (
         <div className={styles.productContainer}>
           <div className={styles.productGrid}>
