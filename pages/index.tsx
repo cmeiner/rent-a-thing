@@ -16,6 +16,7 @@ const Home: NextPage = () => {
   const { response } = useFetch('posts');
   const [isShown, setIsShown] = useState(false);
   const [category, setCategory] = useState<string | undefined>();
+  const [isFree, setIsFree] = useState(false);
 
   const handleClick = () => {
     setIsShown((prevState) => !prevState);
@@ -29,6 +30,17 @@ const Home: NextPage = () => {
     category === undefined || post.category === category;
 
   const { user } = GetUser();
+
+  const handleFreeOfCharge = () => {
+    if (!isFree) {
+      setIsFree(true);
+    } else {
+      setIsFree(false);
+    }
+    console.log('hej');
+  };
+
+  const freeFilter = (post: ProductProps) => !isFree || post.price === 'Gratis';
 
   return (
     <div className={styles.container}>
@@ -49,12 +61,29 @@ const Home: NextPage = () => {
         </div>
       ) : null}
 
-      <FilterAndText onClick={handleClick} />
-      {isShown ? <FilterCategory small onChange={handleFilterChange} /> : null}
-
+      <div className={styles.filterNav}>
+        <div className={styles.flexContainer}>
+          <div className={styles.filterAndTextContainer}>
+            <FilterAndText onClick={handleClick} />
+          </div>
+          {isShown ? (
+            <FilterCategory small onChange={handleFilterChange} />
+          ) : null}
+        </div>
+        <div className={styles.freeOfChargeContainer}>
+          <input
+            className={styles.freeInput}
+            type="checkbox"
+            value="Gratis"
+            onChange={handleFreeOfCharge}
+          ></input>
+          <p className={styles.freeText}>Visa gratis-annonser</p>
+        </div>
+      </div>
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
           {response.product
+            .filter(freeFilter)
             .filter(categoryFilter)
             .map((data: ProductProps, key) => {
               return (
