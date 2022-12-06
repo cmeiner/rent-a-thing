@@ -1,3 +1,5 @@
+@use 'src/constants/Colors.scss';
+
 .container {
   display: flex;
   min-height: 100vh;
@@ -8,8 +10,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
+  margin: 1rem;
   flex-grow: 1;
+  // flex-direction: column;
+  // background-color: cornflowerblue;
+  // width: 67vw;
 
   .productGrid {
     display: grid;
@@ -28,4 +33,41 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.freeOfChargeContainer {
+  display: flex;
+}
+
+.freeText {
+  color: Colors.$primaryWhite;
+  margin-right: 0.5rem;
+}
+
+.freeInput:checked {
+  background-color: red;
+  accent-color: Colors.$primaryRed;
+}
+
+.filterNav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  width: 62%;
+  margin: auto;
+
+  .flexContainer {
+    display: flex;
+  }
+
+  .filterAndTextContainer {
+    margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .filterNav {
+    flex-direction: column;
+    align-items: center;
+  }
 }
