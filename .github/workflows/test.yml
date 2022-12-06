@@ -18,6 +18,9 @@ jobs:
           # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
 
+      - name: install
+        run: npm install
+
       - name: Eslint code
         run: npm run lint
 
