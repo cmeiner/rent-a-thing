@@ -18,12 +18,15 @@ jobs:
           # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
 
+      - name: install
+        run: npm install
+
+      - name: Eslint code
+        run: npm run lint
+
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:
           # This part is also where you can pass other options, for example:
           prettier_options: --write **/*.{tsx,md}
           only_changed: True
-
-      # - name: Eslint code
-      #   uses: sibiraj-s/action-eslint@v2.1.2

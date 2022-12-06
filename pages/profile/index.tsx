@@ -52,6 +52,7 @@ const ProfilePage: NextPage = () => {
       const requests = res.docs.map((doc) => doc.data().data);
       setRequests(requests);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentSwitch]);
 
   const closeModal = () => {

@@ -45,6 +45,7 @@ const NewProduct: NextPage = () => {
         setProduct({ ...product, img: url });
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageUpload]);
 
   const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
