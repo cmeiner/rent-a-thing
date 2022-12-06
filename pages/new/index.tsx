@@ -17,6 +17,7 @@ import Router from 'next/router';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const NewProduct: NextPage = () => {
+  const [disabled, setDisabled] = useState(false);
   const [imageUpload, setImageUpload] = useState();
   const { user } = GetUser();
 
@@ -67,6 +68,24 @@ const NewProduct: NextPage = () => {
     }, 2000);
   };
 
+  const handlePrice = () => {
+    if (disabled) {
+      setProduct({ ...product, price: '' });
+    } else {
+      setProduct({ ...product, price: 'Gratis' });
+    }
+    setDisabled(!disabled);
+  };
+
+  // use for button state later
+  // const allValues = {
+  //   title: product.title,
+  //   desc: product.desc,
+  //   price: product.price,
+  //   img: product.img,
+  //   category: product.category,
+  // };
+
   return (
     <div>
       <Header />
@@ -99,7 +118,16 @@ const NewProduct: NextPage = () => {
             onChange={(e) => setProduct({ ...product, price: e.target.value })}
             placeholder="Pris"
             type="text"
+            disabled={disabled}
           />
+          <div className={styles.freeOfChargeContainer}>
+            <p className={styles.freeText}>Annonsen ska vara gratis</p>
+            <input
+              className={styles.freeInput}
+              type="checkbox"
+              onChange={handlePrice}
+            ></input>
+          </div>
           <FilterCategory
             onChange={(e) =>
               setProduct({ ...product, category: e.target.value })
