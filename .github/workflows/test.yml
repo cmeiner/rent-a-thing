@@ -17,6 +17,10 @@ jobs:
         with:
           # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
+
+      - name: Eslint code
+        run: npm run lint
+
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:
