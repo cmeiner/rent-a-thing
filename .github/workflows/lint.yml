@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Eslint
 
 # This action works with pull requests and pushes
 on:
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  lint-and-prettier:
+  Eslint
     runs-on: ubuntu-latest
 
     steps:
@@ -17,9 +17,10 @@ jobs:
         with:
           # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
-      - name: Prettify code
-        uses: creyD/prettier_action@v4.2
-        with:
-          # This part is also where you can pass other options, for example:
-          prettier_options: --write **/*.{tsx,md}
-          only_changed: True
+
+      - name: Eslint code
+        run: npm run lint
+          with:
+            build: npm run build
+            start: npm start
+
