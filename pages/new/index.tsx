@@ -67,9 +67,9 @@ const NewProduct: NextPage = () => {
 
   const handlePrice = () => {
     if (disabled) {
-      setProduct({ ...product, price: '' });
+      setData({ ...data, price: '' });
     } else {
-      setProduct({ ...product, price: 'Gratis' });
+      setData({ ...data, price: 'Gratis' });
     }
     setDisabled(!disabled);
   };
