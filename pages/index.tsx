@@ -82,20 +82,20 @@ const Home: NextPage = () => {
       </div>
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response.product
-            .filter(freeFilter)
-            .filter(categoryFilter)
-            .map((data: ProductProps, key) => {
-              return (
-                <Link href={'/detail/' + data.id} key={key}>
-                  <ProductCard
-                    title={data.title}
-                    price={data.price}
-                    image={data.img}
-                  />
-                </Link>
-              );
-            })}
+
+          {response.filter(categoryFilter).map((data: ProductProps, key) => {
+            return (
+              <Link href={'/detail/' + data.id} key={key}>
+                <ProductCard
+                  title={data.title}
+                  price={data.price}
+                  image={data.img}
+                  available={data.available}
+                />
+              </Link>
+            );
+          })}
+
         </div>
       </div>
       <Footer />
