@@ -7,7 +7,7 @@ describe('Create account', () => {
       .click()
       .wait(500)
       .get('#email')
-      .type(`meiner${Math.floor(Math.random() * 10)}@meiner.asd`)
+      .type(`test${Math.floor(Math.random() * 10)}@test.se`)
       .get('#password')
       .type('123123')
       .get('#registerForm')

@@ -1,5 +1,7 @@
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { NextPage } from 'next';
+import Router from 'next/router';
 import { FormEvent, useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,36 +15,27 @@ import { TextField } from '../../src/components/small/textfield/TextField';
 import { storage } from '../../src/firebase/Firebase';
 import { GetUser, usePost } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
-import Router from 'next/router';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const NewProduct: NextPage = () => {
   const [imageUpload, setImageUpload] = useState();
   const { user } = GetUser();
 
-  const postedBy = {
-    displayName: user.displayName,
-    email: user.email,
-    id: user.id,
-    photoURL: user.photoURL,
-  };
-
-  const [product, setProduct] = useState({
+  const [data, setData] = useState({
     title: '',
     desc: '',
     price: '',
     img: '',
     category: 'Övrigt',
+    available: true,
+    postedBy: user.id,
   });
-
-  const data = { product, postedBy };
 
   useEffect(() => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `${v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setProduct({ ...product, img: url });
+        setData({ ...data, img: url });
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,12 +44,14 @@ const NewProduct: NextPage = () => {
   const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     usePost('posts', data);
-    setProduct({
+    setData({
       title: '',
       desc: '',
       price: '',
       img: '',
       category: 'Övrigt',
+      available: true,
+      postedBy: '',
     });
     toast.success('Annons tillagd', {
       position: 'bottom-center',
@@ -84,32 +79,26 @@ const NewProduct: NextPage = () => {
             type="file"
           />
           <InputField
-            value={product.title}
-            onChange={(e) => setProduct({ ...product, title: e.target.value })}
+            value={data.title}
+            onChange={(e) => setData({ ...data, title: e.target.value })}
             placeholder="Titel"
             type="text"
           />
           <TextField
-            value={product.desc}
-            onChange={(e) => setProduct({ ...product, desc: e.target.value })}
+            value={data.desc}
+            onChange={(e) => setData({ ...data, desc: e.target.value })}
             placeholder="Beskrivning"
           />
           <InputField
-            value={product.price}
-            onChange={(e) => setProduct({ ...product, price: e.target.value })}
+            value={data.price}
+            onChange={(e) => setData({ ...data, price: e.target.value })}
             placeholder="Pris"
             type="text"
           />
           <FilterCategory
-            onChange={(e) =>
-              setProduct({ ...product, category: e.target.value })
-            }
+            onChange={(e) => setData({ ...data, category: e.target.value })}
           />
-          <PrimaryButton
-            submit={true}
-            text="Lägg till"
-            disabled={!product.img}
-          />
+          <PrimaryButton submit={true} text="Lägg till" disabled={!data.img} />
           <ToastContainer />
         </form>
       </div>

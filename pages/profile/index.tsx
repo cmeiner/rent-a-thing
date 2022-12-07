@@ -38,6 +38,8 @@ const ProfilePage: NextPage = () => {
     Router.push('/');
   };
 
+  const handleAcceptRequest = async (id: string) => {};
+
   useEffect(() => {
     if (user.id === undefined) {
       return;
@@ -45,11 +47,11 @@ const ProfilePage: NextPage = () => {
 
     const q = query(
       collection(db, 'requests'),
-      where('data.connectedOwnersId', '==', user.id)
+      where('connectedOwnersId', '==', user.id)
     );
 
     getDocs(q).then((res) => {
-      const requests = res.docs.map((doc) => doc.data().data);
+      const requests = res.docs.map((doc) => doc.data());
       setRequests(requests);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -111,11 +113,11 @@ const ProfilePage: NextPage = () => {
           <div className={styles.productGrid}>
             {requests.map((request: any, key) => (
               <RequestCard
-                item={request.product.title}
-                renter={request.postedBy.displayName}
-                image={request.product.img}
+                item={request.productData.title}
+                renter={request.requestedBy.displayName}
+                image={request.productData.img}
                 key={key}
-                accept={() => console.log('accept')}
+                accept={() => handleAcceptRequest(request.product)}
                 decline={() => console.log('decline')}
               />
             ))}
@@ -124,7 +126,7 @@ const ProfilePage: NextPage = () => {
       ) : (
         <div className={styles.productContainer}>
           <div className={styles.productGrid}>
-            {response.product.map((post: ProductProps, key) => {
+            {response.map((post: ProductProps, key) => {
               return (
                 <Link href={'/detail/' + post.id} key={key}>
                   <ProductCard

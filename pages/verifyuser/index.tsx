@@ -12,11 +12,16 @@ import styles from './VerifyPage.module.scss';
 import { storage } from '../../src/firebase/Firebase';
 
 import { v4 } from 'uuid';
+import { usePost } from '../../src/utils/Hooks';
 
 const VerifyUser: NextPage = () => {
+  const auth = getAuth();
   const router = useRouter();
   const [imageUpload, setImageUpload] = useState();
-  const [data, setData] = useState({ displayName: '', photoURL: '' });
+  const [data, setData] = useState({
+    displayName: '',
+    photoURL: '',
+  });
   const [error, setError] = useState('');
 
   const { setProfile } = useContext(AuthContext);
@@ -33,22 +38,17 @@ const VerifyUser: NextPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageUpload]);
 
-  const handleVerify = (e: any) => {
+  const HandleVerify = (e: any) => {
     e.preventDefault();
-    const auth = getAuth();
+    usePost('users', data);
 
     updateProfile(auth.currentUser!, {
       displayName: data.displayName,
       photoURL: data.photoURL,
     })
-      .then((currentUser) => {
-        const user = currentUser;
+      .then(() => {
         setProfile(data);
         router.push('/profile');
-        setData({
-          displayName: '',
-          photoURL: '',
-        });
       })
       .catch((error) => {
         setError(error.message);
@@ -59,7 +59,7 @@ const VerifyUser: NextPage = () => {
     <>
       <Header />
       <div className={styles.verifyPage}>
-        <form onSubmit={handleVerify} className={styles.verifyForm}>
+        <form onSubmit={HandleVerify} className={styles.verifyForm}>
           <div className={styles.formHeader}>
             <h2 className={styles.verifyTitle}>Slutför registrering</h2>
             <hr />
