@@ -17,6 +17,7 @@ import { GetUser, usePost } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
 
 const NewProduct: NextPage = () => {
+  const [disabled, setDisabled] = useState(false);
   const [imageUpload, setImageUpload] = useState();
   const { user } = GetUser();
 
@@ -64,6 +65,24 @@ const NewProduct: NextPage = () => {
     }, 2000);
   };
 
+  const handlePrice = () => {
+    if (disabled) {
+      setProduct({ ...product, price: '' });
+    } else {
+      setProduct({ ...product, price: 'Gratis' });
+    }
+    setDisabled(!disabled);
+  };
+
+  // use for button state later
+  // const allValues = {
+  //   title: product.title,
+  //   desc: product.desc,
+  //   price: product.price,
+  //   img: product.img,
+  //   category: product.category,
+  // };
+
   return (
     <div>
       <Header />
@@ -92,7 +111,16 @@ const NewProduct: NextPage = () => {
             onChange={(e) => setData({ ...data, price: e.target.value })}
             placeholder="Pris"
             type="text"
+            disabled={disabled}
           />
+          <div className={styles.freeOfChargeContainer}>
+            <p className={styles.freeText}>Annonsen ska vara gratis</p>
+            <input
+              className={styles.freeInput}
+              type="checkbox"
+              onChange={handlePrice}
+            ></input>
+          </div>
           <FilterCategory
             onChange={(e) => setData({ ...data, category: e.target.value })}
           />

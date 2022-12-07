@@ -45,4 +45,18 @@
     padding: 0 10px;
     font-size: Fonts.$p;
   }
+
+  .freeOfChargeContainer {
+    display: flex;
+  }
+
+  .freeText {
+    color: Colors.$primaryWhite;
+    margin-right: 0.5rem;
+  }
+
+  .freeInput:checked {
+    background-color: red;
+    accent-color: Colors.$primaryRed;
+  }
 }

@@ -24,7 +24,7 @@ export const InputField = ({
       value={value}
       placeholder={placeholder}
       type={type}
-      className={styles.inputField}
+      className={disabled ? styles.inputFieldDisabled : styles.inputField}
       required
       id={id}
     />

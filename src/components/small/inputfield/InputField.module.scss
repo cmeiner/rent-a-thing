@@ -17,3 +17,16 @@ $small: 850px;
   color: Colors.$primaryPlaceholderText;
   padding: 10px 0;
 }
+
+.inputFieldDisabled {
+  background-color: #b5b4b1;
+  border-radius: 8px;
+  border: 1px solid #fbf7f77d;
+  color: Colors.$primaryBlack;
+  width: 580px;
+  max-width: 90vw;
+  height: 50px;
+  padding: 0 10px;
+  font-size: Fonts.$p;
+  cursor: default;
+}
