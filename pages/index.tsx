@@ -61,6 +61,7 @@ const Home: NextPage = () => {
                   title={data.title}
                   price={data.price}
                   image={data.img}
+                  available={data.available}
                 />
               </Link>
             );

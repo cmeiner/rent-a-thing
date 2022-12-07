@@ -53,7 +53,7 @@ export const updatePost = async (id: string, data: {}) => {
   });
 };
 
-export const usePost = async (api: string, data: any) => {
+export const usePost = async (api: string, data: ProductProps) => {
   await setDoc(doc(collection(db, api)), data);
   console.log(data, 'added to the database');
 };

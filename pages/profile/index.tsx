@@ -1,5 +1,12 @@
 import { getAuth, signOut } from 'firebase/auth';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -38,7 +45,13 @@ const ProfilePage: NextPage = () => {
     Router.push('/');
   };
 
-  const handleAcceptRequest = async (id: string) => {};
+  const handleAcceptRequest = (id: string) => {
+    console.log(id);
+    const updateAvailable = doc(db, `posts/${id}`);
+    updateDoc(updateAvailable, {
+      available: false,
+    });
+  };
 
   useEffect(() => {
     if (user.id === undefined) {
@@ -117,7 +130,7 @@ const ProfilePage: NextPage = () => {
                 renter={request.requestedBy.displayName}
                 image={request.productData.img}
                 key={key}
-                accept={() => handleAcceptRequest(request.product)}
+                accept={() => handleAcceptRequest(request.productData.id)}
                 decline={() => console.log('decline')}
               />
             ))}

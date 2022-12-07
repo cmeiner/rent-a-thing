@@ -74,10 +74,6 @@ const NewProduct: NextPage = () => {
           <h1 className={styles.title}>Ny Annons</h1>
         </div>
         <form onSubmit={HandleSubmit} className={styles.formStyle}>
-          <FilesInput
-            onChange={(e) => setImageUpload(e.currentTarget.files[0])}
-            type="file"
-          />
           <InputField
             value={data.title}
             onChange={(e) => setData({ ...data, title: e.target.value })}
@@ -97,6 +93,10 @@ const NewProduct: NextPage = () => {
           />
           <FilterCategory
             onChange={(e) => setData({ ...data, category: e.target.value })}
+          />
+          <FilesInput
+            onChange={(e) => setImageUpload(e.currentTarget.files[0])}
+            type="file"
           />
           <PrimaryButton submit={true} text="Lägg till" disabled={!data.img} />
           <ToastContainer />
