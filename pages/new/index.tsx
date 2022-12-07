@@ -27,6 +27,7 @@ const NewProduct: NextPage = () => {
     img: '',
     category: 'Övrigt',
     available: true,
+    timesRented: 0,
     postedBy: user.id,
   });
 
@@ -51,6 +52,7 @@ const NewProduct: NextPage = () => {
       img: '',
       category: 'Övrigt',
       available: true,
+      timesRented: 0,
       postedBy: '',
     });
     toast.success('Annons tillagd', {

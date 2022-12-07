@@ -1,6 +1,7 @@
 import { getAuth, signOut } from 'firebase/auth';
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   query,
@@ -21,12 +22,19 @@ import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn'
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
 import { db } from '../../src/firebase/Firebase';
-import { GetUser, ProductProps, useFetch } from '../../src/utils/Hooks';
+import {
+  GetUser,
+  ProductProps,
+  RequestProps,
+  useFetch,
+} from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage: NextPage = () => {
   const { user } = GetUser();
   const { response } = useFetch('posts', undefined, user.id);
+  const productData = { ...(response as unknown as ProductProps) };
+
   const { setCurrentUser } = useContext(AuthContext);
   const [contentSwitch, setContentSwitch] = useState(false);
   const [requests, setRequests] = useState<any[]>([]);
@@ -45,12 +53,20 @@ const ProfilePage: NextPage = () => {
     Router.push('/');
   };
 
-  const handleAcceptRequest = (id: string) => {
-    console.log(id);
-    const updateAvailable = doc(db, `posts/${id}`);
-    updateDoc(updateAvailable, {
+  const handleAcceptRequest = (request: RequestProps) => {
+    console.log('p', request.productData.id);
+    const testTimesRented = request.productData.timesRented + 1;
+
+    const updatePostAvailable = doc(db, `posts/${request.productData.id}`);
+    updateDoc(updatePostAvailable, {
       available: false,
+      timesRented: testTimesRented,
     });
+
+    // const test = productData.timesRented.toString();
+    // const testfads = parseInt(test);
+    // console.log(test.timesRented);
+    deleteDoc(doc(db, `requests/${request.id}`));
   };
 
   useEffect(() => {
@@ -64,11 +80,19 @@ const ProfilePage: NextPage = () => {
     );
 
     getDocs(q).then((res) => {
-      const requests = res.docs.map((doc) => doc.data());
-      setRequests(requests);
+      setRequests(
+        res.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        })
+      );
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contentSwitch]);
+  }, [requests]);
+  const userData = { ...(requests as unknown as RequestProps) };
+
+  const requestFilter = (requests: RequestProps) =>
+    requests.productData.available === true;
 
   const closeModal = () => {
     setVisible(false);
@@ -124,16 +148,18 @@ const ProfilePage: NextPage = () => {
       {contentSwitch ? (
         <div className={styles.productContainer}>
           <div className={styles.productGrid}>
-            {requests.map((request: any, key) => (
-              <RequestCard
-                item={request.productData.title}
-                renter={request.requestedBy.displayName}
-                image={request.productData.img}
-                key={key}
-                accept={() => handleAcceptRequest(request.productData.id)}
-                decline={() => console.log('decline')}
-              />
-            ))}
+            {requests
+              .filter(requestFilter)
+              .map((request: RequestProps, key) => (
+                <RequestCard
+                  item={request.productData.title}
+                  renter={request.requestedBy.displayName}
+                  image={request.productData.img}
+                  key={request.id}
+                  accept={() => handleAcceptRequest(request)}
+                  decline={() => console.log('decline')}
+                />
+              ))}
           </div>
         </div>
       ) : (
@@ -143,6 +169,7 @@ const ProfilePage: NextPage = () => {
               return (
                 <Link href={'/detail/' + post.id} key={key}>
                   <ProductCard
+                    available={post.available}
                     title={post.title}
                     price={post.price}
                     image={post.img}

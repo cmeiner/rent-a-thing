@@ -78,3 +78,16 @@
     padding: 10px;
   }
 }
+
+.available {
+  color: green;
+}
+
+.notAvailable {
+  color: red;
+}
+
+.rentContainer {
+  display: flex;
+  align-items: center;
+}

@@ -21,6 +21,7 @@ export interface ProductProps {
   category: string;
   id?: string;
   postedBy: string;
+  timesRented: number;
 }
 
 export interface UserProps {
@@ -31,6 +32,7 @@ export interface UserProps {
 }
 
 export interface RequestProps {
+  id?: string;
   productData: {
     title: string;
     desc: string;
@@ -39,10 +41,16 @@ export interface RequestProps {
     available: boolean;
     category: string;
     id?: string;
+    timesRented: number;
     postedBy: string;
   };
   days: number;
-  requestedBy: string;
+  requestedBy: {
+    email: string;
+    id: string;
+    displayName: string;
+    photoURL: string;
+  };
   connectedOwnersId: string;
 }
 
@@ -53,7 +61,7 @@ export const updatePost = async (id: string, data: {}) => {
   });
 };
 
-export const usePost = async (api: string, data: ProductProps) => {
+export const usePost = async (api: string, data: any) => {
   await setDoc(doc(collection(db, api)), data);
   console.log(data, 'added to the database');
 };

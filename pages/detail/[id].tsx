@@ -39,7 +39,7 @@ const Details: NextPage = () => {
     usePost('requests', {
       productData,
       days: days,
-      requestedBy: user.id,
+      requestedBy: user,
       connectedOwnersId: userData.id,
     });
     toast.success('Förfrågan skickad', {
@@ -96,18 +96,23 @@ const Details: NextPage = () => {
             </div>
           </div>
         </div>
-
         <div className={styles.buttonSection}>
           {user.id ? (
-            <form onSubmit={HandleSubmit}>
-              <FilterDay onChange={HandleOption} />
-              <PrimaryButton
-                onClick={() => console.log('asd')}
-                text="Rent-this-thing"
-                submit
-              />
-              <ToastContainer />
-            </form>
+            <>
+              {!productData.available ? (
+                <div className={styles.loginUser}>
+                  <p className={styles.infoText}>
+                    Produkten är uthyrd för tillfället.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={HandleSubmit}>
+                  <FilterDay onChange={HandleOption} />
+                  <PrimaryButton text="Rent-this-thing" submit />
+                  <ToastContainer />
+                </form>
+              )}
+            </>
           ) : (
             <div className={styles.loginUser}>
               <p className={styles.infoText}>
