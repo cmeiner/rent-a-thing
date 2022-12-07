@@ -11,22 +11,15 @@ import { FilterAndText } from '../src/components/small/filterAndText/FilterAndTe
 import { ProductCard } from '../src/components/small/productcard/ProductCard';
 import { GetUser, ProductProps, useFetch } from '../src/utils/Hooks';
 import styles from './index.module.scss';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const Home: NextPage = () => {
   const { response } = useFetch('posts');
   const [isShown, setIsShown] = useState(false);
   const [category, setCategory] = useState<string | undefined>();
   const [isFree, setIsFree] = useState(false);
-  const [isFavClicked, setFavClicked] = useState(false);
 
   const handleClick = () => {
     setIsShown((prevState) => !prevState);
-  };
-
-  const HandleFav = () => {
-    setFavClicked((prevState) => !prevState);
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -103,9 +96,9 @@ const Home: NextPage = () => {
                 </Link>
               );
             })}
-          <div onClick={HandleFav} className={styles.iconColor}>
+          {/* <div onClick={HandleFav} className={styles.iconColor}>
             {isFavClicked ? <FavoriteBorderIcon /> : <FavoriteIcon />}
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />

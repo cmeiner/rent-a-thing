@@ -1,19 +1,27 @@
 @use '../../../constants/Colors.scss';
 @use '../../../constants/Fonts.scss';
 
-
 .cardContainer {
   background-color: Colors.$primaryRed;
   width: 390px;
   height: 450px;
   border-radius: 2.5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 35px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   cursor: pointer;
   color: Colors.$primaryWhite;
+
+  .favIcon {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
   .cardPicture {
     border-radius: 2.5px;
@@ -38,9 +46,6 @@
   .cardTitle {
     margin: 0;
   }
-
-  
-
 
   @media screen and (max-width: 800px) {
     width: 250px;
@@ -68,4 +73,3 @@
     padding: 10px;
   }
 }
-
