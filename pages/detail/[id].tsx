@@ -94,6 +94,10 @@ const Details: NextPage = () => {
               </h2>
               <h2>Kategori: {productData.category}</h2>
             </div>
+            <p>
+              Denna produkt har varit uthyrd antal gånger:{' '}
+              {productData.timesRented}
+            </p>
           </div>
         </div>
         <div className={styles.buttonSection}>
