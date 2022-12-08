@@ -29,6 +29,7 @@ export interface UserProps {
   id: string;
   displayName: string;
   photoURL: string;
+  description: string;
 }
 
 export interface RequestProps {

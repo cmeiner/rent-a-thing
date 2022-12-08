@@ -13,7 +13,7 @@ import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
 import { Header } from '../../src/components/big/header/Header';
 import { ImageModal } from '../../src/components/big/imagemodal/ImageModal';
@@ -22,6 +22,7 @@ import { AddButton } from '../../src/components/small/addbtn/AddBtn';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
+import { TextField } from '../../src/components/small/textfield/TextField';
 import { db } from '../../src/firebase/Firebase';
 import {
   GetUser,
@@ -36,10 +37,22 @@ const ProfilePage: NextPage = () => {
   const { response } = useFetch('posts', undefined, user.id);
   const toast = useToast();
 
-  const { setCurrentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
   const [contentSwitch, setContentSwitch] = useState(false);
   const [requests, setRequests] = useState<any[]>([]);
   const [visible, setVisible] = useState(false);
+  const [description, setDescription] = useState(user.description);
+  console.log(user.description);
+
+  const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const updateUserDescription = doc(db, `users/${user.id}`);
+    updateDoc(updateUserDescription, {
+      description: description,
+    });
+    setDescription('');
+    setCurrentUser({ ...currentUser, description });
+  };
 
   // only for dev
   const handleSignOut = () => {
@@ -99,7 +112,7 @@ const ProfilePage: NextPage = () => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [requests]);
+  }, [user.id]);
 
   const requestFilter = (requests: RequestProps) =>
     requests.productData.available === true;
@@ -134,6 +147,25 @@ const ProfilePage: NextPage = () => {
         <h1 className={styles.title}>
           {user.displayName ? user.displayName : user.email}
         </h1>
+        {!user.description ? (
+          <div>
+            <form onSubmit={HandleSubmit} id="descriptionForm">
+              <TextField
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Beskrivning"
+                id="description"
+              />{' '}
+              <div className={styles.descriptionButton}>
+                <PrimaryButton text="Skicka" submit />
+              </div>
+            </form>
+          </div>
+        ) : (
+          <div className={styles.descriptionContainer}>
+            <pre className={styles.userDescription}>{user.description}</pre>
+          </div>
+        )}
       </div>
       <div className={styles.buttonContainer}>
         <PrimaryButton submit={false} text="Logga ut" onClick={handleSignOut} />
