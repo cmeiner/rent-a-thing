@@ -4,6 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { GetUser } from '../../../utils/Hooks';
 
 export interface CardProps {
   image: string;
@@ -22,6 +23,7 @@ export const ProductCard = ({
   onClick,
 }: CardProps) => {
   const [isFavClicked, setFavClicked] = useState(false);
+  const { user } = GetUser();
 
   const handleFav = () => {
     setFavClicked((prevState) => !prevState);
@@ -37,10 +39,11 @@ export const ProductCard = ({
             className={available ? styles.available : styles.notAvailable}
           />
         </p>
-
-        <div onClick={handleFav} className={styles.favIcon}>
-          {isFavClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-        </div>
+        {user.id ? (
+          <div onClick={handleFav} className={styles.favIcon}>
+            {isFavClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          </div>
+        ) : null}
       </div>
       <div className={styles.cardPicture} onClick={onClick}>
         <Image src={image} alt="image" layout="fill" objectFit="cover" />
