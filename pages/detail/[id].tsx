@@ -61,14 +61,34 @@ const Details: NextPage = () => {
       <Header />
       <div className={styles.productPage}>
         <div className={styles.productCard}>
-          <div className={styles.imageSection}>
-            <h1 className={styles.productTitle}>
+          <div className={styles.textSection}>
+            <div className={styles.navigationContainer}>
               <KeyboardBackspaceIcon
-                className={styles.goBack}
+                className={styles.arrow}
                 onClick={() => router.back()}
-              />{' '}
-              {productData.title}
-            </h1>
+                fontSize={'large'}
+                cursor={'pointer'}
+              />
+              <h1 className={styles.title}>{productData.title}</h1>
+            </div>
+            <div className={styles.infoContainer}>
+              <div className={styles.productDesc}>
+                <p>Beksrivning</p>
+                <p>{productData.desc}</p>
+              </div>
+              <div className={styles.subInfo}>
+                <h2>Pris/dag: {productData.price}:-</h2>
+                <h2>Kategori: {productData.category}</h2>
+                <Link href={`/userprofile/${productData.postedBy}`}>
+                  <h3 style={{ cursor: 'pointer' }}>
+                    Hyrs ut av: {userData?.displayName}
+                    <AccountCircleIcon className={styles.icon} />
+                  </h3>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className={styles.aside}>
             <div className={styles.productImage}>
               <Image
                 src={productData.img as string}
@@ -77,52 +97,35 @@ const Details: NextPage = () => {
                 objectFit="cover"
               />
             </div>
-          </div>
-          <div className={styles.textSection}>
-            <div className={styles.productDesc}>
-              <h3>{productData.desc}</h3>
-              <Link href={`/userprofile/${productData.postedBy}`}>
-                <h3 style={{ cursor: 'pointer' }}>
-                  Hyrs ut av: {userData?.displayName}
-                  <AccountCircleIcon className={styles.icon} />
-                </h3>
-              </Link>
-            </div>
-            <div className={styles.descHeader}>
-              <h2 className={styles.productDataPrice}>
-                Pris per dygn {productData.price}:-
-              </h2>
-              <h2>Kategori: {productData.category}</h2>
-            </div>
-          </div>
-        </div>
-        <div className={styles.buttonSection}>
-          {user.id ? (
-            <>
-              {!productData.available ? (
+            <div className={styles.buttonSection}>
+              {user.id ? (
+                <>
+                  {!productData.available ? (
+                    <div className={styles.loginUser}>
+                      <p className={styles.infoText}>
+                        Produkten är uthyrd för tillfället.
+                      </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={HandleSubmit}>
+                      <FilterDay onChange={HandleOption} />
+                      <PrimaryButton text="Rent-this-thing" submit />
+                      <ToastContainer />
+                    </form>
+                  )}
+                </>
+              ) : (
                 <div className={styles.loginUser}>
                   <p className={styles.infoText}>
-                    Produkten är uthyrd för tillfället.
+                    Vänligen logga in för att hyra denna produkt
                   </p>
+                  <Link href={'/login'}>
+                    <p className={styles.link}>Logga in</p>
+                  </Link>
                 </div>
-              ) : (
-                <form onSubmit={HandleSubmit}>
-                  <FilterDay onChange={HandleOption} />
-                  <PrimaryButton text="Rent-this-thing" submit />
-                  <ToastContainer />
-                </form>
               )}
-            </>
-          ) : (
-            <div className={styles.loginUser}>
-              <p className={styles.infoText}>
-                Vänligen logga in för att hyra denna produkt
-              </p>
-              <Link href={'/login'}>
-                <p className={styles.link}>Logga in</p>
-              </Link>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </>
