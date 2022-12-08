@@ -85,6 +85,10 @@
       font-size: Fonts.$h3;
       margin: 0;
     }
+    .favIcon {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
   }
   @media screen and (max-width: 600px) {
     width: 180px;
@@ -92,6 +96,10 @@
     padding: 10px;
     p {
       margin: 0;
+    }
+    .favIcon {
+      padding-top: 0px;
+      padding-bottom: 0px;
     }
   }
 }
