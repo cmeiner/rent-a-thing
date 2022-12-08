@@ -37,7 +37,6 @@ const Home: NextPage = () => {
     } else {
       setIsFree(false);
     }
-    console.log('hej');
   };
 
   const freeFilter = (post: ProductProps) => !isFree || post.price === 'Gratis';
@@ -82,20 +81,21 @@ const Home: NextPage = () => {
       </div>
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-
-          {response.filter(categoryFilter).map((data: ProductProps, key) => {
-            return (
-              <Link href={'/detail/' + data.id} key={key}>
-                <ProductCard
-                  title={data.title}
-                  price={data.price}
-                  image={data.img}
-                  available={data.available}
-                />
-              </Link>
-            );
-          })}
-
+          {response
+            .filter(freeFilter)
+            .filter(categoryFilter)
+            .map((data: ProductProps, key) => {
+              return (
+                <Link href={'/detail/' + data.id} key={key}>
+                  <ProductCard
+                    title={data.title}
+                    price={data.price}
+                    image={data.img}
+                    available={data.available}
+                  />
+                </Link>
+              );
+            })}
         </div>
       </div>
       <Footer />
