@@ -5,154 +5,347 @@
   width: 100vw;
   height: 90vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   margin: auto;
   color: Colors.$primaryWhite;
   gap: 1rem;
+  justify-content: center;
 
   .productCard {
-    width: 95%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: Colors.$primaryRed;
-    box-shadow: 0px 4px 4px Colors.$primaryBlack;
     border-radius: 3.5px;
+    justify-content: center;
+    box-shadow: 0px 4px 4px Colors.$primaryBlack;
+    background-color: Colors.$secondaryBlack;
+    flex-direction: row;
+    gap: 6vw;
+    height: 90%;
+    padding: 2rem;
+    transition: 0.3s;
+    width: 80%;
 
-    .textSection {
-      align-items: flex-start;
-      display: flex;
-      height: 100%;
-      width: 50%;
-      .navigationContainer {
-        align-items: center;
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        margin-top: 0;
-        margin-bottom: 3rem;
-        position: relative;
-
-        .title {
-          width: 100%;
-          margin: 0;
-          .arrow {
-            cursor: pointer;
-          }
-        }
-      }
-      .productDesc {
-        font-size: Fonts.$p;
-        display: flex;
-        flex-direction: column;
-        p {
-          margin: 0.2rem 0;
-        }
-        :first-child {
-          border-bottom: 1px solid white;
-        }
-      }
-      .subInfo {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        h2 {
-          font-size: Fonts.$p;
-        }
-      }
-    }
     .aside {
       display: flex;
+      background-color: Colors.$primaryRed;
+      justify-content: space-between;
+      padding: 1rem 2rem;
       flex-direction: column;
-      align-items: center;
       width: 50%;
-      position: relative;
+      border-bottom: none;
+      align-items: unset;
+
+      .navigationContainer {
+        width: 100%;
+        align-items: flex-start;
+        display: flex;
+        margin-top: 0;
+        .arrow {
+          cursor: pointer;
+          font-size: Fonts.$h1;
+        }
+      }
 
       .productImage {
         width: 100%;
+        height: 100%;
         aspect-ratio: 3/2;
         position: relative;
+        border-radius: 5px;
+      }
+
+      .titleContainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .title {
+          margin: 0;
+        }
       }
     }
-  }
 
-  .filter {
-    background-color: Colors.$primaryWhite;
-    border-radius: 8px;
-    border: 1px solid Colors.$inputBorderGray;
-    width: 100%;
-    max-width: 90vw;
-    height: 40px;
-    padding: 0 10px;
-    font-size: Fonts.$p;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin-bottom: 2.5rem;
-  }
+    .textSection {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      height: 100%;
+      width: 40%;
 
-  .loginUser {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+      .infoContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        .infoContent {
+          .info {
+            display: flex;
+            align-items: unset;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
 
-  .infoText {
-    font-weight: 300;
-  }
+            .text {
+              gap: unset;
+              display: flex;
+              align-items: flex-start;
+              flex-direction: column;
 
-  .link {
-    color: Colors.$primaryRed;
-    cursor: pointer;
-  }
+              h2 {
+                margin-top: 0;
+                margin: unset;
+                font-size: Fonts.$h2;
+              }
 
-  @media screen and (min-width: 800px) {
-    gap: 3rem;
-    .productCard {
-      .textSection {
-        .productDesc {
-          font-size: Fonts.$h2;
-        }
-        .subInfo {
-          display: flex;
-          flex-direction: column;
-          h2 {
-            font-size: Fonts.$h2;
+              p {
+                font-size: Fonts.$p;
+                margin-top: 0;
+              }
+            }
+          }
+
+          .subInfo {
+            display: flex;
+            align-items: unset;
+            flex-direction: column;
+            .test {
+              flex-direction: column;
+              width: 100%;
+              height: 100%;
+            }
+
+            .text {
+              display: flex;
+              align-items: flex-start;
+              flex-direction: column;
+              width: unset;
+              p {
+                margin-bottom: unset;
+              }
+              h2 {
+                margin-top: 0;
+                font-size: Fonts.$h2;
+              }
+            }
+            .testtwo {
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+
+              align-items: flex-end;
+              justify-content: flex-end;
+              .postedBy {
+                display: flex;
+                flex-direction: unset;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+
+                p {
+                  font-size: Fonts.$p;
+                }
+
+                h3 {
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.2rem;
+                  font-size: Fonts.$h2;
+                }
+              }
+              .buttonSection {
+                display: flex;
+                justify-content: center;
+                align-self: center;
+
+                .loginUser {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                }
+
+                .infoText {
+                  font-weight: 300;
+                }
+
+                .link {
+                  color: Colors.$primaryRed;
+                  cursor: pointer;
+                }
+              }
+            }
           }
         }
       }
     }
   }
-  @media screen and (min-width: 1200px) {
-    justify-content: center;
+
+  @media screen and (max-width: 1000px) {
+    height: auto;
+
     .productCard {
-      background-color: Colors.$secondaryBlack;
-      flex-direction: row;
-      gap: 10vw;
-      height: 90%;
-      padding: 2rem;
-      transition: 0.3s;
       width: 90%;
-
-      .productImage {
-        border-radius: 5px;
-      }
-    }
-    .textSection {
-      display: flex;
+      gap: 0;
       flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
+
+      .aside {
+        border-bottom: 0.1rem solid Colors.$primaryWhite;
+        width: 100%;
+        background-color: unset;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin-bottom: 1rem;
+        .productImage {
+          height: 100%;
+          width: 50%;
+        }
+      }
+
+      .textSection {
+        width: 100%;
+        .infoContainer {
+          .infoContent {
+            .info {
+              flex-direction: row;
+              align-items: center;
+              display: flex;
+              .text {
+                gap: 0.4rem;
+                flex-direction: row;
+                align-items: center;
+                display: flex;
+                h2 {
+                  margin: 0;
+                }
+                p {
+                  margin: 0;
+                }
+              }
+            }
+
+            .subInfo {
+              flex-direction: row;
+              align-items: center;
+              display: flex;
+              .test {
+                width: 100%;
+
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+
+                .text {
+                  align-items: flex-start;
+                  display: flex;
+                  width: 100%;
+
+                  p {
+                    margin-bottom: 0;
+                  }
+                }
+                .testtwo {
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+                  justify-content: flex-end;
+                  align-items: flex-end;
+                  .postedBy {
+                    justify-content: flex-end;
+                  }
+                  .buttonSection {
+                    width: 100%;
+                    justify-content: flex-end;
+                  }
+
+                  .postedBy {
+                    flex-direction: row;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .productCard {
+      width: 90%;
+      gap: 0;
+      flex-direction: column;
+
+      .textSection {
+        width: 100%;
+        .infoContainer {
+          .infoContent {
+            .subInfo {
+              .test {
+                flex-direction: column;
+                .testtwo {
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+
+                  .postedBy {
+                    justify-content: flex-start;
+                  }
+                  .buttonSection {
+                    width: 100%;
+                    justify-content: center;
+                  }
+                }
+
+                .testtwo {
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+                  justify-content: flex-start;
+                  align-items: flex-start;
+                  .postedBy {
+                    justify-content: center;
+                  }
+                  .buttonSection {
+                    width: 100%;
+                    justify-content: center;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .info {
+    flex-direction: column;
+  }
+
+  .subInfo {
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    .test {
+      flex-direction: column;
+      .text {
+        align-items: flex-start;
+        display: flex;
+        width: 100%;
+
+        p {
+          margin-bottom: 0;
+        }
+      }
     }
 
-    .aside {
-      display: flex;
-      gap: 2rem;
-      .buttonSection {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-      }
+    .postedBy {
+      flex-direction: row;
     }
   }
 }
