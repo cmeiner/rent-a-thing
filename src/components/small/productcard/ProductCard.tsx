@@ -2,9 +2,7 @@ import Image from 'next/image';
 import styles from './ProductCard.module.scss';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import image from 'next/image';
 import { useState } from 'react';
-import Link from 'next/link';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { GetUser } from '../../../utils/Hooks';
 
@@ -21,7 +19,6 @@ export const ProductCard = ({
   image,
   price,
   title,
-  id,
   available,
   onClick,
 }: CardProps) => {
