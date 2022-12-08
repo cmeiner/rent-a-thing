@@ -52,6 +52,7 @@ const Register: NextPage = () => {
         displayName: details.displayName,
         photoURL: details.photoURL,
         email: data.email,
+        description: '',
       })
         .then(() =>
           updateProfile(auth.currentUser!, {
@@ -92,6 +93,7 @@ const Register: NextPage = () => {
             }
             placeholder="Användarnamn"
             type="text"
+            id="displayName"
           />
           <InputField
             value={data.email}

@@ -99,3 +99,20 @@
   justify-content: center;
   margin-top: 2rem;
 }
+
+.descriptionContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .userDescription {
+    color: Colors.$primaryWhite;
+    white-space: pre-line;
+    text-align: center;
+  }
+}
+
+.descriptionButton {
+  text-align: center;
+}

@@ -4,9 +4,10 @@ interface InputProps {
   placeholder: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   value?: string;
+  id?: string;
 }
 
-export const TextField = ({ placeholder, onChange, value }: InputProps) => {
+export const TextField = ({ placeholder, onChange, value, id }: InputProps) => {
   return (
     <div className={styles.textField}>
       <textarea
@@ -14,6 +15,7 @@ export const TextField = ({ placeholder, onChange, value }: InputProps) => {
         value={value}
         className={styles.textFieldContent}
         placeholder={placeholder}
+        id={id}
       ></textarea>
     </div>
   );
