@@ -1,6 +1,26 @@
 @use '../../../constants/Colors.scss';
 @use '../../../constants/Fonts.scss';
 
+.unavailablecardContainer {
+  background-color: Colors.$primaryBlack;
+  width: 390px;
+  height: 450px;
+  border-radius: 2.5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: Colors.$primaryWhite;
+}
+.favIcon {
+  display: flex;
+  align-self: flex-end;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .cardContainer {
   background-color: Colors.$primaryRed;
   width: 390px;
@@ -12,16 +32,8 @@
   padding-bottom: 35px;
   display: flex;
   flex-direction: column;
-
   cursor: pointer;
   color: Colors.$primaryWhite;
-
-  .favIcon {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
 
   .cardPicture {
     border-radius: 2.5px;
@@ -52,6 +64,13 @@
     height: 300px;
     padding: 5px;
 
+    .rentContainer {
+      height: 2rem;
+    }
+
+    p {
+      margin: 0;
+    }
     .cardDescription {
       gap: 0;
       align-items: flex-start;
@@ -71,5 +90,23 @@
     width: 180px;
     height: 200px;
     padding: 10px;
+    p {
+      margin: 0;
+    }
   }
+}
+
+.available {
+  color: green;
+}
+
+.notAvailable {
+  color: red;
+}
+
+.rentContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }

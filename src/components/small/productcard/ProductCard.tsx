@@ -6,6 +6,8 @@ import image from 'next/image';
 import { title } from 'process';
 import { useState } from 'react';
 import Link from 'next/link';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { padding } from '@mui/system';
 
 export interface CardProps {
   image: string;
@@ -13,6 +15,7 @@ export interface CardProps {
   title: string;
   id?: string;
   onClick?: () => void;
+  available?: boolean;
 }
 
 export const ProductCard = ({
@@ -20,6 +23,7 @@ export const ProductCard = ({
   price,
   title,
   id,
+  available,
   onClick,
 }: CardProps) => {
   const [isFavClicked, setFavClicked] = useState(false);
@@ -30,16 +34,29 @@ export const ProductCard = ({
 
   return (
     <div className={styles.cardContainer}>
-      <div onClick={handleFav} className={styles.favIcon}>
-        {isFavClicked ? <FavoriteBorderIcon /> : <FavoriteIcon />}
-      </div>
+      <div className={styles.rentContainer}>
+        <p>
+          {available ? 'Tillgänglig' : 'Uthyrd'}{' '}
+          <FiberManualRecordIcon
+            viewBox="0 0 30 10"
+            className={available ? styles.available : styles.notAvailable}
+          />
+        </p>
 
-      <div className={styles.cardPicture}>
+        <div onClick={handleFav} className={styles.favIcon}>
+          {isFavClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </div>
+      </div>
+      <div className={styles.cardPicture} onClick={onClick}>
         <Image src={image} alt="image" layout="fill" objectFit="cover" />
       </div>
-      <div className={styles.cardDescription}>
-        <h2 className={styles.cardPrice}>Pris {price}:-</h2>
-        <h1 className={styles.cardTitle}>{title}</h1>
+      <div className={styles.cardDescription} onClick={onClick}>
+        <h2 className={styles.cardPrice} onClick={onClick}>
+          Pris {price}:-
+        </h2>
+        <h1 className={styles.cardTitle} onClick={onClick}>
+          {title}
+        </h1>
       </div>
     </div>
   );

@@ -82,23 +82,18 @@ const Home: NextPage = () => {
       </div>
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response.product
-            .filter(freeFilter)
-            .filter(categoryFilter)
-            .map((data: ProductProps, key) => {
-              return (
-                <Link href={'/detail/' + data.id} key={key}>
-                  <ProductCard
-                    title={data.title}
-                    price={data.price}
-                    image={data.img}
-                  />
-                </Link>
-              );
-            })}
-          {/* <div onClick={HandleFav} className={styles.iconColor}>
-            {isFavClicked ? <FavoriteBorderIcon /> : <FavoriteIcon />}
-          </div> */}
+          {response.filter(categoryFilter).map((data: ProductProps, key) => {
+            return (
+              <Link href={'/detail/' + data.id} key={key}>
+                <ProductCard
+                  title={data.title}
+                  price={data.price}
+                  image={data.img}
+                  available={data.available}
+                />
+              </Link>
+            );
+          })}
         </div>
       </div>
       <Footer />

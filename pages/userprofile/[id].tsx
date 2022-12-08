@@ -2,27 +2,19 @@ import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import { Header } from '../../src/components/big/header/Header';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
-import { PostedByProps, ProductProps, useFetch } from '../../src/utils/Hooks';
+import { ProductProps, useFetch, UserProps } from '../../src/utils/Hooks';
 import styles from './userprofile.module.scss';
 
 const ProfilePage: NextPage = () => {
   const router = useRouter();
-  const [user, setUser] = useState<PostedByProps>();
   const userId = router.query.id as string;
-  const { response } = useFetch('posts', undefined, userId);
 
-  useEffect(() => {
-    if (response.postedBy.length) {
-      response.postedBy.map((data, index) => {
-        if (index === 0) {
-          setUser(data);
-        }
-      });
-    }
-  }, [response]);
+  const { response: userRes } = useFetch('users', userId);
+  const userData = { ...(userRes as unknown as UserProps) };
+
+  const { response: postRes } = useFetch('posts', undefined, userId);
 
   return (
     <>
@@ -35,22 +27,22 @@ const ProfilePage: NextPage = () => {
           <Image
             className={styles.img}
             alt="profile-picture"
-            src={user?.photoURL || ''}
+            src={userData?.photoURL || ''}
             width={160}
             height={160}
           />
         </div>
-        <h1 className={styles.title}>{user?.displayName}</h1>
+        <h1 className={styles.title}>{userData?.displayName}</h1>
       </div>
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response.product.map((post: ProductProps, key) => {
+          {postRes.map((postData: ProductProps, key) => {
             return (
-              <Link href={'/detail/' + post.id} key={key}>
+              <Link href={'/detail/' + postData.id} key={key}>
                 <ProductCard
-                  title={post.title}
-                  price={post.price}
-                  image={post.img}
+                  title={postData.title}
+                  price={postData.price}
+                  image={postData.img}
                 />
               </Link>
             );
