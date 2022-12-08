@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import {
   createUserWithEmailAndPassword,
@@ -32,6 +33,7 @@ const Register: NextPage = () => {
   const router = useRouter();
   const { t } = useTranslation('common');
   const { setProfile } = useContext(AuthContext);
+  const toast = useToast();
 
   useEffect(() => {
     if (imageUpload == null) return;
@@ -66,7 +68,12 @@ const Register: NextPage = () => {
           setError(t(error.code));
         });
     });
-    router.push('/profile');
+    toast({
+      title: 'Användare skapad.',
+      duration: 2000,
+      status: 'success',
+      onCloseComplete: () => router.push('/profile'),
+    });
   };
 
   return (
@@ -112,7 +119,7 @@ const Register: NextPage = () => {
             type="file"
           />
           <PrimaryButton
-            submit={true}
+            submit
             text="Skapa konto"
             disabled={!details.photoURL}
           />

@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { NextPage } from 'next';
@@ -5,8 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
@@ -31,6 +30,7 @@ const Details: NextPage = () => {
   const { response: userRes } = useFetch('users', productData.postedBy);
   const userData = { ...(userRes as unknown as UserProps) };
   const [days, setDays] = useState<undefined | number>();
+  const toast = useToast();
 
   const { user } = GetUser();
 
@@ -42,8 +42,10 @@ const Details: NextPage = () => {
       requestedBy: user,
       connectedOwnersId: userData.id,
     });
-    toast.success('Förfrågan skickad', {
-      position: 'bottom-center',
+    toast({
+      title: 'Förfrågan skickad',
+      duration: 2000,
+      status: 'success',
     });
   };
 
@@ -113,7 +115,6 @@ const Details: NextPage = () => {
                 <form onSubmit={HandleSubmit}>
                   <FilterDay onChange={HandleOption} />
                   <PrimaryButton text="Rent-this-thing" submit />
-                  <ToastContainer />
                 </form>
               )}
             </>
