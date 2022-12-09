@@ -2,350 +2,151 @@
 @use '../../src/constants/Fonts.scss';
 
 .productPage {
-  width: 100vw;
-  height: 90vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: auto;
-  color: Colors.$primaryWhite;
-  gap: 1rem;
   justify-content: center;
-
-  .productCard {
-    display: flex;
-    border-radius: 3.5px;
-    justify-content: center;
-    box-shadow: 0px 4px 4px Colors.$primaryBlack;
+  min-height: calc(100vh - 85px);
+  .productContainer {
     background-color: Colors.$secondaryBlack;
-    flex-direction: row;
-    gap: 6vw;
-    height: 90%;
-    padding: 2rem;
-    transition: 0.3s;
-    width: 80%;
+    min-height: 80%;
+    width: 95%;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    color: Colors.$primaryWhite;
+    padding-bottom: 2rem;
 
-    .aside {
+    .nav {
+      align-items: center;
       display: flex;
-      background-color: Colors.$primaryRed;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      flex-direction: column;
-      width: 50%;
-      border-bottom: none;
-      align-items: unset;
+      width: 100%;
 
-      .navigationContainer {
-        width: 100%;
-        align-items: flex-start;
-        display: flex;
-        margin-top: 0;
-        .arrow {
-          cursor: pointer;
-          font-size: Fonts.$h1;
-        }
+      .icon {
+        font-size: Fonts.$h1;
+        color: Colors.$primaryWhite;
+        cursor: pointer;
+        margin: 1rem;
       }
+    }
 
-      .productImage {
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 3/2;
-        position: relative;
-        border-radius: 5px;
-      }
+    .productContent {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
 
-      .titleContainer {
-        width: 100%;
+      .imageContainer {
         display: flex;
         align-items: center;
         justify-content: center;
-        .title {
-          margin: 0;
-        }
-      }
-    }
-
-    .textSection {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: space-between;
-      height: 100%;
-      width: 40%;
-
-      .infoContainer {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         width: 100%;
-        height: 100%;
-        .infoContent {
-          .info {
-            display: flex;
-            align-items: unset;
-            flex-direction: row;
-            width: 100%;
-            justify-content: space-between;
 
-            .text {
-              gap: unset;
-              display: flex;
-              align-items: flex-start;
-              flex-direction: column;
-
-              h2 {
-                margin-top: 0;
-                margin: unset;
-                font-size: Fonts.$h2;
-              }
-
-              p {
-                font-size: Fonts.$p;
-                margin-top: 0;
-              }
-            }
-          }
-
-          .subInfo {
-            display: flex;
-            align-items: unset;
-            flex-direction: column;
-            .test {
-              flex-direction: column;
-              width: 100%;
-              height: 100%;
-            }
-
-            .text {
-              display: flex;
-              align-items: flex-start;
-              flex-direction: column;
-              width: unset;
-              p {
-                margin-bottom: unset;
-              }
-              h2 {
-                margin-top: 0;
-                font-size: Fonts.$h2;
-              }
-            }
-            .testtwo {
-              display: flex;
-              flex-direction: column;
-              width: 100%;
-
-              align-items: flex-end;
-              justify-content: flex-end;
-              .postedBy {
-                display: flex;
-                flex-direction: unset;
-                width: 100%;
-                align-items: center;
-                justify-content: center;
-                gap: 0.5rem;
-
-                p {
-                  font-size: Fonts.$p;
-                }
-
-                h3 {
-                  cursor: pointer;
-                  display: flex;
-                  align-items: center;
-                  gap: 0.2rem;
-                  font-size: Fonts.$h2;
-                }
-              }
-              .buttonSection {
-                display: flex;
-                justify-content: center;
-                align-self: center;
-
-                .loginUser {
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                }
-
-                .infoText {
-                  font-weight: 300;
-                }
-
-                .link {
-                  color: Colors.$primaryRed;
-                  cursor: pointer;
-                }
-              }
-            }
-          }
+        .productImage {
+          width: 80%;
+          aspect-ratio: 3/2;
+          position: relative;
         }
       }
-    }
-  }
-
-  @media screen and (max-width: 1000px) {
-    height: auto;
-
-    .productCard {
-      width: 90%;
-      gap: 0;
-      flex-direction: column;
 
       .aside {
-        border-bottom: 0.1rem solid Colors.$primaryWhite;
-        width: 100%;
-        background-color: unset;
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%;
+        width: 50%;
+
+        .productNav {
+          margin-bottom: 1rem;
+          h1 {
+            margin-top: 0;
+          }
+        }
+
+        .textContainer {
+          margin-bottom: 1rem;
+
+          .text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .title {
+              font-size: Fonts.$p;
+            }
+            .data {
+              font-size: Fonts.$h2;
+            }
+          }
+
+          .desc {
+            min-height: 12.5rem;
+          }
+
+          .link {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+
+            .icon {
+              font-size: Fonts.$h1;
+            }
+            .text {
+              display: flex;
+              align-items: center;
+
+              .title {
+                font-size: Fonts.$p;
+                margin-bottom: 0;
+              }
+              .data {
+                font-size: Fonts.$h2;
+                display: flex;
+                align-items: center;
+                gap: 0.2rem;
+                margin-bottom: 0;
+              }
+            }
+            p {
+              margin-top: 0;
+              cursor: pointer;
+              color: gray;
+              text-decoration: underline;
+            }
+          }
+          .submit {
+            margin-top: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .productContainer {
+      .productContent {
+        flex-direction: column;
         align-items: center;
-        padding: 0;
-        margin-bottom: 1rem;
-        .productImage {
+        gap: 1rem;
+
+        .imageContainer {
+          width: 70%;
+        }
+        .aside {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
           height: 100%;
           width: 50%;
-        }
-      }
 
-      .textSection {
-        width: 100%;
-        .infoContainer {
-          .infoContent {
-            .info {
-              flex-direction: row;
-              align-items: center;
-              display: flex;
-              .text {
-                gap: 0.4rem;
-                flex-direction: row;
-                align-items: center;
-                display: flex;
-                h2 {
-                  margin: 0;
-                }
-                p {
-                  margin: 0;
-                }
-              }
-            }
-
-            .subInfo {
-              flex-direction: row;
-              align-items: center;
-              display: flex;
-              .test {
-                width: 100%;
-
-                height: 100%;
-                display: flex;
-                flex-direction: row;
-
-                .text {
-                  align-items: flex-start;
-                  display: flex;
-                  width: 100%;
-
-                  p {
-                    margin-bottom: 0;
-                  }
-                }
-                .testtwo {
-                  display: flex;
-                  flex-direction: column;
-                  width: 100%;
-                  justify-content: flex-end;
-                  align-items: flex-end;
-                  .postedBy {
-                    justify-content: flex-end;
-                  }
-                  .buttonSection {
-                    width: 100%;
-                    justify-content: flex-end;
-                  }
-
-                  .postedBy {
-                    flex-direction: row;
-                  }
-                }
-              }
-            }
+          .productNav {
+            text-align: center;
           }
         }
       }
-    }
-  }
-
-  @media screen and (max-width: 650px) {
-    .productCard {
-      width: 90%;
-      gap: 0;
-      flex-direction: column;
-
-      .textSection {
-        width: 100%;
-        .infoContainer {
-          .infoContent {
-            .subInfo {
-              .test {
-                flex-direction: column;
-                .testtwo {
-                  display: flex;
-                  flex-direction: column;
-                  width: 100%;
-
-                  .postedBy {
-                    justify-content: flex-start;
-                  }
-                  .buttonSection {
-                    width: 100%;
-                    justify-content: center;
-                  }
-                }
-
-                .testtwo {
-                  display: flex;
-                  flex-direction: column;
-                  width: 100%;
-                  justify-content: flex-start;
-                  align-items: flex-start;
-                  .postedBy {
-                    justify-content: center;
-                  }
-                  .buttonSection {
-                    width: 100%;
-                    justify-content: center;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 500px) {
-  .info {
-    flex-direction: column;
-  }
-
-  .subInfo {
-    flex-direction: row;
-    align-items: center;
-    display: flex;
-    .test {
-      flex-direction: column;
-      .text {
-        align-items: flex-start;
-        display: flex;
-        width: 100%;
-
-        p {
-          margin-bottom: 0;
-        }
-      }
-    }
-
-    .postedBy {
-      flex-direction: row;
     }
   }
 }
