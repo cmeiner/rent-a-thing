@@ -1,3 +1,7 @@
+
+import { useToast } from '@chakra-ui/react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { NextPage } from 'next';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -5,9 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import style from 'styled-jsx/style';
+
 import { Header } from '../../src/components/big/header/Header';
 import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
@@ -34,6 +36,7 @@ const Details: NextPage = () => {
   const { response: userRes } = useFetch('users', productData.postedBy);
   const userData = { ...(userRes as unknown as UserProps) };
   const [days, setDays] = useState<undefined | number>();
+  const toast = useToast();
 
   const { user } = GetUser();
 
@@ -45,8 +48,10 @@ const Details: NextPage = () => {
       requestedBy: user,
       connectedOwnersId: userData.id,
     });
-    toast.success('Förfrågan skickad', {
-      position: 'bottom-center',
+    toast({
+      title: 'Förfrågan skickad',
+      duration: 2000,
+      status: 'success',
     });
   };
 

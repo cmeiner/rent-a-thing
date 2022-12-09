@@ -81,6 +81,7 @@ const Home: NextPage = () => {
       </div>
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
+
           {response
             .filter(freeFilter)
             .filter(categoryFilter)

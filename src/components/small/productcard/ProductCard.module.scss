@@ -14,6 +14,12 @@
   cursor: pointer;
   color: Colors.$primaryWhite;
 }
+.favIcon {
+  display: flex;
+  align-self: flex-end;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 
 .cardContainer {
   background-color: Colors.$primaryRed;
@@ -21,10 +27,11 @@
   height: 450px;
   border-radius: 2.5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 35px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   cursor: pointer;
   color: Colors.$primaryWhite;
 
@@ -57,6 +64,13 @@
     height: 300px;
     padding: 5px;
 
+    .rentContainer {
+      height: 2rem;
+    }
+
+    p {
+      margin: 0;
+    }
     .cardDescription {
       gap: 0;
       align-items: flex-start;
@@ -71,11 +85,22 @@
       font-size: Fonts.$h3;
       margin: 0;
     }
+    .favIcon {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
   }
   @media screen and (max-width: 600px) {
     width: 180px;
     height: 200px;
     padding: 10px;
+    p {
+      margin: 0;
+    }
+    .favIcon {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
   }
 }
 
@@ -90,4 +115,6 @@
 .rentContainer {
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }

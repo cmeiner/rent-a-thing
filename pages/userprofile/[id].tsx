@@ -33,6 +33,7 @@ const ProfilePage: NextPage = () => {
           />
         </div>
         <h1 className={styles.title}>{userData?.displayName}</h1>
+        <p className={styles.description}>{userData.description}</p>
       </div>
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
