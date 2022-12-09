@@ -1,10 +1,7 @@
-
 import { useToast } from '@chakra-ui/react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { NextPage } from 'next';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
