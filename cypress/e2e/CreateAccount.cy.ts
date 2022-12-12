@@ -9,7 +9,7 @@ describe('Create account', () => {
       .get('#displayName')
       .type('meiner')
       .get('#email')
-      .type(`test${Math.floor(Math.random() * 1000)}@test.com`)
+      .type(`test${Math.floor(Math.random() * 2000)}@test.com`)
       .get('#password')
       .type('123123')
       .get('#profileImage')
