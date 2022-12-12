@@ -6,7 +6,7 @@ interface ButtonProps {
   id?: string;
 }
 
-export const AddButton = ({ large = false, id }: ButtonProps) => (
+export const AddButton = ({ large, id }: ButtonProps) => (
   <AddCircleIcon
     className={large ? styles.AddbtnLarge : styles.Addbtn}
     id={id}

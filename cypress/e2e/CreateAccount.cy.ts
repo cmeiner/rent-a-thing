@@ -1,5 +1,3 @@
-import { get } from 'cypress/types/lodash';
-
 describe('Create account', () => {
   it('Creates an account', () => {
     cy.visit('localhost:3000')

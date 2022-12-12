@@ -1,5 +1,4 @@
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-import { Id } from 'react-toastify';
 import styles from './FilesInput.module.scss';
 
 interface InputProps {
