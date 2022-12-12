@@ -158,13 +158,18 @@ const ProfilePage: NextPage = () => {
         )}
       </div>
       <div className={styles.buttonContainer}>
-        <PrimaryButton submit={false} text="Logga ut" onClick={handleSignOut} />
+        <PrimaryButton
+          submit={false}
+          text="Logga ut"
+          onClick={handleSignOut}
+          id="logOutButton"
+        />
       </div>
       <div className={styles.navContainer}>
         <Link href="/new">
           <a className={styles.link}>
             <h3 className={styles.text}>Ny annons</h3>
-            <AddButton />
+            <AddButton id="addProductButton" />
           </a>
         </Link>
 

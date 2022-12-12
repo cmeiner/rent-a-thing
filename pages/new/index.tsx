@@ -94,17 +94,23 @@ const NewProduct: NextPage = () => {
           />
           <h1 className={styles.title}>Ny Annons</h1>
         </div>
-        <form onSubmit={HandleSubmit} className={styles.formStyle}>
+        <form
+          onSubmit={HandleSubmit}
+          className={styles.formStyle}
+          id="productForm"
+        >
           <InputField
             value={data.title}
             onChange={(e) => setData({ ...data, title: e.target.value })}
             placeholder="Titel"
             type="text"
+            id="productTitle"
           />
           <TextField
             value={data.desc}
             onChange={(e) => setData({ ...data, desc: e.target.value })}
             placeholder="Beskrivning"
+            id="productDescription"
           />
           <InputField
             value={data.price}
@@ -112,6 +118,7 @@ const NewProduct: NextPage = () => {
             placeholder="Pris"
             type="text"
             disabled={disabled}
+            id="productPrice"
           />
           <div className={styles.freeOfChargeContainer}>
             <p className={styles.freeText}>Annonsen ska vara gratis</p>
@@ -123,10 +130,12 @@ const NewProduct: NextPage = () => {
           </div>
           <FilterCategory
             onChange={(e) => setData({ ...data, category: e.target.value })}
+            id="productCategory"
           />
           <FilesInput
             onChange={(e) => setImageUpload(e.currentTarget.files[0])}
             type="file"
+            id="productImage"
           />
           <PrimaryButton submit={true} text="Lägg till" disabled={!data.img} />
           <ToastContainer />

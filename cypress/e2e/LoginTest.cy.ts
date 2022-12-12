@@ -8,7 +8,10 @@ describe('Logintest', () => {
       .get('#password')
       .type('123456')
       .get('#loginform')
-      .submit();
+      .submit()
+      .wait(1000)
+      .get('#logOutButton')
+      .click();
   });
 });
 

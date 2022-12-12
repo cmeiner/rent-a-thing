@@ -1,3 +1,5 @@
+import { get } from 'cypress/types/lodash';
+
 describe('Create account', () => {
   it('Creates an account', () => {
     cy.visit('localhost:3000')
@@ -9,11 +11,16 @@ describe('Create account', () => {
       .get('#displayName')
       .type('meiner')
       .get('#email')
-      .type(`test${Math.floor(Math.random() * 10)}@test.com`)
+      .type(`test${Math.floor(Math.random() * 1000)}@test.com`)
       .get('#password')
       .type('123123')
+      .get('#profileImage')
+      .selectFile('cypress/fixtures/cat.jpg')
+      .wait(1000)
       .get('#registerForm')
-      .submit();
+      .submit()
+      .get('#logOutButton')
+      .click();
   });
 });
 
