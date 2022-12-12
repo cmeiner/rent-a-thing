@@ -1,3 +1,5 @@
+import { get } from 'cypress/types/lodash';
+
 describe('AddMewProductTest', () => {
   it('Add new product', () => {
     cy.visit('localhost:3000')
@@ -24,7 +26,9 @@ describe('AddMewProductTest', () => {
       .selectFile('cypress/fixtures/cat.jpg')
       .wait(2000)
       .get('#productForm')
-      .submit();
+      .submit()
+      .get('#logOutButton')
+      .click();
   });
 });
 
