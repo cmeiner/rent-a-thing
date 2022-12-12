@@ -16,6 +16,7 @@ export const TextField = ({ placeholder, onChange, value, id }: InputProps) => {
         className={styles.textFieldContent}
         placeholder={placeholder}
         id={id}
+        required
       ></textarea>
     </div>
   );

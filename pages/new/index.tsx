@@ -3,8 +3,6 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { NextPage } from 'next';
 import Router from 'next/router';
 import { FormEvent, useEffect, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { v4 } from 'uuid';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterCategory } from '../../src/components/filterCategory/FilterCategory';
@@ -15,11 +13,13 @@ import { TextField } from '../../src/components/small/textfield/TextField';
 import { storage } from '../../src/firebase/Firebase';
 import { GetUser, usePost } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
+import { useToast } from '@chakra-ui/react';
 
 const NewProduct: NextPage = () => {
   const [disabled, setDisabled] = useState(false);
   const [imageUpload, setImageUpload] = useState();
   const { user } = GetUser();
+  const toast = useToast();
 
   const [data, setData] = useState({
     title: '',
@@ -56,13 +56,12 @@ const NewProduct: NextPage = () => {
       timesRented: 0,
       postedBy: '',
     });
-    toast.success('Annons tillagd', {
-      position: 'bottom-center',
-      autoClose: 2000,
+    toast({
+      title: 'Annons tillagd.',
+      duration: 2000,
+      status: 'success',
+      onCloseComplete: () => Router.back(),
     });
-    setTimeout(() => {
-      Router.back();
-    }, 2000);
   };
 
   const handlePrice = () => {

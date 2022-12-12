@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import { getAuth, signOut } from 'firebase/auth';
 import {
   collection,
@@ -34,7 +35,7 @@ import styles from './ProfilePage.module.scss';
 const ProfilePage: NextPage = () => {
   const { user } = GetUser();
   const { response } = useFetch('posts', undefined, user.id);
-  const productData = { ...(response as unknown as ProductProps) };
+  const toast = useToast();
 
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const [contentSwitch, setContentSwitch] = useState(false);
@@ -75,11 +76,21 @@ const ProfilePage: NextPage = () => {
       available: false,
       timesRented: testTimesRented,
     });
-
-    // const test = productData.timesRented.toString();
-    // const testfads = parseInt(test);
-    // console.log(test.timesRented);
     deleteDoc(doc(db, `requests/${request.id}`));
+    toast({
+      title: 'Förfrågan godkänd.',
+      duration: 2000,
+      status: 'success',
+    });
+  };
+
+  const handleDeclineRequest = (request: RequestProps) => {
+    deleteDoc(doc(db, `requests/${request.id}`));
+    toast({
+      title: 'Förfrågan nekad.',
+      duration: 2000,
+      status: 'info',
+    });
   };
 
   useEffect(() => {
@@ -102,7 +113,6 @@ const ProfilePage: NextPage = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.id]);
-  const userData = { ...(requests as unknown as RequestProps) };
 
   const requestFilter = (requests: RequestProps) =>
     requests.productData.available === true;
@@ -193,7 +203,7 @@ const ProfilePage: NextPage = () => {
                   image={request.productData.img}
                   key={request.id}
                   accept={() => handleAcceptRequest(request)}
-                  decline={() => console.log('decline')}
+                  decline={() => handleDeclineRequest(request)}
                 />
               ))}
           </div>

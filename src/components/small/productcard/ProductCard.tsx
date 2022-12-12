@@ -2,12 +2,9 @@ import Image from 'next/image';
 import styles from './ProductCard.module.scss';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import image from 'next/image';
-import { title } from 'process';
 import { useState } from 'react';
-import Link from 'next/link';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { padding } from '@mui/system';
+import { GetUser } from '../../../utils/Hooks';
 
 export interface CardProps {
   image: string;
@@ -22,11 +19,11 @@ export const ProductCard = ({
   image,
   price,
   title,
-  id,
   available,
   onClick,
 }: CardProps) => {
   const [isFavClicked, setFavClicked] = useState(false);
+  const { user } = GetUser();
 
   const handleFav = () => {
     setFavClicked((prevState) => !prevState);
@@ -42,10 +39,11 @@ export const ProductCard = ({
             className={available ? styles.available : styles.notAvailable}
           />
         </p>
-
-        <div onClick={handleFav} className={styles.favIcon}>
-          {isFavClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-        </div>
+        {user.id ? (
+          <div onClick={handleFav} className={styles.favIcon}>
+            {isFavClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          </div>
+        ) : null}
       </div>
       <div className={styles.cardPicture} onClick={onClick}>
         <Image src={image} alt="image" layout="fill" objectFit="cover" />
