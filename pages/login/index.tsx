@@ -65,7 +65,7 @@ const Login: NextPage = () => {
             type="password"
             id="password"
           />
-          <PrimaryButton text="Logga in" submit={true} />
+          <PrimaryButton text="Logga in" submit />
           <div style={{ color: 'white' }}>{error}</div>
           <p className={styles.toRegister} id="toRegister">
             <Link href="/register"> Skapa konto </Link>

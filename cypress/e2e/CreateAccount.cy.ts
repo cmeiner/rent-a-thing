@@ -9,11 +9,16 @@ describe('Create account', () => {
       .get('#displayName')
       .type('meiner')
       .get('#email')
-      .type(`test${Math.floor(Math.random() * 10)}@test.com`)
+      .type(`test${Math.floor(Math.random() * 2000)}@test.com`)
       .get('#password')
       .type('123123')
+      .get('#profileImage')
+      .selectFile('cypress/fixtures/cat.jpg')
+      .wait(1000)
       .get('#registerForm')
-      .submit();
+      .submit()
+      .get('#logOutButton')
+      .click();
   });
 });
 
