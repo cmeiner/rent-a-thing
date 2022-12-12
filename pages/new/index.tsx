@@ -137,7 +137,7 @@ const NewProduct: NextPage = () => {
             type="file"
             id="productImage"
           />
-          <PrimaryButton submit={true} text="Lägg till" disabled={!data.img} />
+          <PrimaryButton submit text="Lägg till" disabled={!data.img} />
           <ToastContainer />
         </form>
       </div>

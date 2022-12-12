@@ -159,7 +159,6 @@ const ProfilePage: NextPage = () => {
       </div>
       <div className={styles.buttonContainer}>
         <PrimaryButton
-          submit={false}
           text="Logga ut"
           onClick={handleSignOut}
           id="logOutButton"

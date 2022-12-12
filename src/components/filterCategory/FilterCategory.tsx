@@ -6,11 +6,7 @@ interface FilterProps {
   id?: string;
 }
 
-export const FilterCategory = ({
-  onChange,
-  small = false,
-  id,
-}: FilterProps) => {
+export const FilterCategory = ({ onChange, small, id }: FilterProps) => {
   const categories = [
     {
       label: 'Välj kategori',

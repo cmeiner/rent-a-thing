@@ -115,7 +115,7 @@ const Register: NextPage = () => {
             id="profileImage"
           />
           <PrimaryButton
-            submit={true}
+            submit
             text="Skapa konto"
             disabled={!details.photoURL}
           />
