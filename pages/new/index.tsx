@@ -73,15 +73,6 @@ const NewProduct: NextPage = () => {
     setDisabled(!disabled);
   };
 
-  // use for button state later
-  // const allValues = {
-  //   title: product.title,
-  //   desc: product.desc,
-  //   price: product.price,
-  //   img: product.img,
-  //   category: product.category,
-  // };
-
   return (
     <div>
       <Header />

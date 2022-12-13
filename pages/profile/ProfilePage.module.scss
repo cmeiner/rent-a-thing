@@ -63,7 +63,7 @@
     align-items: center;
     justify-content: flex-start;
     margin-left: 1rem;
-    width: 335px;
+
     margin-bottom: 0.5rem;
 
     .text {
@@ -84,6 +84,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+
+    margin-bottom: 1rem;
   }
 
   @media (min-width: 1500px) {
@@ -115,4 +117,32 @@
 
 .descriptionButton {
   text-align: center;
+}
+
+.descriptionModal {
+  background-color: Colors.$primaryBlack;
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+    padding: 2rem;
+    color: Colors.$primaryWhite;
+    z-index: 50;
+    @media screen and (max-width: 500px) {
+      padding: 1rem;
+    }
+    h1 {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .productContainer {
+    .productGrid {
+      grid-template-columns: 1fr;
+    }
+  }
 }
