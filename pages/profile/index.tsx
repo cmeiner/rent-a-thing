@@ -1,4 +1,6 @@
-import { Modal, ModalContent, ModalOverlay, useToast } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { getAuth, signOut } from 'firebase/auth';
 import {
   collection,
@@ -13,16 +15,14 @@ import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
-import { Header } from '../../src/components/big/header/Header';
 import { EditProfileModal } from '../../src/components/big/editProfileModal/EditProfileModal';
+import { Header } from '../../src/components/big/header/Header';
 import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
-import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
-import { TextField } from '../../src/components/small/textfield/TextField';
 import { db } from '../../src/firebase/Firebase';
 import {
   GetUser,
@@ -31,8 +31,6 @@ import {
   useFetch,
 } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 const ProfilePage: NextPage = () => {
   const { user } = GetUser();

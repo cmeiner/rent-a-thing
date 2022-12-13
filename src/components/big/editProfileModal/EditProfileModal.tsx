@@ -2,17 +2,16 @@ import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import Image from 'next/image';
 import { FC, FormEvent, useContext, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import { AuthContext } from '../../../auth/AuthContext';
 import { db, storage } from '../../../firebase/Firebase';
 import { GetUser } from '../../../utils/Hooks';
 import { FilesInput } from '../../small/filesInput/FilesInput';
-import { InputField } from '../../small/inputfield/InputField';
 import { PrimaryButton } from '../../small/primarybtn/PrimaryBtn';
 import { TextField } from '../../small/textfield/TextField';
 import { Slider } from '../sliderbtn/Slider';
-import Image from 'next/image';
 import styles from './EditProfileModal.module.scss';
 
 interface Props {
