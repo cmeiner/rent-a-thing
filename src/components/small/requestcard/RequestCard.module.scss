@@ -54,8 +54,81 @@ $small: 450px;
     cursor: pointer;
   }
 
+  @media screen and (max-width: 870px) {
+    width: 250px;
+    height: 300px;
+    padding: 5px;
+
+    .requestPrice {
+      font-weight: 400;
+      margin: 0;
+      font-size: Fonts.$h3;
+      align-self: flex-start;
+    }
+
+    .requestTitle {
+      font-weight: 400;
+      font-size: Fonts.$h3;
+      margin: 0;
+    }
+
+    .requestAction {
+      gap: 1rem;
+      width: fit-content;
+      justify-content: center;
+      width: 100%;
+      height: 50%;
+    }
+
+    .checkIcon {
+      font-size: 40px;
+    }
+
+    .cancelIcon {
+      font-size: 40px;
+      color: Colors.$primaryBlack;
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 180px;
+    height: 200px;
+    padding: 10px;
+
+    .requestPrice {
+      font-weight: 400;
+      margin: 0;
+      font-size: Fonts.$p;
+      align-self: flex-start;
+    }
+
+    .requestTitle {
+      font-weight: 400;
+      font-size: Fonts.$p;
+      margin: 0;
+    }
+
+    .requestAction {
+      gap: 1rem;
+      width: fit-content;
+      justify-content: center;
+      width: 100%;
+      height: 50%;
+      margin-top: 0.5rem;
+    }
+
+    .checkIcon {
+      font-size: 40px;
+    }
+
+    .cancelIcon {
+      font-size: 40px;
+      color: Colors.$primaryBlack;
+    }
+  }
+
   @media screen and (max-width: $small) {
-    width: 330px;
+    width: 300px;
     height: 65px;
     font-size: Fonts.$p;
     padding: 0;

@@ -63,7 +63,7 @@
     align-items: center;
     justify-content: flex-start;
     margin-left: 1rem;
-    width: 335px;
+
     margin-bottom: 0.5rem;
 
     .text {
@@ -84,6 +84,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+
+    margin-bottom: 1rem;
   }
 
   @media (min-width: 1500px) {
@@ -133,6 +135,14 @@
     }
     h1 {
       margin: 0;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .productContainer {
+    .productGrid {
+      grid-template-columns: 1fr;
     }
   }
 }
