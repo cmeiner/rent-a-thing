@@ -1,4 +1,4 @@
-import { useToast } from '@chakra-ui/react';
+import { Modal, ModalContent, ModalOverlay, useToast } from '@chakra-ui/react';
 import { getAuth, signOut } from 'firebase/auth';
 import {
   collection,
@@ -41,6 +41,7 @@ const ProfilePage: NextPage = () => {
   const [contentSwitch, setContentSwitch] = useState(false);
   const [requests, setRequests] = useState<any[]>([]);
   const [visible, setVisible] = useState(false);
+  const [descModal, setDescModal] = useState(user.description ? false : true);
   const [description, setDescription] = useState(user.description);
   console.log(user.description);
 
@@ -119,6 +120,7 @@ const ProfilePage: NextPage = () => {
 
   const closeModal = () => {
     setVisible(false);
+    setDescModal(false);
   };
 
   return (
@@ -149,17 +151,35 @@ const ProfilePage: NextPage = () => {
         </h1>
         {!user.description ? (
           <div>
-            <form onSubmit={HandleSubmit} id="descriptionForm">
-              <TextField
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Beskrivning"
-                id="description"
-              />{' '}
-              <div className={styles.descriptionButton}>
-                <PrimaryButton text="Skicka" submit />
-              </div>
-            </form>
+            <Modal
+              isOpen={descModal}
+              onClose={closeModal}
+              isCentered
+              size="fit"
+            >
+              <ModalOverlay backdropFilter="blur(20px)" filter="grayscale(1)" />
+              <ModalContent className={styles.descriptionModal} w="fit-content">
+                <form
+                  className={styles.form}
+                  onSubmit={HandleSubmit}
+                  id="descriptionForm"
+                >
+                  <h1>Ange en kort beskrivning av dig själv</h1>
+                  <p>{'(Detta kommer att visas i din profil)'}</p>
+                  <TextField
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Beskrivning"
+                    id="description"
+                  />{' '}
+                  <PrimaryButton
+                    disabled={!description}
+                    text="Uppdatera"
+                    submit
+                  />
+                </form>
+              </ModalContent>
+            </Modal>
           </div>
         ) : (
           <div className={styles.descriptionContainer}>
