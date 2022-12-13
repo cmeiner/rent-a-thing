@@ -3,9 +3,14 @@ import styles from './FilterCategory.module.scss';
 interface FilterProps {
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   small?: boolean;
+  id?: string;
 }
 
-export const FilterCategory = ({ onChange, small = false }: FilterProps) => {
+export const FilterCategory = ({
+  onChange,
+  small = false,
+  id,
+}: FilterProps) => {
   const categories = [
     {
       label: 'Välj kategori',
@@ -43,6 +48,7 @@ export const FilterCategory = ({ onChange, small = false }: FilterProps) => {
         required
         className={small ? styles.small : styles.large}
         onChange={onChange}
+        id={id}
       >
         {categories.map((cat, index) => (
           <option key={index} value={cat.value}>

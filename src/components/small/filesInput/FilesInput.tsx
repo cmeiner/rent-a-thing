@@ -5,9 +5,10 @@ interface InputProps {
   type: string;
   onChange?: (e: any) => void;
   disabled?: boolean;
+  id?: string;
 }
 
-export const FilesInput = ({ type, onChange, disabled }: InputProps) => {
+export const FilesInput = ({ type, onChange, disabled, id }: InputProps) => {
   return (
     <div className={styles.filesInputContainer}>
       <label htmlFor="files" className={styles.label} placeholder="hej">
@@ -18,7 +19,7 @@ export const FilesInput = ({ type, onChange, disabled }: InputProps) => {
           type={type}
           required
           className={styles.filesInput}
-          id="files"
+          id={id}
         />
       </label>
       <FileUploadIcon />

@@ -119,6 +119,7 @@ const Register: NextPage = () => {
           <FilesInput
             onChange={(e) => setImageUpload(e.currentTarget.files[0])}
             type="file"
+            id="profileImage"
           />
           <PrimaryButton
             submit
