@@ -42,7 +42,6 @@ const ProfilePage: NextPage = () => {
   const [requests, setRequests] = useState<any[]>([]);
   const [visible, setVisible] = useState(false);
   const [description, setDescription] = useState(user.description);
-  console.log(user.description);
 
   const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,7 +67,6 @@ const ProfilePage: NextPage = () => {
   };
 
   const handleAcceptRequest = (request: RequestProps) => {
-    console.log('p', request.productData.id);
     const testTimesRented = request.productData.timesRented + 1;
 
     const updatePostAvailable = doc(db, `posts/${request.productData.id}`);

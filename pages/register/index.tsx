@@ -43,7 +43,7 @@ const Register: NextPage = () => {
         setDetails({ ...details, photoURL: url });
       });
     });
-    console.log(details);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageUpload]);
 

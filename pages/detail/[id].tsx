@@ -52,8 +52,6 @@ const Details: NextPage = () => {
     });
   };
 
-  console.log(userData);
-
   const HandleOption = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value, 10);
     setDays(

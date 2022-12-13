@@ -34,7 +34,7 @@ const VerifyUser: NextPage = () => {
         setData({ ...data, photoURL: url });
       });
     });
-    console.log(data);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageUpload]);
 
