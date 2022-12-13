@@ -22,7 +22,7 @@ describe('AddMewProductTest', () => {
       .select(3)
       .get('#productImage')
       .selectFile('cypress/fixtures/cat.jpg')
-      .wait(2000)
+      .wait(5000)
       .get('#productForm')
       .submit()
       .get('#logOutButton')
