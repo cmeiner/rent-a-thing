@@ -87,11 +87,20 @@
   .productGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 
   @media (min-width: 1500px) {
     .productGrid {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .productContainer {
+    .productGrid {
+      grid-template-columns: 1fr;
     }
   }
 }

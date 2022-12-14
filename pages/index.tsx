@@ -92,7 +92,6 @@ const Home: NextPage = () => {
                       image={data.img}
                       available={data.available}
                       id={data.id}
-                    />
                   </div>
                 </Link>
               );

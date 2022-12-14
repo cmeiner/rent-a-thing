@@ -49,32 +49,33 @@ const Register: NextPage = () => {
 
   const signupUser = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, data.email, data.password).then(() => {
-      setDoc(doc(db, `users/${auth.currentUser?.uid}`), {
-        displayName: details.displayName,
-        photoURL: details.photoURL,
-        email: data.email,
-        description: '',
-      })
-        .then(() =>
-          updateProfile(auth.currentUser!, {
-            displayName: details.displayName,
-            photoURL: details.photoURL,
-          })
-        )
-        .then(() => {
-          setProfile(data);
-        })
-        .catch((error) => {
-          setError(t(error.code));
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(() => {
+        setDoc(doc(db, `users/${auth.currentUser?.uid}`), {
+          displayName: details.displayName,
+          photoURL: details.photoURL,
+          email: data.email,
+          description: '',
         });
-    });
-    toast({
-      title: 'Användare skapad.',
-      duration: 2000,
-      status: 'success',
-      onCloseComplete: () => router.push('/profile'),
-    });
+      })
+      .then(() =>
+        updateProfile(auth.currentUser!, {
+          displayName: details.displayName,
+          photoURL: details.photoURL,
+        })
+      )
+      .then(() => {
+        setProfile(data);
+        toast({
+          title: 'Användare skapad.',
+          duration: 2000,
+          status: 'success',
+          onCloseComplete: () => router.push('/profile'),
+        });
+      })
+      .catch((error) => {
+        setError(t(`${error.code}`));
+      });
   };
 
   return (
@@ -119,6 +120,7 @@ const Register: NextPage = () => {
           <FilesInput
             onChange={(e) => setImageUpload(e.currentTarget.files[0])}
             type="file"
+            id="profileImage"
           />
           <PrimaryButton
             submit
