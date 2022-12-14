@@ -5,12 +5,12 @@ import { useState } from 'react';
 import { Footer } from '../src/components/big/footer/Footer';
 import { Header } from '../src/components/big/header/Header';
 import { FilterCategory } from '../src/components/filterCategory/FilterCategory';
-import { AddButton } from '../src/components/small/addbtn/AddBtn';
 import { BannerText } from '../src/components/small/bannerText/BannerText';
 import { FilterAndText } from '../src/components/small/filterAndText/FilterAndText';
 import { ProductCard } from '../src/components/small/productcard/ProductCard';
 import { GetUser, ProductProps, useFetch } from '../src/utils/Hooks';
 import styles from './index.module.scss';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const Home: NextPage = () => {
   const [isShown, setIsShown] = useState(false);
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
         <div className={styles.navigationLink}>
           <Link href="/new">
             <div>
-              <AddButton large />
+              <AddCircleIcon className={styles.AddbtnLarge}></AddCircleIcon>
             </div>
           </Link>
         </div>
@@ -92,7 +92,8 @@ const Home: NextPage = () => {
                       image={data.img}
                       available={data.available}
                       id={data.id}
-                      location={data.location}/>
+                      location={data.location}
+                    />
                   </div>
                 </Link>
               );
