@@ -45,7 +45,6 @@ const ProfilePage: NextPage = () => {
   const [description, setDescription] = useState(user.description);
   console.log(user.description);
 
-  // only for dev
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth)
