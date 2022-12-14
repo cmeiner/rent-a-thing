@@ -9,7 +9,7 @@ import {
   getDocs,
   query,
   updateDoc,
-  where
+  where,
 } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -28,7 +28,7 @@ import {
   GetUser,
   ProductProps,
   RequestProps,
-  useFetch
+  useFetch,
 } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
@@ -36,14 +36,12 @@ const ProfilePage: NextPage = () => {
   const { user } = GetUser();
   const { response } = useFetch('posts', undefined, user.id);
   const toast = useToast();
-
+  const [updateReqFetch, setUpdateReqFetch] = useState(false);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const [contentSwitch, setContentSwitch] = useState(false);
   const [requests, setRequests] = useState<any[]>([]);
   const [visible, setVisible] = useState(false);
-
   const [description, setDescription] = useState(user.description);
-  console.log(user.description);
 
   const handleSignOut = () => {
     const auth = getAuth();
@@ -58,24 +56,26 @@ const ProfilePage: NextPage = () => {
   };
 
   const handleAcceptRequest = (request: RequestProps) => {
-    console.log('p', request.productData.id);
     const testTimesRented = request.productData.timesRented + 1;
 
     const updatePostAvailable = doc(db, `posts/${request.productData.id}`);
     updateDoc(updatePostAvailable, {
       available: false,
       timesRented: testTimesRented,
-    });
-    deleteDoc(doc(db, `requests/${request.id}`));
-    toast({
-      title: 'Förfrågan godkänd.',
-      duration: 2000,
-      status: 'success',
+    }).then(() => {
+      deleteDoc(doc(db, `requests/${request.id}`));
+      setUpdateReqFetch(!updateReqFetch);
+      toast({
+        title: 'Förfrågan godkänd.',
+        duration: 2000,
+        status: 'success',
+      });
     });
   };
 
   const handleDeclineRequest = (request: RequestProps) => {
     deleteDoc(doc(db, `requests/${request.id}`));
+    setUpdateReqFetch(!updateReqFetch);
     toast({
       title: 'Förfrågan nekad.',
       duration: 2000,
@@ -100,9 +100,7 @@ const ProfilePage: NextPage = () => {
         })
       );
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.id]);
+  }, [user.id, updateReqFetch, !updateReqFetch]);
 
   const requestFilter = (requests: RequestProps) =>
     requests.productData.available === true;
@@ -203,8 +201,6 @@ const ProfilePage: NextPage = () => {
                     title={post.title}
                     price={post.price}
                     image={post.img}
-                    id={post.id}
-                    location={post.location}
                   />
                 </Link>
               );
