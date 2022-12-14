@@ -1,227 +1,243 @@
 @use 'src/constants/Colors.scss';
 @use 'src/constants/Fonts.scss';
 
-.wallpaper {
-  width: 100%;
-  height: 100px;
-  background-color: Colors.$primaryRed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .title {
-    font-size: Fonts.$h1;
-    color: Colors.$primaryWhite;
-    margin: 0;
-  }
-}
-
-.profileInfo {
-  background: linear-gradient(
-    to bottom,
-    #a43b3b 0%,
-    #a43b3b 50%,
-    #333333 50%,
-    #333333 50%,
-    #333333 100%
-  );
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-
-  .title {
-    font-size: Fonts.$h1;
-    color: Colors.$primaryWhite;
-    margin: 0;
-  }
-
-  .imgContainer {
-    display: flex;
-    justify-content: center;
-
-    .imgContent {
-      display: flex;
-      position: relative;
-      border-radius: 100%;
-      overflow: hidden;
-
-      .iconContainer {
-        width: 100%;
-        height: 130%;
-        cursor: pointer;
-        transition: 0.2s;
-        position: absolute;
-        display: flex;
-        bottom: -2.5rem;
-        align-items: flex-end;
-        justify-content: center;
-
-        .icon {
-          color: Colors.$primaryWhite;
-          font-size: Fonts.$h1;
-        }
-        &:hover {
-          background: linear-gradient(
-            to bottom,
-            #a43b3b00 0%,
-            #a43b3b00 77%,
-            #1e1e1ece 50%,
-            #1c1c1cef 100%
-          );
-          animation: editSlide 0.15s ease-in-out forwards;
-        }
-      }
-    }
-    .img {
-      border-radius: 100%;
-    }
-  }
-}
-
-.navContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  .link {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-left: 1rem;
-
-    margin-bottom: 0.5rem;
-
-    .text {
-      color: Colors.$primaryWhite;
-      font-size: Fonts.$h3;
-      margin-right: 0.5rem;
-    }
-  }
-}
-
-.productContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2.5em;
-
-  .productGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-
-    margin-bottom: 1rem;
-  }
-
-  @media (min-width: 1500px) {
-    .productGrid {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  }
-}
-
-.buttonContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.noDesc {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  & > p {
-    color: Colors.$primaryWhite;
-    margin: 0;
-  }
-}
-
-.descriptionContainer {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid Colors.$primaryWhite;
-  gap: 1rem;
+.profileContainer {
+  min-height: 100vh;
   position: relative;
-  .userDescription {
-    color: Colors.$primaryWhite;
-    white-space: pre-line;
+  .wallpaper {
+    width: 100%;
+    height: 100px;
+    background-color: Colors.$primaryRed;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: Fonts.$p;
-    font-weight: 300;
-    margin: 1rem;
-  }
-}
 
-.descriptionButton {
-  text-align: center;
-}
-
-.descriptionModal {
-  background-color: Colors.$primaryBlack;
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 2rem;
-    padding: 2rem;
-    color: Colors.$primaryWhite;
-    z-index: 50;
-    @media screen and (max-width: 500px) {
-      padding: 1rem;
-    }
-    h1 {
+    .title {
+      font-size: Fonts.$h1;
+      color: Colors.$primaryWhite;
       margin: 0;
     }
   }
-}
 
-.profileFooter {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  background-color: Colors.$secondaryBlack;
-  width: 100%;
-  height: 100%;
+  .profileInfo {
+    background: linear-gradient(
+      to bottom,
+      #a43b3b 0%,
+      #a43b3b 50%,
+      #333333 50%,
+      #333333 50%,
+      #333333 100%
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 
-  & > .content {
-    cursor: pointer;
+    .title {
+      font-size: Fonts.$h1;
+      color: Colors.$primaryWhite;
+      margin: 0;
+    }
+
+    .imgContainer {
+      display: flex;
+      justify-content: center;
+
+      .imgContent {
+        display: flex;
+        position: relative;
+        border-radius: 100%;
+        overflow: hidden;
+
+        .iconContainer {
+          width: 100%;
+          height: 130%;
+          cursor: pointer;
+          transition: 0.2s;
+          position: absolute;
+          display: flex;
+          bottom: -2.5rem;
+          align-items: flex-end;
+          justify-content: center;
+
+          .icon {
+            color: Colors.$primaryWhite;
+            font-size: Fonts.$h1;
+          }
+          &:hover {
+            background: linear-gradient(
+              to bottom,
+              #a43b3b00 0%,
+              #a43b3b00 77%,
+              #1e1e1ece 50%,
+              #1c1c1cef 100%
+            );
+            animation: editSlide 0.15s ease-in-out forwards;
+          }
+        }
+      }
+      .img {
+        border-radius: 100%;
+      }
+    }
+  }
+
+  .navContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-left: 1rem;
+
+      margin-bottom: 0.5rem;
+
+      .text {
+        color: Colors.$primaryWhite;
+        font-size: Fonts.$h3;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .productContainer {
     display: flex;
     align-items: center;
-    gap: 0.2rem;
     justify-content: center;
-    & > .text {
-      color: Colors.$primaryWhite;
-    }
-    & > .icon {
-      color: Colors.$primaryWhite;
-    }
-  }
-}
+    margin-top: 2.5em;
 
-@media (max-width: 450px) {
-  .productContainer {
     .productGrid {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 6rem;
+    }
+
+    @media (min-width: 1500px) {
+      .productGrid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
     }
   }
-}
 
-@keyframes editSlide {
-  0% {
-    bottom: -3rem;
+  .noRequests {
+    display: flex;
+    width: 100%;
+    min-height: 12rem;
+    margin-bottom: 4rem;
+    color: Colors.$primaryWhite;
+    align-items: flex-start;
+    justify-content: center;
   }
 
-  100% {
+  .buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .noDesc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    & > p {
+      color: Colors.$primaryWhite;
+      margin: 0;
+    }
+  }
+
+  .descriptionContainer {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid Colors.$primaryWhite;
+    gap: 1rem;
+    position: relative;
+    .userDescription {
+      color: Colors.$primaryWhite;
+      white-space: pre-line;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: Fonts.$p;
+      font-weight: 300;
+      margin: 1rem;
+    }
+  }
+
+  .descriptionButton {
+    text-align: center;
+  }
+
+  .descriptionModal {
+    background-color: Colors.$primaryBlack;
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 2rem;
+      padding: 2rem;
+      color: Colors.$primaryWhite;
+      z-index: 50;
+      @media screen and (max-width: 500px) {
+        padding: 1rem;
+      }
+      h1 {
+        margin: 0;
+      }
+    }
+  }
+
+  .profileFooter {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: Colors.$secondaryBlack;
+    width: 100%;
+    height: 4rem;
+    position: absolute;
     bottom: 0;
+
+    & > .content {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      justify-content: center;
+      & > .text {
+        margin: 0;
+        color: Colors.$primaryWhite;
+      }
+      & > .icon {
+        color: Colors.$primaryWhite;
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .productContainer {
+      .productGrid {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  @keyframes editSlide {
+    0% {
+      bottom: -3rem;
+    }
+
+    100% {
+      bottom: 0;
+    }
   }
 }
