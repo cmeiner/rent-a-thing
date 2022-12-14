@@ -7,7 +7,7 @@ import {
   getDocs,
   query,
   updateDoc,
-  where,
+  where
 } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -28,7 +28,7 @@ import {
   GetUser,
   ProductProps,
   RequestProps,
-  useFetch,
+  useFetch
 } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
@@ -112,7 +112,7 @@ const ProfilePage: NextPage = () => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.id]);
+  }, [user.id, requests]);
 
   const requestFilter = (requests: RequestProps) =>
     requests.productData.available === true;

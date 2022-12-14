@@ -6,7 +6,7 @@ import {
   query,
   setDoc,
   updateDoc,
-  where,
+  where
 } from 'firebase/firestore';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../auth/AuthContext';
@@ -30,6 +30,7 @@ export interface UserProps {
   displayName: string;
   photoURL: string;
   description: string;
+  favorites?: string[];
 }
 
 export interface RequestProps {

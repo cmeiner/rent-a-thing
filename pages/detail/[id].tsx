@@ -14,7 +14,7 @@ import {
   ProductProps,
   useFetch,
   usePost,
-  UserProps,
+  UserProps
 } from '../../src/utils/Hooks';
 import styles from './DetailPage.module.scss';
 
@@ -46,6 +46,7 @@ const Details: NextPage = () => {
       title: 'Förfrågan skickad',
       duration: 2000,
       status: 'success',
+      onCloseComplete: router.back
     });
   };
 
