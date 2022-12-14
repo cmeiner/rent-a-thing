@@ -9,8 +9,8 @@ import { BannerText } from '../src/components/small/bannerText/BannerText';
 import { FilterAndText } from '../src/components/small/filterAndText/FilterAndText';
 import { ProductCard } from '../src/components/small/productcard/ProductCard';
 import { GetUser, ProductProps, useFetch } from '../src/utils/Hooks';
-import styles from './index.module.scss';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import styles from './index.module.scss';
 
 const Home: NextPage = () => {
   const [isShown, setIsShown] = useState(false);
