@@ -12,12 +12,12 @@ import { getStorage } from 'firebase/storage';
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBR6Me9ah43zhtoQqriLq-8r_RNzGyzLzw',
-  authDomain: 'rent-a-thing-3.firebaseapp.com',
-  projectId: 'rent-a-thing-3',
-  storageBucket: 'rent-a-thing-3.appspot.com',
-  messagingSenderId: '362117846980',
-  appId: '1:362117846980:web:47a4757cf1593459c7f691',
+  apiKey: 'AIzaSyAjAeh3P8fV2nZ1h56rYZdEWHibRhh1Qzc',
+  authDomain: 'rent-a-thing-2.firebaseapp.com',
+  projectId: 'rent-a-thing-2',
+  storageBucket: 'rent-a-thing-2.appspot.com',
+  messagingSenderId: '756905740631',
+  appId: '1:756905740631:web:3b98414b356abeb6a31612',
 };
 
 // Initialize Firebase

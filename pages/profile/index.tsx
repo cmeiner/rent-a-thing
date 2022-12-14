@@ -102,7 +102,7 @@ const ProfilePage: NextPage = () => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.id, requests]);
+  }, [user.id]);
 
   const requestFilter = (requests: RequestProps) =>
     requests.productData.available === true;
@@ -203,6 +203,8 @@ const ProfilePage: NextPage = () => {
                     title={post.title}
                     price={post.price}
                     image={post.img}
+                    id={post.id}
+                    location={post.location}
                   />
                 </Link>
               );

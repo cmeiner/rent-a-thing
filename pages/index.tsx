@@ -91,7 +91,8 @@ const Home: NextPage = () => {
                       price={data.price}
                       image={data.img}
                       available={data.available}
-                      id={data.id}/>
+                      id={data.id}
+                      location={data.location}/>
                   </div>
                 </Link>
               );

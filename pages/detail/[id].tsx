@@ -98,11 +98,15 @@ const Details: NextPage = () => {
                 {!switchState ? (
                   <>
                     <div className={styles.text}>
-                      <h3 className={styles.title}>Kategori</h3>
+                      <h3 className={styles.title}>Kategori:</h3>
                       <p>{productData.category}</p>
                     </div>
                     <div className={styles.text}>
-                      <h3 className={styles.title}>Produken är uthyrd</h3>
+                      <h3 className={styles.title}>Finns i stadsdel:</h3>
+                      <p>{productData.location}</p>
+                    </div>
+                    <div className={styles.text}>
+                      <h3 className={styles.title}>Uthyrd:</h3>
                       <h1 className={styles.data}>
                         {productData.timesRented} gånger
                       </h1>
@@ -110,7 +114,7 @@ const Details: NextPage = () => {
 
                     <div className={styles.link}>
                       <div className={styles.text}>
-                        <h3 className={styles.title}>Hyrs ut utav:</h3>
+                        <h3 className={styles.title}>Hyrs ut av:</h3>
                         <h1 className={styles.data}>
                           {userData.displayName}
                           <AccountCircleIcon className={styles.icon} />

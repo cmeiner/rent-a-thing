@@ -16,6 +16,7 @@ export interface CardProps {
   onClick?: () => void;
   available?: boolean;
   fav?: boolean;
+  location: string;
 }
 
 export const ProductCard = ({
@@ -25,6 +26,7 @@ export const ProductCard = ({
   available,
   onClick,
   id,
+  location
 }: CardProps) => {
   const [isFav, setIsFav] = useState(false);
   const { user } = GetUser();

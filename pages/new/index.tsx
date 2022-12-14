@@ -7,6 +7,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import { Header } from '../../src/components/big/header/Header';
 import { FilterCategory } from '../../src/components/filterCategory/FilterCategory';
+import { FilterLocation } from '../../src/components/filterLocation/FilterLocation';
 import { FilesInput } from '../../src/components/small/filesInput/FilesInput';
 import { InputField } from '../../src/components/small/inputfield/InputField';
 import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
@@ -30,6 +31,7 @@ const NewProduct: NextPage = () => {
     available: true,
     timesRented: 0,
     postedBy: user.id,
+    location: '',
   });
 
   useEffect(() => {
@@ -55,6 +57,7 @@ const NewProduct: NextPage = () => {
       available: true,
       timesRented: 0,
       postedBy: '',
+      location: 'Centrum',
     });
     toast({
       title: 'Annons tillagd.',
@@ -121,6 +124,10 @@ const NewProduct: NextPage = () => {
           <FilterCategory
             onChange={(e) => setData({ ...data, category: e.target.value })}
             id="productCategory"
+          />
+          <FilterLocation
+            onChange={(e) => setData({ ...data, location: e.target.value })}
+            id="productLocation"
           />
           <FilesInput
             onChange={(e) => setImageUpload(e.currentTarget.files[0])}

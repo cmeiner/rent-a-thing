@@ -22,6 +22,7 @@ export interface ProductProps {
   id?: string;
   postedBy: string;
   timesRented: number;
+  location: string;
 }
 
 export interface UserProps {
