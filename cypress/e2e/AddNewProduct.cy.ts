@@ -10,10 +10,12 @@
 //     cy.get('#productDescription').type('En väldigt fin skruvdragare');
 //     cy.get('#productPrice').type('20');
 //     cy.get('#productCategory').select(3);
+//     cy.get('#productLocation').select(2);
 //     cy.get('#productImage').selectFile('cypress/fixtures/cat.jpg').wait(5000);
 //     cy.get('#productForm').submit();
 //     cy.get('#logOutButton').click();
 //   });
 // });
 
-export {};
+export { };
+

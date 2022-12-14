@@ -1,0 +1,38 @@
+@use 'src/constants/Colors.scss';
+@use 'src/constants/Fonts.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.small {
+  background-color: Colors.$primaryWhite;
+  border-radius: 2px;
+  border: 1px solid Colors.$inputBorderGray;
+  width: 10rem;
+  max-width: 90vw;
+  height: 40px;
+  padding: 0 10px;
+  font-size: Fonts.$p;
+  box-shadow: 0 1px 2px 0 rgba(250, 250, 250, 0.603);
+}
+
+.large {
+  background-color: Colors.$primaryWhite;
+  border-radius: 2px;
+  border: 1px solid Colors.$inputBorderGray;
+  width: 580px;
+  max-width: 90vw;
+  height: 50px;
+  padding: 0 10px;
+  font-size: Fonts.$p;
+}
+
+@media screen and (min-width: 768px) {
+  .small {
+    width: 18rem;
+  }
+}

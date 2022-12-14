@@ -44,6 +44,7 @@ const ProfilePage: NextPage = () => {
                   title={postData.title}
                   price={postData.price}
                   image={postData.img}
+                  location={postData.location}
                 />
               </Link>
             );

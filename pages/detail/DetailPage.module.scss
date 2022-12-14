@@ -71,6 +71,7 @@
           .text {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 1rem;
 
             .title {
@@ -82,7 +83,7 @@
           }
 
           .desc {
-            min-height: 12.5rem;
+            min-height: 16.05rem;
           }
 
           .link {
