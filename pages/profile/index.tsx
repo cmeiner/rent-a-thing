@@ -9,7 +9,7 @@ import {
   getDocs,
   query,
   updateDoc,
-  where,
+  where
 } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -28,7 +28,7 @@ import {
   GetUser,
   ProductProps,
   RequestProps,
-  useFetch,
+  useFetch
 } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
@@ -201,6 +201,7 @@ const ProfilePage: NextPage = () => {
                     title={post.title}
                     price={post.price}
                     image={post.img}
+                    location={post.location}
                   />
                 </Link>
               );
