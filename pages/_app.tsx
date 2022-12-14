@@ -39,15 +39,20 @@ export default function App({ Component, pageProps }: AppProps) {
                 displayName: user.displayName,
                 description: userDocData.description,
               }); // ...
+
+              console.log('inloggad', user);
             } else {
               setCurrentUser({});
+              console.log('ej inloggad', user);
             }
           })
           .catch(() => {
             setCurrentUser({});
+            console.log('ej inloggad', user);
           });
       } else {
         setCurrentUser({});
+        console.log('ej inloggad', user);
       }
     });
   }, [profile]);
