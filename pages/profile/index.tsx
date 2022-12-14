@@ -110,7 +110,7 @@ const ProfilePage: NextPage = () => {
   };
 
   return (
-    <>
+    <div className={styles.profilePage}>
       <Header />
       <EditProfileModal
         close={closeModal}
@@ -219,7 +219,7 @@ const ProfilePage: NextPage = () => {
           <LogoutOutlinedIcon className={styles.icon} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

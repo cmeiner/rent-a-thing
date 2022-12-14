@@ -16,6 +16,12 @@
   }
 }
 
+.profilePage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .profileInfo {
   background: linear-gradient(
     to bottom,
@@ -186,12 +192,12 @@
 }
 
 .profileFooter {
+  margin-top: auto;
   align-items: center;
   display: flex;
   justify-content: center;
   background-color: Colors.$secondaryBlack;
   width: 100%;
-  height: 100%;
 
   & > .content {
     cursor: pointer;
