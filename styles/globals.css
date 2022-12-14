@@ -49,6 +49,9 @@ a {
 #chakra-toast-manager-bottom {
   padding: 0;
 }
+.css-1gnpwrf {
+  background-color: #333 !important;
+}
 
 /* @media (prefers-color-scheme: dark) {
   html {
