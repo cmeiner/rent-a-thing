@@ -53,7 +53,7 @@ const Home: NextPage = () => {
         <div className={styles.navigationLink}>
           <Link href="/new">
             <div>
-              <AddCircleIcon className={styles.AddbtnLarge}></AddCircleIcon>
+              <AddCircleIcon className={styles.AddbtnLarge} />
             </div>
           </Link>
         </div>
