@@ -64,6 +64,7 @@ export const updatePost = async (id: string, data: {}) => {
 
 export const usePost = async (api: string, data: any) => {
   await setDoc(doc(collection(db, api)), data);
+  console.log(data, 'added to the database');
 };
 
 export const useFetch = (api: string, id?: string, userId?: string) => {
