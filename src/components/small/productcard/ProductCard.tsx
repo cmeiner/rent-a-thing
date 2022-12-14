@@ -1,10 +1,12 @@
-import Image from 'next/image';
-import styles from './ProductCard.module.scss';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState } from 'react';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import Image from 'next/image';
+import { useState } from 'react';
+import { db } from '../../../firebase/Firebase';
 import { GetUser } from '../../../utils/Hooks';
+import styles from './ProductCard.module.scss';
 
 export interface CardProps {
   image: string;
@@ -13,6 +15,7 @@ export interface CardProps {
   id?: string;
   onClick?: () => void;
   available?: boolean;
+  fav?: boolean;
 }
 
 export const ProductCard = ({
@@ -21,27 +24,35 @@ export const ProductCard = ({
   title,
   available,
   onClick,
+  id,
 }: CardProps) => {
-  const [isFavClicked, setFavClicked] = useState(false);
+  const [isFav, setIsFav] = useState(false);
   const { user } = GetUser();
 
   const handleFav = () => {
-    setFavClicked((prevState) => !prevState);
+    setIsFav((prevState) => !prevState);
+    const favorite = doc(db, `users/${user.id}`);
+    isFav
+      ? updateDoc(favorite, {
+          favorites: arrayRemove(id),
+        })
+      : updateDoc(favorite, {
+          favorites: arrayUnion(id),
+        });
   };
 
   return (
     <div className={styles.cardContainer}>
       <div className={styles.rentContainer}>
-        <p>
-          {available ? 'Tillgänglig' : 'Uthyrd'}{' '}
+        <div className={styles.availableContainer}>
+          {available ? 'Tillgänglig ' : 'Uthyrd '}
           <FiberManualRecordIcon
-            viewBox="0 0 30 10"
             className={available ? styles.available : styles.notAvailable}
           />
-        </p>
+        </div>
         {user.id ? (
           <div onClick={handleFav} className={styles.favIcon}>
-            {isFavClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </div>
         ) : null}
       </div>

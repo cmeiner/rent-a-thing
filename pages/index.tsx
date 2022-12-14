@@ -13,10 +13,11 @@ import { GetUser, ProductProps, useFetch } from '../src/utils/Hooks';
 import styles from './index.module.scss';
 
 const Home: NextPage = () => {
-  const { response } = useFetch('posts');
   const [isShown, setIsShown] = useState(false);
   const [category, setCategory] = useState<string | undefined>();
   const [isFree, setIsFree] = useState(false);
+  const { response } = useFetch('posts');
+  const { user } = GetUser();
 
   const handleClick = () => {
     setIsShown((prevState) => !prevState);
@@ -28,8 +29,6 @@ const Home: NextPage = () => {
 
   const categoryFilter = (post: ProductProps) =>
     category === undefined || post.category === category;
-
-  const { user } = GetUser();
 
   const handleFreeOfCharge = () => {
     if (!isFree) {
@@ -59,7 +58,6 @@ const Home: NextPage = () => {
           </Link>
         </div>
       ) : null}
-
       <div className={styles.filterNav}>
         <div className={styles.flexContainer}>
           <div className={styles.filterAndTextContainer}>
@@ -93,7 +91,7 @@ const Home: NextPage = () => {
                       price={data.price}
                       image={data.img}
                       available={data.available}
-                    />
+                      id={data.id}/>
                   </div>
                 </Link>
               );

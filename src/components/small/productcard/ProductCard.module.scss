@@ -62,10 +62,11 @@
   @media screen and (max-width: 800px) {
     width: 250px;
     height: 300px;
-    padding: 5px;
+    padding: .8rem;
 
     .rentContainer {
       height: 2rem;
+      margin-bottom: .5rem;
     }
 
     p {
@@ -97,6 +98,9 @@
     p {
       margin: 0;
     }
+    .rentContainer {
+      margin-bottom: .2rem;
+    }
     .favIcon {
       padding-top: 0px;
       padding-bottom: 0px;
@@ -115,6 +119,13 @@
 .rentContainer {
   display: flex;
   align-items: center;
-  width: 100%;
   justify-content: space-between;
+  .availableContainer {
+    display: flex;
+    gap: .3rem;
+  }
+}
+
+.test {
+  user-select: none;
 }
