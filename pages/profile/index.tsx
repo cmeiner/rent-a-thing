@@ -1,4 +1,6 @@
-import { Modal, ModalContent, ModalOverlay, useToast } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { getAuth, signOut } from 'firebase/auth';
 import {
   collection,
@@ -13,16 +15,14 @@ import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
+import { EditProfileModal } from '../../src/components/big/editProfileModal/EditProfileModal';
 import { Header } from '../../src/components/big/header/Header';
-import { ImageModal } from '../../src/components/big/imagemodal/ImageModal';
 import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
-import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
-import { TextField } from '../../src/components/small/textfield/TextField';
 import { db } from '../../src/firebase/Firebase';
 import {
   GetUser,
@@ -41,21 +41,10 @@ const ProfilePage: NextPage = () => {
   const [contentSwitch, setContentSwitch] = useState(false);
   const [requests, setRequests] = useState<any[]>([]);
   const [visible, setVisible] = useState(false);
-  const [descModal, setDescModal] = useState(user.description ? false : true);
+
   const [description, setDescription] = useState(user.description);
   console.log(user.description);
 
-  const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const updateUserDescription = doc(db, `users/${user.id}`);
-    updateDoc(updateUserDescription, {
-      description: description,
-    });
-    setDescription('');
-    setCurrentUser({ ...currentUser, description });
-  };
-
-  // only for dev
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth)
@@ -120,79 +109,54 @@ const ProfilePage: NextPage = () => {
 
   const closeModal = () => {
     setVisible(false);
-    setDescModal(false);
   };
 
   return (
     <>
       <Header />
-      <ImageModal close={closeModal} visible={visible} />
+      <EditProfileModal
+        close={closeModal}
+        visible={visible}
+        onChange={(e) => setDescription(e.target.value)}
+        value={description}
+      />
 
-      <div className={styles.wallpaper}>
-        <h1 className={styles.title}>Profil</h1>
-      </div>
+      <div className={styles.wallpaper} />
       <div className={styles.profileInfo}>
         <div className={styles.imgContainer}>
           {user.photoURL ? (
-            <Image
-              className={styles.img}
-              alt="profile-picture"
-              src={user.photoURL}
-              width={160}
-              height={160}
-              onClick={() => {
-                setVisible((prevState) => !prevState);
-              }}
-            />
+            <div className={styles.imgContent}>
+              <Image
+                className={styles.img}
+                alt="profile-picture"
+                src={user.photoURL}
+                width={160}
+                height={160}
+              />
+              <div
+                onClick={() => {
+                  setVisible((prevState) => !prevState);
+                }}
+                className={styles.iconContainer}
+              >
+                <div className={styles.icon}>
+                  <ModeEditOutlineOutlinedIcon />
+                </div>
+              </div>
+            </div>
           ) : null}
         </div>
-        <h1 className={styles.title}>
-          {user.displayName ? user.displayName : user.email}
-        </h1>
+        <h1 className={styles.title}>{user.displayName}</h1>
         {!user.description ? (
-          <div>
-            <Modal
-              isOpen={descModal}
-              onClose={closeModal}
-              isCentered
-              size="fit"
-            >
-              <ModalOverlay backdropFilter="blur(20px)" filter="grayscale(1)" />
-              <ModalContent className={styles.descriptionModal} w="fit-content">
-                <form
-                  className={styles.form}
-                  onSubmit={HandleSubmit}
-                  id="descriptionForm"
-                >
-                  <h1>Ange en kort beskrivning av dig själv</h1>
-                  <p>{'(Detta kommer att visas i din profil)'}</p>
-                  <TextField
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Beskrivning"
-                    id="description"
-                  />{' '}
-                  <PrimaryButton
-                    disabled={!description}
-                    text="Uppdatera"
-                    submit
-                  />
-                </form>
-              </ModalContent>
-            </Modal>
+          <div className={styles.noDesc}>
+            <p>Beskrivning saknas</p>
+            <p>Tryck på din profilbild för att uppdatera din profil</p>
           </div>
         ) : (
           <div className={styles.descriptionContainer}>
-            <pre className={styles.userDescription}>{user.description}</pre>
+            <pre className={styles.userDescription}>{user.description} </pre>
           </div>
         )}
-      </div>
-      <div className={styles.buttonContainer}>
-        <PrimaryButton
-          text="Logga ut"
-          onClick={handleSignOut}
-          id="logOutButton"
-        />
       </div>
       <div className={styles.navContainer}>
         <Link href="/new">
@@ -246,6 +210,16 @@ const ProfilePage: NextPage = () => {
           </div>
         </div>
       )}
+      <div className={styles.profileFooter}>
+        <div
+          className={styles.content}
+          id="logOutButton"
+          onClick={handleSignOut}
+        >
+          <h2 className={styles.text}>Logga ut</h2>
+          <LogoutOutlinedIcon className={styles.icon} />
+        </div>
+      </div>
     </>
   );
 };

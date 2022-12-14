@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { NextPage } from 'next';
@@ -13,7 +14,6 @@ import { TextField } from '../../src/components/small/textfield/TextField';
 import { storage } from '../../src/firebase/Firebase';
 import { GetUser, usePost } from '../../src/utils/Hooks';
 import styles from './NewProductPage.module.scss';
-import { useToast } from '@chakra-ui/react';
 
 const NewProduct: NextPage = () => {
   const [disabled, setDisabled] = useState(false);
