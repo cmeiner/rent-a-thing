@@ -16,7 +16,7 @@ import {
   ProductProps,
   useFetch,
   usePost,
-  UserProps
+  UserProps,
 } from '../../src/utils/Hooks';
 import styles from './DetailPage.module.scss';
 
@@ -49,7 +49,7 @@ const Details: NextPage = () => {
       title: 'Förfrågan skickad',
       duration: 2000,
       status: 'success',
-      onCloseComplete: router.back
+      onCloseComplete: router.back,
     });
   };
 
@@ -149,7 +149,14 @@ const Details: NextPage = () => {
                             </div>
                             <form onSubmit={HandleSubmit}>
                               <FilterDay onChange={HandleOption} />
-                              <PrimaryButton text="Rent-this-thing" submit />
+                              {productData.postedBy !== user.id ? (
+                                <PrimaryButton text="Rent-this-thing" submit />
+                              ) : (
+                                <PrimaryButton
+                                  text="Du kan inte hyra din egen annons"
+                                  disabled
+                                />
+                              )}
                             </form>
                           </>
                         ) : (
