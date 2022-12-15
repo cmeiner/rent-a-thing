@@ -3,7 +3,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Image from 'next/image';
 import styles from './RequestCard.module.scss';
 
-export interface RequestCard {
+export interface CardProps {
   image: string;
   renter: string;
   item: string;
@@ -17,18 +17,20 @@ export const RequestCard = ({
   item,
   decline,
   accept,
-}: RequestCard) => (
-  <div className={styles.requestContainer}>
-    <div className={styles.requestDescription}>
-      <h2 className={styles.requestPrice}>{renter} vill hyra:</h2>
-      <h2 className={styles.requestTitle}>{item}</h2>
+}: CardProps) => {
+  return (
+    <div className={styles.cardContainer}>
+      <div className={styles.rentContainer}>{renter} vill hyra:</div>
+      <div className={styles.cardPicture}>
+        <Image src={image} alt="image" layout="fill" objectFit="cover" />
+      </div>
+      <div className={styles.statusContainer}>
+        <h2>{item}</h2>
+      </div>
+      <div className={styles.requestAction}>
+        <CheckCircleIcon onClick={accept} className={styles.checkIcon} />
+        <CancelIcon onClick={decline} className={styles.cancelIcon} />
+      </div>
     </div>
-    <div className={styles.requestPicture}>
-      <Image src={image} alt="image" layout="fill" objectFit="cover" />
-    </div>
-    <div className={styles.requestAction}>
-      <CheckCircleIcon onClick={accept} className={styles.checkIcon} />
-      <CancelIcon onClick={decline} className={styles.cancelIcon} />
-    </div>
-  </div>
-);
+  );
+};

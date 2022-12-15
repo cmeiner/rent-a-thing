@@ -9,7 +9,7 @@ import {
   getDocs,
   query,
   updateDoc,
-  where,
+  where
 } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -23,13 +23,12 @@ import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
-import { TestCard } from '../../src/components/small/testcard/TestCard';
 import { db } from '../../src/firebase/Firebase';
 import {
   GetUser,
   ProductProps,
   RequestProps,
-  useFetch,
+  useFetch
 } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
@@ -179,7 +178,7 @@ const ProfilePage: NextPage = () => {
           {requests.length > 0 ? (
             <div className={styles.productGrid}>
               {requests.filter(requestFilter).map((request: RequestProps) => (
-                <TestCard
+                <RequestCard
                   item={request.productData.title}
                   renter={request.requestedBy.displayName}
                   image={request.productData.img}
