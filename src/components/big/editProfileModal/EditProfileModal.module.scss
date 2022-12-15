@@ -30,6 +30,15 @@
         overflow: hidden;
         display: flex;
       }
+
+      .skeleton {
+        width: 160px;
+        height: 160px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        background: #1e1e1e;
+      }
     }
     h1 {
       margin: 0;

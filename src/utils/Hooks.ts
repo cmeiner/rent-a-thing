@@ -6,7 +6,7 @@ import {
   query,
   setDoc,
   updateDoc,
-  where
+  where,
 } from 'firebase/firestore';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../auth/AuthContext';
@@ -71,6 +71,7 @@ export const usePost = async (api: string, data: any) => {
 
 export const useFetch = (api: string, id?: string, userId?: string) => {
   const [response, setResponse] = useState<[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!userId) {
@@ -81,12 +82,14 @@ export const useFetch = (api: string, id?: string, userId?: string) => {
               return { ...item.data(), id: item.id };
             }) as any
           );
+          setIsLoading(false);
         });
       } else {
         const postById = doc(db, api, id);
         getDoc(postById).then((item) => {
           setResponse({ ...item.data(), id: item.id } as any);
         });
+        setIsLoading(false);
       }
     } else {
       const q = query(collection(db, 'posts'), where('postedBy', '==', userId));
@@ -97,11 +100,12 @@ export const useFetch = (api: string, id?: string, userId?: string) => {
             return { ...item.data(), id: item.id };
           }) as any
         );
+        setIsLoading(false);
       });
     }
   }, [api, id, userId]);
 
-  return { response };
+  return { response, isLoading };
 };
 
 // spreads user-state (use user.id to check if user is logged in)

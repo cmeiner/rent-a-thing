@@ -1,3 +1,4 @@
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -8,15 +9,15 @@ import { FilterCategory } from '../src/components/filterCategory/FilterCategory'
 import { BannerText } from '../src/components/small/bannerText/BannerText';
 import { FilterAndText } from '../src/components/small/filterAndText/FilterAndText';
 import { ProductCard } from '../src/components/small/productcard/ProductCard';
+import { Skeleton } from '../src/components/small/productcard/skeleton/Skeleton';
 import { GetUser, ProductProps, useFetch } from '../src/utils/Hooks';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import styles from './index.module.scss';
 
 const Home: NextPage = () => {
   const [isShown, setIsShown] = useState(false);
   const [category, setCategory] = useState<string | undefined>();
   const [isFree, setIsFree] = useState(false);
-  const { response } = useFetch('posts');
+  const { response, isLoading } = useFetch('posts');
   const { user } = GetUser();
 
   const handleClick = () => {
@@ -49,6 +50,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <BannerText />
+
       {user.id ? (
         <div className={styles.navigationLink}>
           <Link href="/new">
@@ -79,25 +81,37 @@ const Home: NextPage = () => {
       </div>
       <div className={styles.productContainer}>
         <div className={styles.productGrid}>
-          {response
-            .filter(freeFilter)
-            .filter(categoryFilter)
-            .map((data: ProductProps, key) => {
-              return (
-                <Link href={'/detail/' + data.id} key={key}>
-                  <div>
-                    <ProductCard
-                      title={data.title}
-                      price={data.price}
-                      image={data.img}
-                      available={data.available}
-                      id={data.id}
-                      location={data.location}
-                    />
-                  </div>
-                </Link>
-              );
-            })}
+          {isLoading ? (
+            <>
+              {Array(6)
+                .fill(null)
+                .map((key, index) => (
+                  <Skeleton key={index} />
+                ))}
+            </>
+          ) : (
+            <>
+              {response
+                .filter(freeFilter)
+                .filter(categoryFilter)
+                .map((data: ProductProps, key) => {
+                  return (
+                    <Link href={'/detail/' + data.id} key={key}>
+                      <div>
+                        <ProductCard
+                          title={data.title}
+                          price={data.price}
+                          image={data.img}
+                          available={data.available}
+                          id={data.id}
+                          location={data.location}
+                        />
+                      </div>
+                    </Link>
+                  );
+                })}
+            </>
+          )}
         </div>
       </div>
       <Footer />

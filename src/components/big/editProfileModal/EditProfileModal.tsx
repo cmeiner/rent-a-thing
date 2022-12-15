@@ -1,4 +1,4 @@
-import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
+import { Modal, ModalContent, ModalOverlay, Spinner } from '@chakra-ui/react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -33,13 +33,16 @@ export const EditProfileModal: FC<Props> = ({
   const [description, setDescription] = useState('');
   const [imageUpload, setImageUpload] = useState();
   const [photoURL, setPhotoURL] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `${v4()}`);
+    setIsLoading(true);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setPhotoURL(url);
+        setIsLoading(false);
       });
     });
   }, [imageUpload]);
@@ -87,19 +90,42 @@ export const EditProfileModal: FC<Props> = ({
               onChange={(e) => setImageUpload(e.currentTarget.files[0])}
               type="file"
             />
-            {photoURL ? (
-              <div className={styles.imgContainer}>
-                <p>Vald bild</p>
-                <div className={styles.imgContent}>
-                  <Image
-                    alt="profile-picture"
-                    src={photoURL}
-                    width={160}
-                    height={160}
-                  />
+
+            {isLoading ? (
+              <>
+                <div className={styles.imgContainer}>
+                  <p>Vald bild</p>
+
+                  <div className={styles.imgContent}>
+                    <div className={styles.skeleton}>
+                      <Spinner
+                        thickness="4px"
+                        color="white"
+                        speed="0.9s"
+                        size="lg"
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ) : null}
+              </>
+            ) : (
+              <>
+                {photoURL ? (
+                  <div className={styles.imgContainer}>
+                    <p>Vald bild</p>
+
+                    <div className={styles.imgContent}>
+                      <Image
+                        alt="profile-picture"
+                        src={photoURL}
+                        width={160}
+                        height={160}
+                      />
+                    </div>
+                  </div>
+                ) : null}
+              </>
+            )}
             <PrimaryButton disabled={!photoURL} text="Uppdatera" submit />
           </form>
         ) : (
