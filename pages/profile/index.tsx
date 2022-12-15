@@ -23,6 +23,7 @@ import { Slider } from '../../src/components/big/sliderbtn/Slider';
 import { AddButton } from '../../src/components/small/addbtn/AddBtn';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
+import { TestCard } from '../../src/components/small/testcard/TestCard';
 import { db } from '../../src/firebase/Firebase';
 import {
   GetUser,
@@ -177,18 +178,16 @@ const ProfilePage: NextPage = () => {
         <div className={styles.productContainer}>
           {requests.length > 0 ? (
             <div className={styles.productGrid}>
-              {requests
-                .filter(requestFilter)
-                .map((request: RequestProps, key) => (
-                  <RequestCard
-                    item={request.productData.title}
-                    renter={request.requestedBy.displayName}
-                    image={request.productData.img}
-                    key={request.id}
-                    accept={() => handleAcceptRequest(request)}
-                    decline={() => handleDeclineRequest(request)}
-                  />
-                ))}
+              {requests.filter(requestFilter).map((request: RequestProps) => (
+                <TestCard
+                  item={request.productData.title}
+                  renter={request.requestedBy.displayName}
+                  image={request.productData.img}
+                  key={request.id}
+                  accept={() => handleAcceptRequest(request)}
+                  decline={() => handleDeclineRequest(request)}
+                />
+              ))}
             </div>
           ) : (
             <div className={styles.noRequests}>

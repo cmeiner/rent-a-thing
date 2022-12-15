@@ -12,7 +12,7 @@
   height: 450px;
   border-radius: 2.5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 0 35px 35px 35px;
+  padding: 0 35px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -22,7 +22,40 @@
     border-radius: 2.5px;
     height: 100%;
     width: 100%;
+    max-height: 260px;
     position: relative;
+  }
+  .rentContainer {
+    margin: 1rem 0;
+  }
+
+  .statusContainer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    * {
+      margin: 0;
+    }
+  }
+
+  .requestAction {
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .checkIcon {
+    font-size: 60px;
+  }
+
+  .cancelIcon {
+    font-size: 60px;
+    color: Colors.$primaryBlack;
   }
 
   .cardDescription {
@@ -56,26 +89,13 @@
       margin-bottom: 0.5rem;
     }
 
-    p {
-      margin: 0;
-    }
-    .cardDescription {
-      gap: 0;
-      align-items: flex-start;
-      flex-direction: column-reverse;
+    .checkIcon {
+      font-size: 40px;
     }
 
-    .cardPrice {
-      font-size: Fonts.$p;
-    }
-
-    .cardTitle {
-      font-size: Fonts.$h3;
-      margin: 0;
-    }
-    .favIcon {
-      padding-top: 0px;
-      padding-bottom: 0px;
+    .cancelIcon {
+      font-size: 40px;
+      color: Colors.$primaryBlack;
     }
   }
   @media screen and (max-width: 600px) {
@@ -101,16 +121,6 @@
 
 .notAvailable {
   color: red;
-}
-
-.rentContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .statusContainer {
-    display: flex;
-    gap: 0.3rem;
-  }
 }
 
 .test {
