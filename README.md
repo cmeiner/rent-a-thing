@@ -40,6 +40,14 @@ If you want to run the tests, write the following
 
 These are the nice-to-haves we've completed:
 
+[x] En inloggad användare ska kunna lägga upp en profilbild (med länk eller genom filuppladdning) och en kort text om sig själv, som sedan visas när användarens alla annonser visas.
+
+[x] Annonserna ska även tala om var varje föremål finns (stadsdel).
+
+[x] Det ska gå att filtrera annonser för att enbart se det som lånas ut gratis.
+
+[x]} Det ska gå att se hur många gånger ett föremål har varit uthyrt.
+
 ---
 
 ## Documents
