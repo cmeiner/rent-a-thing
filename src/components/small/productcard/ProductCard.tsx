@@ -26,7 +26,6 @@ export const ProductCard = ({
   available,
   onClick,
   id,
-  location
 }: CardProps) => {
   const [isFav, setIsFav] = useState(false);
   const { user } = GetUser();
@@ -46,7 +45,7 @@ export const ProductCard = ({
   return (
     <div className={styles.cardContainer}>
       <div className={styles.rentContainer}>
-        <div className={styles.availableContainer}>
+        <div className={styles.statusContainer}>
           {available ? 'Tillgänglig ' : 'Uthyrd '}
           <FiberManualRecordIcon
             className={available ? styles.available : styles.notAvailable}

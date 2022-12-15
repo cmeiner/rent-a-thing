@@ -9,7 +9,7 @@ import {
   getDocs,
   query,
   updateDoc,
-  where,
+  where
 } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -28,7 +28,7 @@ import {
   GetUser,
   ProductProps,
   RequestProps,
-  useFetch,
+  useFetch
 } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
@@ -177,18 +177,16 @@ const ProfilePage: NextPage = () => {
         <div className={styles.productContainer}>
           {requests.length > 0 ? (
             <div className={styles.productGrid}>
-              {requests
-                .filter(requestFilter)
-                .map((request: RequestProps, key) => (
-                  <RequestCard
-                    item={request.productData.title}
-                    renter={request.requestedBy.displayName}
-                    image={request.productData.img}
-                    key={request.id}
-                    accept={() => handleAcceptRequest(request)}
-                    decline={() => handleDeclineRequest(request)}
-                  />
-                ))}
+              {requests.filter(requestFilter).map((request: RequestProps) => (
+                <RequestCard
+                  item={request.productData.title}
+                  renter={request.requestedBy.displayName}
+                  image={request.productData.img}
+                  key={request.id}
+                  accept={() => handleAcceptRequest(request)}
+                  decline={() => handleDeclineRequest(request)}
+                />
+              ))}
             </div>
           ) : (
             <div className={styles.noRequests}>

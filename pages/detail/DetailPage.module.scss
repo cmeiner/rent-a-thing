@@ -57,6 +57,12 @@
         justify-content: center;
         height: 100%;
         width: 50%;
+        .rentForm {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
 
         .productNav {
           margin-bottom: 1rem;
@@ -67,6 +73,7 @@
 
         .textContainer {
           margin-bottom: 1rem;
+          width: 80%;
 
           .text {
             display: flex;
@@ -90,6 +97,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.2rem;
+            cursor: pointer;
 
             .icon {
               font-size: Fonts.$h1;
@@ -131,18 +139,13 @@
         flex-direction: column;
         align-items: center;
         gap: 1rem;
-
-        .imageContainer {
-          width: 70%;
-        }
         .aside {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           height: 100%;
-          width: 50%;
-
+          width: 100%;
           .productNav {
             text-align: center;
           }

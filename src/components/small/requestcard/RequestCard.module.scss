@@ -1,83 +1,92 @@
 @use '../../../constants/Colors.scss';
 @use '../../../constants/Fonts.scss';
 
-$small: 450px;
+.favIcon {
+  display: flex;
+  align-self: flex-end;
+}
 
-.requestContainer {
+.cardContainer {
   background-color: Colors.$primaryRed;
-  width: 405px;
+  width: 390px;
   height: 450px;
   border-radius: 2.5px;
-  margin: 8px;
-  box-shadow: 0px 4px 4px Colors.$primaryBlack;
-  padding: 10px 35px 0px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0 35px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  cursor: pointer;
   color: Colors.$primaryWhite;
 
-  .requestPicture {
+  .cardPicture {
     border-radius: 2.5px;
     height: 100%;
     width: 100%;
+    max-height: 260px;
     position: relative;
   }
-
-  .requestPrice {
-    font-weight: 400;
-    margin: 0;
-    font-size: Fonts.$h1;
-    align-self: flex-start;
+  .rentContainer {
+    margin: 1rem 0;
   }
 
-  .requestTitle {
-    font-weight: 400;
-    font-size: Fonts.$h1;
-    margin: 0;
+  .statusContainer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    * {
+      margin: 0;
+    }
   }
 
   .requestAction {
-    height: 100%;
+    gap: 1rem;
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 32px;
-  }
-  .cancelIcon {
-    color: Colors.$primaryBlack;
-    font-size: 70px;
-    cursor: pointer;
-  }
-  .checkIcon {
-    font-size: 70px;
-    cursor: pointer;
+    align-items: center;
+    margin: auto;
   }
 
-  @media screen and (max-width: 870px) {
+  .checkIcon {
+    font-size: 60px;
+  }
+
+  .cancelIcon {
+    font-size: 60px;
+    color: Colors.$primaryBlack;
+  }
+
+  .cardDescription {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .cardPrice {
+    margin: 0;
+    align-self: flex-start;
+  }
+
+  .cardTitle {
+    margin: 0;
+  }
+
+  .rentContainer {
+    margin: 1rem 0;
+  }
+
+  @media screen and (max-width: 800px) {
     width: 250px;
     height: 300px;
-    padding: 5px;
+    padding: 0.8rem;
 
-    .requestPrice {
-      font-weight: 400;
-      margin: 0;
-      font-size: Fonts.$h3;
-      align-self: flex-start;
-    }
-
-    .requestTitle {
-      font-weight: 400;
-      font-size: Fonts.$h3;
-      margin: 0;
-    }
-
-    .requestAction {
-      gap: 1rem;
-      width: fit-content;
-      justify-content: center;
-      width: 100%;
-      height: 50%;
+    .rentContainer {
+      height: 2rem;
+      margin-bottom: 0.5rem;
     }
 
     .checkIcon {
@@ -89,83 +98,31 @@ $small: 450px;
       color: Colors.$primaryBlack;
     }
   }
-
-  @media (max-width: 600px) {
+  @media screen and (max-width: 600px) {
     width: 180px;
     height: 200px;
     padding: 10px;
-
-    .requestPrice {
-      font-weight: 400;
-      margin: 0;
-      font-size: Fonts.$p;
-      align-self: flex-start;
-    }
-
-    .requestTitle {
-      font-weight: 400;
-      font-size: Fonts.$p;
+    p {
       margin: 0;
     }
-
-    .requestAction {
-      gap: 1rem;
-      width: fit-content;
-      justify-content: center;
-      width: 100%;
-      height: 50%;
-      margin-top: 0.5rem;
+    .rentContainer {
+      margin: 0;
     }
-
-    .checkIcon {
-      font-size: 40px;
-    }
-
-    .cancelIcon {
-      font-size: 40px;
-      color: Colors.$primaryBlack;
+    .favIcon {
+      padding-top: 0px;
+      padding-bottom: 0px;
     }
   }
+}
 
-  @media screen and (max-width: $small) {
-    width: 300px;
-    height: 65px;
-    font-size: Fonts.$p;
-    padding: 0;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: row;
+.available {
+  color: green;
+}
 
-    .requestPrice {
-      font-weight: 400;
-      margin: 0;
-      font-size: Fonts.$h2;
-      align-self: flex-start;
-    }
+.notAvailable {
+  color: red;
+}
 
-    .requestTitle {
-      font-weight: 400;
-      font-size: Fonts.$h2;
-      margin: 0;
-    }
-
-    .requestPicture {
-      display: none;
-      position: relative;
-    }
-
-    .requestAction {
-      gap: 0;
-      width: fit-content;
-    }
-
-    .checkIcon {
-      font-size: 40px;
-    }
-
-    .cancelIcon {
-      font-size: 40px;
-      color: Colors.$primaryBlack;
-    }
-  }
+.test {
+  user-select: none;
 }

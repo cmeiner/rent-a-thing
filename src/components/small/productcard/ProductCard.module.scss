@@ -1,19 +1,6 @@
 @use '../../../constants/Colors.scss';
 @use '../../../constants/Fonts.scss';
 
-.unavailablecardContainer {
-  background-color: Colors.$primaryBlack;
-  width: 390px;
-  height: 450px;
-  border-radius: 2.5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 35px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  color: Colors.$primaryWhite;
-}
 .favIcon {
   display: flex;
   align-self: flex-end;
@@ -25,9 +12,7 @@
   height: 450px;
   border-radius: 2.5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding-left: 35px;
-  padding-right: 35px;
-  padding-bottom: 35px;
+  padding: 0 35px 35px 35px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -101,7 +86,7 @@
       margin: 0;
     }
     .rentContainer {
-      margin-bottom: 0.2rem;
+      margin: 0;
     }
     .favIcon {
       padding-top: 0px;
@@ -122,7 +107,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .availableContainer {
+  .statusContainer {
     display: flex;
     gap: 0.3rem;
   }
