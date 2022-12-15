@@ -152,7 +152,14 @@ const Details: NextPage = () => {
                               onSubmit={HandleSubmit}
                             >
                               <FilterDay onChange={HandleOption} />
-                              <PrimaryButton text="Rent-this-thing" submit />
+                              {productData.postedBy !== user.id ? (
+                                <PrimaryButton text="Rent-this-thing" submit />
+                              ) : (
+                                <PrimaryButton
+                                  text="Du kan inte hyra din egen annons"
+                                  disabled
+                                />
+                              )}
                             </form>
                           </>
                         ) : (
