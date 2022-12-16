@@ -137,8 +137,8 @@ const ProfilePage: NextPage = () => {
                 }}
                 className={styles.iconContainer}
               >
-                <div className={styles.icon} id="description">
-                  <ModeEditOutlineOutlinedIcon />
+                <div className={styles.icon}>
+                  <ModeEditOutlineOutlinedIcon id="description" />
                 </div>
               </div>
             </div>
