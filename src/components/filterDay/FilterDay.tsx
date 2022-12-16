@@ -43,7 +43,7 @@ export const FilterDay = ({ onChange }: FilterDayProps) => {
     <div className={styles.container}>
       <select required className={styles.filter} onChange={onChange}>
         {days.map((day, index) => (
-          <option key={index} value={day.value}>
+          <option key={index} value={day.value}> 
             {day.label}
           </option>
         ))}

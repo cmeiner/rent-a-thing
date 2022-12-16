@@ -1,8 +1,8 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../../../assets/Logo.svg';
-import { GetUser } from '../../../utils/Hooks';
+import logo from '../../assets/Logo.svg';
+import { GetUser } from '../../utils/Hooks';
 import styles from './Header.module.scss';
 
 export const Header = () => {
@@ -25,7 +25,7 @@ export const Header = () => {
           {user.displayName ? user.displayName : ''}
         </h1>
         <Link href={user.id ? '/profile' : '/login'}>
-          <AccountCircleIcon className={styles.icon} />
+          <AccountCircleIcon className={styles.icon} id='headerIcon' />
         </Link>
       </div>
     </div>

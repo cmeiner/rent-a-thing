@@ -1,7 +1,7 @@
 describe('Create account', () => {
   it('Creates an account', () => {
     cy.visit('localhost:3000');
-    cy.get('.Header_icon__MUqiq').click();
+    cy.get('#headerIcon').click();
     cy.get('#toRegister').click().wait(500);
     cy.get('#displayName').type('meiner');
     cy.get('#email').type(`test${Math.floor(Math.random() * 2000)}@test.com`);
@@ -12,4 +12,5 @@ describe('Create account', () => {
   });
 });
 
-export {};
+export { };
+

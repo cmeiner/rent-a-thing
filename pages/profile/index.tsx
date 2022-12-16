@@ -9,7 +9,7 @@ import {
   getDocs,
   query,
   updateDoc,
-  where,
+  where
 } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -17,10 +17,10 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../src/auth/AuthContext';
-import { EditProfileModal } from '../../src/components/big/editProfileModal/EditProfileModal';
-import { Header } from '../../src/components/big/header/Header';
-import { Slider } from '../../src/components/big/sliderbtn/Slider';
-import { AddButton } from '../../src/components/small/addbtn/AddBtn';
+import { AddButton } from '../../src/components/addbtn/AddBtn';
+import { EditProfileModal } from '../../src/components/editProfileModal/EditProfileModal';
+import { Header } from '../../src/components/header/Header';
+import { Slider } from '../../src/components/sliderbtn/Slider';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { RequestCard } from '../../src/components/small/requestcard/RequestCard';
 import { db } from '../../src/firebase/Firebase';
@@ -28,7 +28,7 @@ import {
   GetUser,
   ProductProps,
   RequestProps,
-  useFetch,
+  useFetch
 } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
@@ -136,9 +136,10 @@ const ProfilePage: NextPage = () => {
                   setVisible((prevState) => !prevState);
                 }}
                 className={styles.iconContainer}
+                id="description"
               >
                 <div className={styles.icon}>
-                  <ModeEditOutlineOutlinedIcon id="description" />
+                  <ModeEditOutlineOutlinedIcon  />
                 </div>
               </div>
             </div>

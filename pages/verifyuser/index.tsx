@@ -1,18 +1,17 @@
 import { getAuth, updateProfile } from 'firebase/auth';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../src/auth/AuthContext';
-import { Header } from '../../src/components/big/header/Header';
-import { FilesInput } from '../../src/components/small/filesInput/FilesInput';
-import { InputField } from '../../src/components/small/inputfield/InputField';
-import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
-import styles from './VerifyPage.module.scss';
-import { storage } from '../../src/firebase/Firebase';
-
 import { v4 } from 'uuid';
+import { AuthContext } from '../../src/auth/AuthContext';
+import { FilesInput } from '../../src/components/filesInput/FilesInput';
+import { Header } from '../../src/components/header/Header';
+import { InputField } from '../../src/components/inputfield/InputField';
+import { PrimaryButton } from '../../src/components/primarybtn/PrimaryBtn';
+import { storage } from '../../src/firebase/Firebase';
 import { usePost } from '../../src/utils/Hooks';
+import styles from './VerifyPage.module.scss';
 
 const VerifyUser: NextPage = () => {
   const auth = getAuth();
