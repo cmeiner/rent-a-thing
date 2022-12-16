@@ -14,6 +14,7 @@ describe('AddDescription', () => {
     cy.get('#test').contains('Biografi').click();
     cy.get('#descriptionField').type('En fin beskrivning');
     cy.get('#updateDescription').click();
+    cy.get('#descriptionForm').submit();
     cy.get('#logOutButton').click();
   });
 });
