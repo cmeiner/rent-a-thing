@@ -82,6 +82,7 @@ export const EditProfileModal: FC<Props> = ({
           primary="Profilbild"
           secondary="Biografi"
           state={contentSwitch}
+          id="test"
         />
         {!contentSwitch ? (
           <form className={styles.form} onSubmit={handleUpdateProfilePic}>
@@ -140,9 +141,14 @@ export const EditProfileModal: FC<Props> = ({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Beskrivning"
-              id="description"
+              id="descriptionField"
             />
-            <PrimaryButton disabled={!description} text="Uppdatera" submit />
+            <PrimaryButton
+              id="updateDescription"
+              disabled={!description}
+              text="Uppdatera"
+              submit
+            />
           </form>
         )}
       </ModalContent>
