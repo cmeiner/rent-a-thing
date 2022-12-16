@@ -16,7 +16,7 @@ import {
   ProductProps,
   useFetch,
   usePost,
-  UserProps,
+  UserProps
 } from '../../src/utils/Hooks';
 import styles from './DetailPage.module.scss';
 
@@ -153,7 +153,17 @@ const Details: NextPage = () => {
                             >
                               <FilterDay onChange={HandleOption} />
                               {productData.postedBy !== user.id ? (
-                                <PrimaryButton text="Rent-this-thing" submit />
+                                !days ? (
+                                  <PrimaryButton
+                                    text="Vänligen välj dagar"
+                                    disabled
+                                  />
+                                ) : (
+                                  <PrimaryButton
+                                    text="Rent-this-thing"
+                                    submit
+                                  />
+                                )
                               ) : (
                                 <PrimaryButton
                                   text="Du kan inte hyra din egen annons"

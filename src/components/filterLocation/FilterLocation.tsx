@@ -11,7 +11,7 @@ export const FilterLocation = ({
   small = false,
   id,
 }: FilterProps) => {
-  const categories = [
+  const locations = [
     {
       label: 'Välj stadsdel',
     },
@@ -41,9 +41,9 @@ export const FilterLocation = ({
         onChange={onChange}
         id={id}
       >
-        {categories.map((cat, index) => (
-          <option key={index} value={cat.value}>
-            {cat.label}
+        {locations.map((loc, index) => (
+          <option key={index} value={loc.value}>
+            {loc.label}
           </option>
         ))}
       </select>
