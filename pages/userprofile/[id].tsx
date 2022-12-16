@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Header } from '../../src/components/big/header/Header';
+import { Header } from '../../src/components/header/Header';
 import { ProductCard } from '../../src/components/small/productcard/ProductCard';
 import { ProductProps, useFetch, UserProps } from '../../src/utils/Hooks';
 import styles from './userprofile.module.scss';

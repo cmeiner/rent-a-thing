@@ -6,7 +6,7 @@ import {
   query,
   setDoc,
   updateDoc,
-  where,
+  where
 } from 'firebase/firestore';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../auth/AuthContext';
@@ -108,7 +108,6 @@ export const useFetch = (api: string, id?: string, userId?: string) => {
   return { response, isLoading };
 };
 
-// spreads user-state (use user.id to check if user is logged in)
 export const GetUser = () => {
   const { currentUser } = useContext(AuthContext);
   const user = { ...(currentUser as UserProps) };

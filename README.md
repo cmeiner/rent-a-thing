@@ -16,7 +16,8 @@ Open the terminal and run the following commands
 
 `npm run dev`
 
-If you want to run the tests, write the following
+If you want to run the tests, make sure the project is running on localhost:3000.
+Then open another terminal and write the following. 
 
 `npx cypress open`
 

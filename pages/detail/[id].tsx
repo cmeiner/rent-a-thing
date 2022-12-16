@@ -6,11 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';
-
-import { Header } from '../../src/components/big/header/Header';
-import { Slider } from '../../src/components/big/sliderbtn/Slider';
-import { FilterDay } from '../../src/components/small/filterDay/FilterDay';
-import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { FilterDay } from '../../src/components/filterDay/FilterDay';
+import { Header } from '../../src/components/header/Header';
+import { PrimaryButton } from '../../src/components/primarybtn/PrimaryBtn';
+import { Slider } from '../../src/components/sliderbtn/Slider';
 import {
   GetUser,
   ProductProps,
@@ -25,17 +24,13 @@ const Details: NextPage = () => {
 
   const router = useRouter();
   const id = router.query.id as string;
+  const { user } = GetUser();
   const { response: productRes } = useFetch('posts', id);
   const productData = { ...(productRes as unknown as ProductProps) };
-
-  // const requestData = { ...(productRes as unknown as RequestProps) };
-
   const { response: userRes } = useFetch('users', productData.postedBy);
   const userData = { ...(userRes as unknown as UserProps) };
   const [days, setDays] = useState<undefined | number>();
   const toast = useToast();
-
-  const { user } = GetUser();
 
   const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,12 +1,6 @@
 import styles from './Slider.module.scss';
 
-/**
- * @param {string} primary - sets title for left button.
- * @param {string} secondary - sets title for right button.
- * @param onClick - passes onClick
- * @param {boolean} state - passes state to declare selected button. "false" is default
- */
-interface sliderProps {
+interface SliderProps {
   onClick: () => void;
   primary: string;
   secondary: string;
@@ -20,7 +14,7 @@ export const Slider = ({
   secondary,
   state,
   id,
-}: sliderProps) => {
+}: SliderProps) => {
   return (
     <div className={styles.sliderButton} id={id}>
       <button

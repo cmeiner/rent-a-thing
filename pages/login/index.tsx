@@ -5,9 +5,9 @@ import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
-import { Header } from '../../src/components/big/header/Header';
-import { InputField } from '../../src/components/small/inputfield/InputField';
-import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { Header } from '../../src/components/header/Header';
+import { InputField } from '../../src/components/inputfield/InputField';
+import { PrimaryButton } from '../../src/components/primarybtn/PrimaryBtn';
 import { auth } from '../../src/firebase/Firebase';
 import styles from './LoginPage.module.scss';
 

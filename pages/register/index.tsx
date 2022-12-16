@@ -3,7 +3,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import {
   createUserWithEmailAndPassword,
   getAuth,
-  updateProfile,
+  updateProfile
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -14,10 +14,10 @@ import { useRouter } from 'next/router';
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import { AuthContext } from '../../src/auth/AuthContext';
-import { Header } from '../../src/components/big/header/Header';
-import { FilesInput } from '../../src/components/small/filesInput/FilesInput';
-import { InputField } from '../../src/components/small/inputfield/InputField';
-import { PrimaryButton } from '../../src/components/small/primarybtn/PrimaryBtn';
+import { FilesInput } from '../../src/components/filesInput/FilesInput';
+import { Header } from '../../src/components/header/Header';
+import { InputField } from '../../src/components/inputfield/InputField';
+import { PrimaryButton } from '../../src/components/primarybtn/PrimaryBtn';
 import { db, storage } from '../../src/firebase/Firebase';
 import styles from './RegisterPage.module.scss';
 

@@ -1,5 +1,5 @@
-import styles from './AddBtn.module.scss';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import styles from './AddBtn.module.scss';
 
 interface ButtonProps {
   large?: boolean;
