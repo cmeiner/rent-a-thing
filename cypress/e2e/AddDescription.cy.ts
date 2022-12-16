@@ -1,4 +1,3 @@
-
 describe('AddDescription', () => {
   it('Adds description on profilepage', () => {
     cy.visit('localhost:3000');
@@ -8,15 +7,14 @@ describe('AddDescription', () => {
     cy.get('#email').type(`test${Math.floor(Math.random() * 2000)}@test.com`);
     cy.get('#password').type('123456');
     cy.get('#profileImage').selectFile('cypress/fixtures/cat.jpg').wait(2000);
-    cy.get('#registerForm').submit().wait(5000);
+    cy.get('#registerForm').submit().wait(10000);
     cy.get('#description').click();
     cy.get('#slider').contains('Biografi').click();
     cy.get('#descriptionField').type('En fin beskrivning');
     cy.get('#updateDescription').click();
-    cy.get('#descriptionForm').submit();
+    cy.get('#descriptionForm').submit().wait(5000);
     cy.get('#logOutButton').click();
   });
 });
 
-export { };
-
+export {};
