@@ -25,7 +25,7 @@ export const Header = () => {
           {user.displayName ? user.displayName : ''}
         </h1>
         <Link href={user.id ? '/profile' : '/login'}>
-          <AccountCircleIcon className={styles.icon} />
+          <AccountCircleIcon className={styles.icon} id='headerIcon' />
         </Link>
       </div>
     </div>

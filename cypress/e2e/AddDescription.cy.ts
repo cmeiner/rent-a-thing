@@ -1,9 +1,8 @@
-import { xorBy } from 'cypress/types/lodash';
 
 describe('AddDescription', () => {
   it('Adds description on profilepage', () => {
     cy.visit('localhost:3000');
-    cy.get('.Header_icon__MUqiq').click();
+    cy.get('#headerIcon').click();
     cy.get('#toRegister').click().wait(500);
     cy.get('#displayName').type('Jannie');
     cy.get('#email').type(`test${Math.floor(Math.random() * 2000)}@test.com`);
@@ -19,4 +18,5 @@ describe('AddDescription', () => {
   });
 });
 
-export {};
+export { };
+
