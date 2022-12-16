@@ -12,7 +12,7 @@ describe('AddMewProductTest', () => {
     cy.get('#productCategory').select(3);
     cy.get('#productLocation').select(2);
     cy.get('#productImage').selectFile('cypress/fixtures/cat.jpg').wait(5000);
-    cy.get('#productForm').submit();
+    cy.get('#productForm').submit().wait(1000);
     cy.get('#logOutButton').click();
   });
 });
