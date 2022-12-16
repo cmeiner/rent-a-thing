@@ -13,7 +13,7 @@ describe('AddDescription', () => {
     cy.get('#slider').contains('Biografi').click();
     cy.get('#descriptionField').type('En fin beskrivning');
     cy.get('#updateDescription').click();
-    cy.get('#descriptionForm').submit();
+    cy.get('#descriptionForm').submit().wait(3000);
     cy.get('#logOutButton').click();
   });
 });
