@@ -11,7 +11,7 @@ describe('AddDescription', () => {
     cy.get('#profileImage').selectFile('cypress/fixtures/cat.jpg').wait(2000);
     cy.get('#registerForm').submit().wait(2000);
     cy.get('#description').click();
-    cy.get('#test').contains('Biografi').click();
+    cy.get('#slider').contains('Biografi').click();
     cy.get('#descriptionField').type('En fin beskrivning');
     cy.get('#updateDescription').click();
     cy.get('#descriptionForm').submit();

@@ -82,7 +82,7 @@ export const EditProfileModal: FC<Props> = ({
           primary="Profilbild"
           secondary="Biografi"
           state={contentSwitch}
-          id="test"
+          id="slider"
         />
         {!contentSwitch ? (
           <form className={styles.form} onSubmit={handleUpdateProfilePic}>
