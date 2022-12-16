@@ -136,9 +136,10 @@ const ProfilePage: NextPage = () => {
                   setVisible((prevState) => !prevState);
                 }}
                 className={styles.iconContainer}
+                id="description"
               >
                 <div className={styles.icon}>
-                  <ModeEditOutlineOutlinedIcon id="description" />
+                  <ModeEditOutlineOutlinedIcon  />
                 </div>
               </div>
             </div>
