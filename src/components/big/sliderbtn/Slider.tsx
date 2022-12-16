@@ -11,11 +11,18 @@ interface sliderProps {
   primary: string;
   secondary: string;
   state: boolean;
+  id?: string;
 }
 
-export const Slider = ({ onClick, primary, secondary, state }: sliderProps) => {
+export const Slider = ({
+  onClick,
+  primary,
+  secondary,
+  state,
+  id,
+}: sliderProps) => {
   return (
-    <div className={styles.sliderButton}>
+    <div className={styles.sliderButton} id={id}>
       <button
         onClick={onClick}
         className={`${styles.button} ${!state ? styles.active : ''}`}

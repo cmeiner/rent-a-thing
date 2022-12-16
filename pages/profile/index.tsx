@@ -9,7 +9,7 @@ import {
   getDocs,
   query,
   updateDoc,
-  where
+  where,
 } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -28,7 +28,7 @@ import {
   GetUser,
   ProductProps,
   RequestProps,
-  useFetch
+  useFetch,
 } from '../../src/utils/Hooks';
 import styles from './ProfilePage.module.scss';
 
@@ -138,7 +138,7 @@ const ProfilePage: NextPage = () => {
                 className={styles.iconContainer}
               >
                 <div className={styles.icon}>
-                  <ModeEditOutlineOutlinedIcon />
+                  <ModeEditOutlineOutlinedIcon id="description" />
                 </div>
               </div>
             </div>
@@ -215,8 +215,8 @@ const ProfilePage: NextPage = () => {
       )}
       <div className={styles.profileFooter}>
         <div
-          className={styles.content}
           id="logOutButton"
+          className={styles.content}
           onClick={handleSignOut}
         >
           <h2 className={styles.text}>Logga ut</h2>
